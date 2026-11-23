@@ -1,0 +1,771 @@
+<!doctype html>
+<!--
+  Agenzio : page de vente « 1 site, 1 semaine, 1000 € »
+  [À VALIDER : orthographe définitive Agenzio / Agencio]
+  Réglages (créneaux, date de fin, calendrier, formulaire, téléphone) : en haut de js/main.js
+-->
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Création de site internet en 7 jours, 1000 € prix ferme | Agenzio</title>
+  <meta name="description" content="Site vitrine sur mesure pour artisans, indépendants et TPE locales : en ligne en 7 jours, 1000 € prix ferme, sans abonnement ni engagement. Le site vous appartient.">
+  <meta name="theme-color" content="#0E0E10">
+  <link rel="canonical" href="https://www.agenzio.fr/"><!-- [À COMPLÉTER : URL définitive du site] -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Agenzio">
+  <meta property="og:title" content="Votre site pro en ligne en 7 jours. 1000 €, prix ferme.">
+  <meta property="og:description" content="Site vitrine pour artisans et TPE. Sans abonnement. Sans engagement. Le site est à vous.">
+  <meta property="og:url" content="https://www.agenzio.fr/">
+  <!-- [À COMPLÉTER : image de partage 1200×630 dans img/og-image.jpg] -->
+  <meta property="og:image" content="https://www.agenzio.fr/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" type="image/webp" href="img/hero-desk.webp" imagesrcset="img/hero-desk-640.webp 640w, img/hero-desk.webp 1200w" imagesizes="(max-width: 1100px) 84vw, 40vw" fetchpriority="high">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E0E10'/%3E%3Cpath d='M9 24 15 8h2l6 16h-3.2l-1.3-3.7h-5L12.2 24Z M14.4 17.7h3.3L16 12.6Z' fill='%23E6FF3D'/%3E%3C/svg%3E">
+
+  <!-- Active les états d'animation seulement si le JS tourne. Filet de sécurité : si main.js
+       ne démarre pas en 2,5 s, on retire la classe et tout le contenu reste visible. -->
+  <script>
+    (function (d) {
+      var h = d.documentElement; h.classList.add('js');
+      try {
+        if (sessionStorage.getItem('agz-vu')) h.classList.add('no-loader');
+        else sessionStorage.setItem('agz-vu', '1');
+      } catch (e) { h.classList.add('no-loader'); }
+      setTimeout(function () { if (!window.__agzReady) h.classList.remove('js'); }, 2500);
+    })(document);
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.agenzio.fr/#organisation",
+        "name": "Agenzio",
+        "url": "https://www.agenzio.fr/",
+        "description": "Agence web : création de sites, SEO et automatisation pour artisans, indépendants et TPE locales.",
+        "founder": { "@type": "Person", "name": "Yoann Di Stefano" },
+        "email": "[À COMPLÉTER : e-mail de contact]",
+        "telephone": "[À COMPLÉTER : téléphone]"
+      },
+      {
+        "@type": "Service",
+        "name": "Site vitrine one page en 7 jours",
+        "serviceType": "Création de site internet",
+        "provider": { "@id": "https://www.agenzio.fr/#organisation" },
+        "areaServed": { "@type": "Country", "name": "France" },
+        "audience": { "@type": "Audience", "audienceType": "Artisans, indépendants et TPE locales" },
+        "description": "Site one page sur mesure, mobile, optimisé SEO local. En ligne en 7 jours à compter de la réception de tous vos éléments. 1 aller-retour de modifications inclus. Le site vous appartient. Aucun abonnement imposé. Hébergement et nom de domaine non inclus.",
+        "offers": {
+          "@type": "Offer",
+          "price": "1000",
+          "priceCurrency": "EUR",
+          "validThrough": "2026-12-31T23:59:59+01:00",
+          "availability": "https://schema.org/LimitedAvailability"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Pourquoi c'est si rapide ?", "acceptedAnswer": { "@type": "Answer", "text": "Parce que le process est rodé et que les outils sont modernes. Et parce que vous n'avez qu'un seul interlocuteur : la personne qui fait votre site. Pas de réunions internes, pas de transmission entre services." } },
+          { "@type": "Question", "name": "Que se passe-t-il si je n'ai pas de photos ou de textes ?", "acceptedAnswer": { "@type": "Answer", "text": "Dites-le dès l'appel, on regarde ensemble ce qui manque. [À VALIDER : aide à la rédaction incluse ?] Le délai de 7 jours démarre à réception de 100 % de vos éléments." } },
+          { "@type": "Question", "name": "Je peux modifier mon site moi-même ensuite ?", "acceptedAnswer": { "@type": "Answer", "text": "Le site vous appartient : vous récupérez vos accès et votre code. Vous pouvez le modifier ou le faire modifier par qui vous voulez. [À VALIDER : outil d'édition simple fourni ? oui/non]" } },
+          { "@type": "Question", "name": "L'hébergement, ça coûte combien et qui s'en occupe ?", "acceptedAnswer": { "@type": "Answer", "text": "L'hébergement et le nom de domaine ne sont pas inclus dans les 1000 €. Comptez [À COMPLÉTER : ~X €/an], à votre nom. Si vous préférez ne pas vous en occuper, il existe une option maintenance et hébergement géré à [À COMPLÉTER : prix]/mois, sans engagement, résiliable à tout moment." } },
+          { "@type": "Question", "name": "Et après le 31 décembre ?", "acceptedAnswer": { "@type": "Answer", "text": "L'offre à 1000 € s'arrête le 31 décembre 2026, ou avant si tous les créneaux sont pris. Après cette date, contactez-nous pour connaître les conditions." } },
+          { "@type": "Question", "name": "Que se passe-t-il si je ne suis pas satisfait ?", "acceptedAnswer": { "@type": "Answer", "text": "[À VALIDER : politique en cas d'insatisfaction] Le prix comprend 1 aller-retour de modifications, au jour 5, avant la mise en ligne." } },
+          { "@type": "Question", "name": "Vous travaillez dans toute la France ?", "acceptedAnswer": { "@type": "Answer", "text": "L'appel, le brief et la validation se font à distance. [À VALIDER : zone d'intervention]" } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <!-- Loader de marque : première visite uniquement, 1 s max, passable au clic,
+       se retire tout seul en CSS même si le JS échoue -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <span class="loader-word">Agenzio</span>
+      <span class="loader-bar"><span></span></span>
+    </div>
+  </div>
+
+  <div class="cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-ring"></span></div>
+
+  <!-- 3.1 Bandeau d'urgence -->
+  <div class="promo" id="promo" role="region" aria-label="Offre en cours">
+    <p class="promo-text" data-promo-active>
+      <span class="promo-dot" aria-hidden="true"></span>
+      Offre valable jusqu'au 31&nbsp;décembre <span class="promo-sep" aria-hidden="true">·</span>
+      <span class="promo-slots">Plus que <strong data-creneaux>4</strong> créneaux en décembre</span>
+    </p>
+    <p class="promo-text" data-promo-ended hidden>Offre terminée, contactez-nous.</p>
+    <a class="promo-link" href="#reserver" data-promo-cta>Réserver <span aria-hidden="true">→</span></a>
+  </div>
+
+  <header class="nav" id="haut">
+    <a class="logo" href="#haut">
+      <span class="logo-mark" aria-hidden="true">A</span><span class="logo-word">Agenzio</span>
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#inclus">L'offre</a>
+      <a href="#process">Le process</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-accent btn-sm magnetic" href="#reserver">Réserver</a>
+  </header>
+
+  <main id="contenu">
+
+    <!-- 3.2 Hero -->
+    <section class="hero" aria-labelledby="titre-hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
+      </div>
+
+      <div class="hero-copy">
+        <p class="label hero-label" data-hero="fade">Site vitrine pour artisans, indépendants &amp; TPE</p>
+        <h1 id="titre-hero" class="hero-title">
+          <span class="line"><span>Votre site pro</span></span>
+          <span class="line"><span>en ligne en <em>7&nbsp;jours.</em></span></span>
+          <span class="line"><span><em>1000&nbsp;€</em>, prix ferme.</span></span>
+        </h1>
+        <p class="hero-sub" data-hero="fade">Sans abonnement. Sans engagement. Le site est à vous.</p>
+        <div class="hero-ctas" data-hero="fade">
+          <a class="btn btn-accent btn-lg magnetic" href="#reserver">Réserver mon créneau <span class="btn-arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost btn-lg magnetic" href="#realisations">Voir des exemples</a>
+        </div>
+        <ul class="badges" data-hero="fade" aria-label="Nos engagements">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Prix ferme</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>7 jours garantis</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>0 abonnement</li>
+        </ul>
+      </div>
+
+      <div class="hero-stage" aria-hidden="true">
+        <div class="stage-tilt">
+          <div class="mock-desk-wrap"><div class="mock-desk">
+            <div class="mock-bar"><i></i><i></i><i></i><span>menuiserie-demo.fr</span></div>
+            <div class="mock-screen">
+              <img src="img/hero-desk.webp" srcset="img/hero-desk-640.webp 640w, img/hero-desk.webp 1200w" sizes="(max-width: 1100px) 84vw, 40vw" width="1200" height="750" alt="" fetchpriority="high">
+              <div class="mock-site">
+                <div class="mock-nav"><b>ATELIER DÉMO</b><span>Réalisations</span><span>Contact</span><em>Appeler</em></div>
+                <p class="mock-h">Menuiserie<br>sur mesure</p>
+                <p class="mock-p">Escaliers, cuisines, agencements.</p>
+                <span class="mock-btn">Demander un devis</span>
+              </div>
+              <span class="demo-tag">Site de démonstration</span>
+            </div>
+          </div></div>
+          <div class="mock-phone">
+            <div class="mock-phone-in">
+              <div class="mock-phone-screen">
+                <img src="img/hero-phone.webp" srcset="img/hero-phone-280.webp 280w, img/hero-phone.webp 560w" sizes="(max-width: 1100px) 28vw, 12vw" width="560" height="1000" alt="">
+                <div class="mock-site mock-site--phone">
+                  <div class="mock-nav"><b>ATELIER DÉMO</b></div>
+                  <p class="mock-h">Menuiserie sur mesure</p>
+                  <span class="mock-btn">Appeler</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-figures">
+        <div class="fig">
+          <span class="fig-num"><span data-count="7">7</span></span>
+          <span class="fig-meta"><span class="fig-unit">jours</span><span class="fig-cap">pour être en ligne*</span></span>
+        </div>
+        <div class="fig fig--price">
+          <span class="fig-num"><span data-count="1000">1000</span><span class="fig-euro">€</span></span>
+          <span class="fig-meta"><span class="fig-unit">tout compris</span><span class="fig-cap">prix ferme, sans devis</span></span>
+        </div>
+        <p class="fig-note">*À compter de la réception de tous vos éléments.</p>
+      </div>
+    </section>
+
+    <!-- Marquee métiers -->
+    <div class="marquee">
+      <p class="sr-only">Pour qui : menuisiers, paysagistes, gîtes, coachs, artisans, commerces, moniteurs, indépendants.</p>
+      <div class="marquee-track" aria-hidden="true">
+        <span>Menuisiers</span><i>✱</i><span>Paysagistes</span><i>✱</i><span>Gîtes</span><i>✱</i><span>Coachs</span><i>✱</i><span>Artisans</span><i>✱</i><span>Commerces</span><i>✱</i><span>Moniteurs</span><i>✱</i><span>Indépendants</span><i>✱</i>
+        <span>Menuisiers</span><i>✱</i><span>Paysagistes</span><i>✱</i><span>Gîtes</span><i>✱</i><span>Coachs</span><i>✱</i><span>Artisans</span><i>✱</i><span>Commerces</span><i>✱</i><span>Moniteurs</span><i>✱</i><span>Indépendants</span><i>✱</i>
+      </div>
+    </div>
+
+    <!-- 3.3 Le problème -->
+    <section class="section light problem" aria-labelledby="titre-probleme">
+      <div class="wrap">
+        <p class="label"><span class="num">01</span>Le constat</p>
+        <h2 id="titre-probleme" class="h-xl split">Vous en avez marre&nbsp;?</h2>
+        <ol class="pains">
+          <li class="pain">
+            <span class="pain-n">a.</span>
+            <p class="pain-t"><span class="strike">Les appels de démarcheurs 3&nbsp;fois par semaine</span></p>
+          </li>
+          <li class="pain">
+            <span class="pain-n">b.</span>
+            <p class="pain-t"><span class="strike">Les contrats de location de site sur 48&nbsp;mois</span></p>
+          </li>
+          <li class="pain">
+            <span class="pain-n">c.</span>
+            <p class="pain-t"><span class="strike">Les devis flous “à partir de” et les délais à rallonge</span></p>
+          </li>
+        </ol>
+        <p class="punch" data-reveal><span>Nous, on fait <mark>l'inverse.</mark></span></p>
+      </div>
+    </section>
+
+    <!-- 3.4 Comparatif -->
+    <section class="section dark compare" aria-labelledby="titre-comparatif">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="label"><span class="num">02</span>Comparatif</p>
+          <h2 id="titre-comparatif" class="h-lg split">Ce que vous payez, ailleurs et ici.</h2>
+          <p class="lead" data-reveal>Pratiques courantes du marché, sans citer personne. À vous de comparer.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="cmp">
+            <caption class="sr-only">Comparatif entre agences classiques, contrats de location et Agenzio</caption>
+            <thead>
+              <tr>
+                <td></td>
+                <th scope="col">Agences classiques</th>
+                <th scope="col">Contrats de location</th>
+                <th scope="col" class="us">Agenzio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Prix</th>
+                <td data-l="Agences classiques">« À partir de », sur devis</td>
+                <td data-l="Contrats de location">Mensualités sur 48 mois</td>
+                <td data-l="Agenzio" class="us"><strong>1000 € ferme</strong></td>
+              </tr>
+              <tr>
+                <th scope="row">Délai</th>
+                <td data-l="Agences classiques">4 à 8 semaines</td>
+                <td data-l="Contrats de location">Variable</td>
+                <td data-l="Agenzio" class="us"><strong>7 jours</strong></td>
+              </tr>
+              <tr>
+                <th scope="row">Propriété du site</th>
+                <td data-l="Agences classiques">Variable</td>
+                <td data-l="Contrats de location">Le site ne vous appartient pas</td>
+                <td data-l="Agenzio" class="us"><strong>100 % à vous</strong></td>
+              </tr>
+              <tr>
+                <th scope="row">Engagement</th>
+                <td data-l="Agences classiques">Variable</td>
+                <td data-l="Contrats de location">48 mois</td>
+                <td data-l="Agenzio" class="us"><strong>Aucun</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.5 Ce qui est inclus -->
+    <section class="section light included" id="inclus" aria-labelledby="titre-inclus">
+      <div class="wrap">
+        <div class="included-head">
+          <div>
+            <p class="label"><span class="num">03</span>L'offre</p>
+            <h2 id="titre-inclus" class="h-lg split">Ce qui est inclus dans les 1000&nbsp;€.</h2>
+          </div>
+          <p class="lead" data-reveal>Un site one page sur mesure, pensé pour être trouvé sur Google par les gens de votre secteur, et pour qu'ils vous appellent.</p>
+        </div>
+
+        <ul class="feat">
+          <li data-feat>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40 30 18l6 6-22 22H8z"/><path d="m26 22 6 6"/><path d="M30 18 36 12l6 6-6 6"/></svg>
+            <h3>Design sur mesure</h3><p>Pas de modèle tout fait. Votre métier, votre image.</p>
+          </li>
+          <li data-feat>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="14" y="5" width="20" height="38" rx="4"/><path d="M21 37h6"/></svg>
+            <h3>Pensé mobile</h3><p>Lisible et rapide sur téléphone, là où vos clients vous cherchent.</p>
+          </li>
+          <li data-feat>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="21" cy="21" r="13"/><path d="m31 31 11 11"/><path d="M15 21h12M21 15v12"/></svg>
+            <h3>SEO local</h3><p>Titre H1, balises, données structurées. Les bases, bien faites.</p>
+          </li>
+          <li data-feat>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="10" width="38" height="28" rx="3"/><path d="m6 12 18 14 18-14"/></svg>
+            <h3>Formulaire de contact</h3><p>Les demandes arrivent directement dans votre boîte mail.</p>
+          </li>
+          <li data-feat>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h7l3 9-5 3a24 24 0 0 0 13 13l3-5 9 3v7a4 4 0 0 1-4 4C21 40 8 27 8 10a4 4 0 0 1 4-4z"/></svg>
+            <h3>Bouton d'appel</h3><p>Un clic sur mobile, et votre téléphone sonne.</p>
+          </li>
+          <li data-feat>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 40 10v12c0 10-7 18-16 22C15 40 8 32 8 22V10z"/><path d="m17 24 5 5 9-10"/></svg>
+            <h3>Mentions légales &amp; RGPD</h3><p>Les pages obligatoires, rédigées et en place.</p>
+          </li>
+          <li data-feat>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 30V6"/><path d="m14 16 10-10 10 10"/><path d="M8 30v10h32V30"/></svg>
+            <h3>Mise en ligne</h3><p>On s'occupe de tout publier. Vous n'avez rien à configurer.</p>
+          </li>
+          <li data-feat>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 20a16 16 0 0 1 29-7"/><path d="M38 6v8h-8"/><path d="M40 28a16 16 0 0 1-29 7"/><path d="M10 42v-8h8"/></svg>
+            <h3>1 aller-retour de modifications</h3><p>Vous relisez, vous demandez vos changements, on les fait.</p>
+          </li>
+          <li data-feat class="feat-tbc">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 44S10 30 10 19a14 14 0 0 1 28 0c0 11-14 25-14 25z"/><circle cx="24" cy="19" r="5"/></svg>
+            <h3>Fiche Google Business</h3><p class="tbc">[À VALIDER : fiche Google Business créée et optimisée incluse ? oui/non]</p>
+          </li>
+        </ul>
+
+        <aside class="not-included" data-reveal aria-label="Ce qui n'est pas inclus">
+          <p class="ni-title">Non inclus, on préfère le dire</p>
+          <p class="ni-text"><strong>Hébergement et nom de domaine</strong> : comptez <span class="tbc">[À COMPLÉTER : ~X €/an]</span>, à votre nom, chez le prestataire de votre choix.</p>
+          <p class="ni-opt">En option : maintenance et hébergement géré, <span class="tbc">[À COMPLÉTER : prix]</span>/mois, sans engagement, résiliable à tout moment.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 3.6 Process (signature : le 7 qui se remplit) -->
+    <section class="section dark process" id="process" aria-labelledby="titre-process">
+      <div class="wrap process-grid">
+        <div class="seven-col" aria-hidden="true">
+          <div class="seven">
+            <span class="seven-outline">7</span>
+            <span class="seven-fill">7</span>
+          </div>
+          <p class="seven-day">Jour <span data-day>0</span></p>
+        </div>
+        <div class="process-main">
+          <p class="label"><span class="num">04</span>Le process</p>
+          <h2 id="titre-process" class="h-lg split">Une semaine. Pas une de plus.</h2>
+          <ol class="timeline">
+            <li class="tl-line" aria-hidden="true"><span></span></li>
+            <li class="step" data-step="0">
+              <span class="step-day">Jour 0</span>
+              <h3>Vous réservez votre créneau</h3>
+              <p>Un appel de 15 minutes pour comprendre votre activité.</p>
+            </li>
+            <li class="step" data-step="1">
+              <span class="step-day">Jour 1</span>
+              <h3>Vous remplissez le brief (15&nbsp;min) et envoyez vos éléments</h3>
+              <p>Textes, photos, logo, accès. Tout est listé, rien à deviner.</p>
+            </li>
+            <li class="step" data-step="4">
+              <span class="step-day">Jours 2-4</span>
+              <h3>Production</h3>
+              <p>Design, rédaction de la structure, intégration, SEO local.</p>
+            </li>
+            <li class="step" data-step="5">
+              <span class="step-day">Jour 5</span>
+              <h3>Vous validez, 1 aller-retour de modifications</h3>
+              <p>Vous voyez le site, vous demandez vos changements.</p>
+            </li>
+            <li class="step" data-step="7">
+              <span class="step-day">Jours 6-7</span>
+              <h3>Mise en ligne</h3>
+              <p>Votre site est public. Vous récupérez vos accès et votre code.</p>
+            </li>
+          </ol>
+          <p class="process-note" data-reveal>Le délai démarre à réception de 100&nbsp;% de vos éléments.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.7 Réalisations -->
+    <section class="section light works" id="realisations" aria-labelledby="titre-realisations">
+      <div class="works-pin">
+        <div class="works-track">
+          <div class="works-intro">
+            <p class="label"><span class="num">05</span>Réalisations</p>
+            <h2 id="titre-realisations" class="h-lg split">À quoi ressemble un site à 1000&nbsp;€.</h2>
+            <p class="lead">Six sites de démonstration, pour six métiers. Entreprises fictives, sites bien réels : cliquez, faites défiler, testez-les sur votre téléphone.</p>
+            <p class="works-hint" aria-hidden="true"><span class="hint-desk">Continuez à faire défiler</span><span class="hint-touch">Glissez pour voir la suite</span> →</p>
+          </div>
+
+          <article class="work">
+            <a class="work-shot" href="https://agenz-io.github.io/Vino/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+              <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/Vino</span></div>
+              <img src="img/demo-vino.webp" srcset="img/demo-vino-640.webp 640w, img/demo-vino.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <span class="demo-tag">Site de démonstration</span>
+            </a>
+            <div class="work-info">
+              <h3>Domaine viticole</h3>
+              <p class="work-city">Garrigues Hautes · Languedoc</p>
+              <a class="work-link" href="https://agenz-io.github.io/Vino/" target="_blank" rel="noopener">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> du domaine viticole Garrigues Hautes (site de démonstration, nouvel onglet)</span></a>
+            </div>
+          </article>
+
+          <article class="work">
+            <a class="work-shot" href="https://agenz-io.github.io/swim/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+              <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/swim</span></div>
+              <img src="img/demo-swim.webp" srcset="img/demo-swim-640.webp 640w, img/demo-swim.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <span class="demo-tag">Site de démonstration</span>
+            </a>
+            <div class="work-info">
+              <h3>Pisciniste</h3>
+              <p class="work-city">Atelier Bleu Piscines · Aix-en-Provence</p>
+              <a class="work-link" href="https://agenz-io.github.io/swim/" target="_blank" rel="noopener">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> du pisciniste Atelier Bleu Piscines (site de démonstration, nouvel onglet)</span></a>
+            </div>
+          </article>
+
+          <article class="work">
+            <a class="work-shot" href="https://agenz-io.github.io/Bike/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+              <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/Bike</span></div>
+              <img src="img/demo-bike.webp" srcset="img/demo-bike-640.webp 640w, img/demo-bike.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <span class="demo-tag">Site de démonstration</span>
+            </a>
+            <div class="work-info">
+              <h3>Cadreur vélo sur mesure</h3>
+              <p class="work-city">Garnier Cycles · Annecy</p>
+              <a class="work-link" href="https://agenz-io.github.io/Bike/" target="_blank" rel="noopener">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> du atelier de vélos Garnier Cycles (site de démonstration, nouvel onglet)</span></a>
+            </div>
+          </article>
+
+          <article class="work">
+            <a class="work-shot" href="https://agenz-io.github.io/sylve-tiny-houses/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+              <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/sylve-tiny-houses</span></div>
+              <img src="img/demo-sylve.webp" srcset="img/demo-sylve-640.webp 640w, img/demo-sylve.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <span class="demo-tag">Site de démonstration</span>
+            </a>
+            <div class="work-info">
+              <h3>Tiny houses en bois</h3>
+              <p class="work-city">Sylve · Vercors</p>
+              <a class="work-link" href="https://agenz-io.github.io/sylve-tiny-houses/" target="_blank" rel="noopener">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> du fabricant de tiny houses Sylve (site de démonstration, nouvel onglet)</span></a>
+            </div>
+          </article>
+
+          <article class="work">
+            <a class="work-shot" href="https://agenz-io.github.io/Osteo/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+              <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/Osteo</span></div>
+              <img src="img/demo-osteo.webp" srcset="img/demo-osteo-640.webp 640w, img/demo-osteo.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <span class="demo-tag">Site de démonstration</span>
+            </a>
+            <div class="work-info">
+              <h3>Ostéopathe</h3>
+              <p class="work-city">Camille Roux · Nantes</p>
+              <a class="work-link" href="https://agenz-io.github.io/Osteo/" target="_blank" rel="noopener">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> du cabinet d’ostéopathie Camille Roux (site de démonstration, nouvel onglet)</span></a>
+            </div>
+          </article>
+
+          <article class="work">
+            <a class="work-shot" href="https://agenz-io.github.io/The-long-distance-company/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+              <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/The-long-distance-company</span></div>
+              <img src="img/demo-longdistance.webp" srcset="img/demo-longdistance-640.webp 640w, img/demo-longdistance.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <span class="demo-tag">Site de démonstration</span>
+            </a>
+            <div class="work-info">
+              <h3>Exploration &amp; outdoor</h3>
+              <p class="work-city">The Long Distance Company · Lyon</p>
+              <a class="work-link" href="https://agenz-io.github.io/The-long-distance-company/" target="_blank" rel="noopener">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> du The Long Distance Company (site de démonstration, nouvel onglet)</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Option : avant / après -->
+      <div class="wrap ba-wrap">
+        <div class="ba-head">
+          <h3 class="h-md">Avant, après.</h3>
+          <p class="ba-note">Exemple de démonstration. <span class="tbc">[À COMPLÉTER : vraie réalisation avant/après]</span></p>
+        </div>
+        <div class="ba" style="--pos:50%">
+          <div class="ba-after">
+            <img src="img/demo-avantapres.webp" width="1280" height="800" alt="" loading="lazy" decoding="async">
+            <div class="ba-site ba-site--new">
+              <b>JARDINS DÉMO</b>
+              <p>Votre jardin,<br>enfin à votre image.</p>
+              <span>Appeler</span>
+            </div>
+            <span class="ba-tag ba-tag--r">Après</span>
+          </div>
+          <div class="ba-before" aria-hidden="true">
+            <img src="img/demo-avantapres.webp" width="1280" height="800" alt="" loading="lazy" decoding="async">
+            <div class="ba-site ba-site--old">
+              <p class="old-h">Bienvenue sur le site de Jardins Démo !!!</p>
+              <p class="old-m">Accueil | Qui sommes-nous | Nos prestations | Livre d'or | Contact</p>
+              <p class="old-p">Site optimisé pour Internet Explorer 6. Dernière mise à jour : 2011.</p>
+            </div>
+            <span class="ba-tag">Avant</span>
+          </div>
+          <span class="ba-handle" aria-hidden="true"><span>⟷</span></span>
+          <label class="sr-only" for="ba-range">Comparer avant et après</label>
+          <input class="ba-range" id="ba-range" type="range" min="0" max="100" value="50">
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.8 Qui je suis -->
+    <section class="section dark about" aria-labelledby="titre-about">
+      <div class="wrap about-grid">
+        <figure class="portrait" data-clip>
+          <div class="portrait-ph">
+            <span class="portrait-initials" aria-hidden="true">YD</span>
+            <span class="tbc">[À COMPLÉTER : photo portrait]</span>
+          </div>
+          <figcaption>Yoann Di Stefano, fondateur</figcaption>
+        </figure>
+        <div class="about-copy">
+          <p class="label"><span class="num">06</span>Qui je suis</p>
+          <h2 id="titre-about" class="h-lg split">Je m'appelle Yoann.</h2>
+          <p class="about-p" data-reveal>Je fais des sites rapides, honnêtes et efficaces pour les pros locaux.</p>
+          <p class="about-p about-p--strong" data-reveal>Vous parlez à la personne qui fait votre site, pas à un commercial.</p>
+          <p class="tbc" data-reveal>[À VALIDER : texte de présentation]</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.9 Témoignages : masqués (.is-hidden) tant qu'il n'y en a pas de réels.
+         Pour les afficher : retirer la classe is-hidden et remplacer les placeholders. -->
+    <section class="section light testimonials is-hidden" aria-labelledby="titre-temoignages">
+      <div class="wrap">
+        <p class="label">Ils en parlent</p>
+        <h2 id="titre-temoignages" class="h-lg">Ce qu'en disent les clients.</h2>
+        <div class="testi-grid">
+          <blockquote class="testi"><p>[TÉMOIGNAGE CLIENT À RÉCUPÉRER]</p><footer>[Nom, métier, ville]</footer></blockquote>
+          <blockquote class="testi"><p>[TÉMOIGNAGE CLIENT À RÉCUPÉRER]</p><footer>[Nom, métier, ville]</footer></blockquote>
+          <blockquote class="testi"><p>[TÉMOIGNAGE CLIENT À RÉCUPÉRER]</p><footer>[Nom, métier, ville]</footer></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.10 Réserver -->
+    <section class="section light book" id="reserver" aria-labelledby="titre-reserver">
+      <div class="wrap">
+        <div class="book-head">
+          <div>
+            <p class="label"><span class="num">07</span>Réserver</p>
+            <h2 id="titre-reserver" class="h-xl split">Réservez votre créneau</h2>
+          </div>
+          <div class="gauge" data-gauge>
+            <p class="gauge-num"><span data-creneaux>4</span></p>
+            <div class="gauge-meta">
+              <p class="gauge-label" data-gauge-label>créneaux restants en décembre</p>
+              <div class="gauge-slots" data-slots aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="book-options">
+          <div class="opt opt--cal" id="calendrier">
+            <p class="opt-k">Option 1</p>
+            <h3 class="h-md">Je réserve mon créneau</h3>
+            <p>Un appel de 15 minutes, au moment qui vous arrange.</p>
+            <div class="cal-visual" aria-hidden="true">
+              <span>LUN</span><span>MAR</span><span>MER</span><span>JEU</span><span>VEN</span>
+              <i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i class="on">15 min</i><i></i><i></i>
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="cal-slot" data-cal>
+              <p class="cal-consent">Le calendrier est fourni par un service tiers (Cal.com ou Calendly) qui peut déposer des cookies. Il ne se charge que si vous cliquez.</p>
+              <button class="btn btn-dark btn-lg magnetic" type="button" data-cal-load>Afficher le calendrier</button>
+              <p class="cal-msg" data-cal-msg hidden>Le calendrier n'est pas encore branché <span class="tbc">[À COMPLÉTER : URL Cal.com ou Calendly]</span>. En attendant, utilisez le formulaire de rappel.</p>
+            </div>
+          </div>
+
+          <div class="opt opt--form" id="rappel">
+            <p class="opt-k">Option 2</p>
+            <h3 class="h-md">Je préfère être rappelé</h3>
+            <!-- [FORM_ENDPOINT] : URL Web3Forms ou Formspree, à renseigner dans js/main.js (et ici pour le fonctionnement sans JS) -->
+            <form class="form" action="[FORM_ENDPOINT]" method="post" data-form novalidate>
+              <input type="hidden" name="type" value="standard" data-form-type>
+              <input type="hidden" name="subject" value="Demande de rappel, offre 1000 €" data-form-subject>
+              <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <p class="premium-flag" data-premium-flag hidden>Demande pour un <strong>site plus complet</strong>.</p>
+              <div class="field-row">
+                <div class="field"><label for="f-nom">Nom</label><input id="f-nom" name="nom" autocomplete="name" required></div>
+                <div class="field"><label for="f-metier">Métier</label><input id="f-metier" name="metier" required></div>
+              </div>
+              <div class="field-row">
+                <div class="field"><label for="f-ville">Ville</label><input id="f-ville" name="ville" autocomplete="address-level2" required></div>
+                <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+              </div>
+              <fieldset class="field field-radio">
+                <legend>Vous avez déjà un site&nbsp;?</legend>
+                <label><input type="radio" name="deja_un_site" value="oui"> Oui</label>
+                <label><input type="radio" name="deja_un_site" value="non"> Non</label>
+              </fieldset>
+              <div class="field"><label for="f-msg">Message <span class="opt-l">(facultatif)</span></label><textarea id="f-msg" name="message" rows="3"></textarea></div>
+              <label class="consent"><input type="checkbox" name="consentement_rgpd" value="oui" required> <span>J'accepte que mes informations soient utilisées pour être recontacté au sujet de ma demande. Rien d'autre. Voir la <a href="#confidentialite" data-modal="confidentialite">politique de confidentialité</a>.</span></label>
+              <button class="btn btn-dark btn-lg magnetic" type="submit">Être rappelé <span class="btn-arrow" aria-hidden="true">→</span></button>
+              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+        <p class="reassure" data-reveal>Appel de 15 min, sans engagement, sans relance commerciale.</p>
+      </div>
+    </section>
+
+    <!-- 3.11 Offre premium -->
+    <section class="section dark premium-sec" aria-labelledby="titre-premium">
+      <div class="wrap">
+        <div class="premium" data-reveal>
+          <div class="premium-inner">
+            <div>
+              <p class="label">Pour aller plus loin</p>
+              <h2 id="titre-premium" class="h-lg">Besoin de plus qu'une page&nbsp;?</h2>
+              <p class="premium-p">Site multi-pages, blog, réservation en ligne, automatisations, SEO avancé.</p>
+            </div>
+            <div class="premium-side">
+              <p class="premium-price">Sur mesure, à partir de <span class="tbc">[À COMPLÉTER : prix]</span></p>
+              <a class="btn btn-accent btn-lg magnetic" href="?type=premium#reserver" data-premium>Parlons de votre projet <span class="btn-arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.12 FAQ -->
+    <section class="section light faq" id="faq" aria-labelledby="titre-faq">
+      <div class="wrap faq-grid">
+        <div>
+          <p class="label"><span class="num">08</span>FAQ</p>
+          <h2 id="titre-faq" class="h-lg split">Vos questions, nos réponses franches.</h2>
+        </div>
+        <div class="faq-list">
+          <details class="qa">
+            <summary>Pourquoi c'est si rapide&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>Parce que le process est rodé et que les outils sont modernes. Et parce que vous n'avez qu'un seul interlocuteur : la personne qui fait votre site. Pas de réunions internes, pas de transmission entre services.</p></div>
+          </details>
+          <details class="qa">
+            <summary>Que se passe-t-il si je n'ai pas de photos ou de textes&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>Dites-le dès l'appel, on regarde ensemble ce qui manque. <span class="tbc">[À VALIDER : aide à la rédaction incluse ?]</span> Le délai de 7 jours démarre à réception de 100&nbsp;% de vos éléments.</p></div>
+          </details>
+          <details class="qa">
+            <summary>Je peux modifier mon site moi-même ensuite&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>Le site vous appartient : vous récupérez vos accès et votre code. Vous pouvez le modifier ou le faire modifier par qui vous voulez. <span class="tbc">[À VALIDER : outil d'édition simple fourni ? oui/non]</span></p></div>
+          </details>
+          <details class="qa">
+            <summary>L'hébergement, ça coûte combien et qui s'en occupe&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>L'hébergement et le nom de domaine ne sont pas inclus dans les 1000&nbsp;€. Comptez <span class="tbc">[À COMPLÉTER : ~X €/an]</span>, à votre nom. Si vous préférez ne pas vous en occuper, il existe une option maintenance et hébergement géré à <span class="tbc">[À COMPLÉTER : prix]</span>/mois, sans engagement, résiliable à tout moment.</p></div>
+          </details>
+          <details class="qa">
+            <summary>Et après le 31 décembre&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>L'offre à 1000&nbsp;€ s'arrête le 31 décembre 2026, ou avant si tous les créneaux sont pris. Après cette date, contactez-nous pour connaître les conditions.</p></div>
+          </details>
+          <details class="qa">
+            <summary>Que se passe-t-il si je ne suis pas satisfait&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p><span class="tbc">[À VALIDER : politique en cas d'insatisfaction]</span> Le prix comprend 1 aller-retour de modifications, au jour 5, avant la mise en ligne.</p></div>
+          </details>
+          <details class="qa">
+            <summary>Vous travaillez dans toute la France&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>L'appel, le brief et la validation se font à distance. <span class="tbc">[À VALIDER : zone d'intervention]</span></p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.13 CTA final -->
+    <section class="final" aria-labelledby="titre-final">
+      <div class="wrap final-inner">
+        <h2 id="titre-final" class="final-title"><span class="final-l">Votre site en ligne</span> <span class="final-l">avant 2027&nbsp;?</span></h2>
+        <a class="btn btn-dark btn-xl magnetic" href="#reserver">Réserver mon créneau <span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#haut"><span class="logo-mark" aria-hidden="true">A</span><span class="logo-word">Agenzio</span></a>
+        <p>Sites, SEO et automatisation pour les pros locaux.</p>
+      </div>
+      <nav class="footer-links" aria-label="Informations légales">
+        <a href="#mentions" data-modal="mentions">Mentions légales</a>
+        <a href="#cgv" data-modal="cgv">CGV</a>
+        <a href="#confidentialite" data-modal="confidentialite">Politique de confidentialité</a>
+      </nav>
+      <div class="footer-contact">
+        <p>Contact : <span class="tbc">[À COMPLÉTER : e-mail]</span></p>
+        <p>Téléphone : <span class="tbc">[À COMPLÉTER : téléphone]</span></p>
+        <p>SIRET : <span class="tbc">[À COMPLÉTER : SIRET]</span></p>
+      </div>
+    </div>
+    <p class="wrap footer-bottom">© 2026 Agenzio. Aucun cookie de suivi, aucun tracker.</p>
+  </footer>
+
+  <!-- 3.14 Barre CTA mobile -->
+  <div class="mbar" data-mbar>
+    <a class="mbar-cta" href="#reserver" data-mbar-cta>Réserver · 1000&nbsp;€</a>
+    <a class="mbar-call" href="#rappel" data-tel aria-label="Nous appeler">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h3l1.5 4.5L8 9a12 12 0 0 0 7 7l1.5-2.5L21 15v3a2 2 0 0 1-2 2C10.6 20 4 13.4 4 5a2 2 0 0 1 2-2z"/></svg>
+    </a>
+  </div>
+
+  <!-- Modales légales (s'affichent aussi via #ancre sans JS) -->
+  <dialog class="modal" id="mentions" aria-labelledby="t-mentions">
+    <div class="modal-body">
+      <h2 id="t-mentions">Mentions légales</h2>
+      <p><strong>Éditeur</strong> : Agenzio, <span class="tbc">[À COMPLÉTER : forme juridique, adresse]</span>. SIRET <span class="tbc">[À COMPLÉTER : SIRET]</span>.</p>
+      <p><strong>Directeur de la publication</strong> : Yoann Di Stefano.</p>
+      <p><strong>Contact</strong> : <span class="tbc">[À COMPLÉTER : e-mail, téléphone]</span>.</p>
+      <p><strong>Hébergeur</strong> : <span class="tbc">[À COMPLÉTER : nom, adresse et téléphone de l'hébergeur]</span>.</p>
+      <p>Photos de démonstration : Unsplash. <span class="tbc">[À COMPLÉTER : remplacer par vos propres visuels]</span></p>
+    </div>
+    <form method="dialog"><button class="modal-close" aria-label="Fermer">Fermer ✕</button></form>
+  </dialog>
+
+  <dialog class="modal" id="cgv" aria-labelledby="t-cgv">
+    <div class="modal-body">
+      <h2 id="t-cgv">Conditions générales de vente, offre « 1 site, 1 semaine, 1000 € »</h2>
+      <p class="tbc">[À COMPLÉTER : CGV complètes, à faire relire]</p>
+      <h3>Ce que comprend l'offre</h3>
+      <ul>
+        <li>Un site one page sur mesure, adapté au mobile, optimisé pour le référencement local.</li>
+        <li>Prix ferme de 1000 €. <span class="tbc">[À COMPLÉTER : HT ou TTC, modalités de paiement]</span></li>
+        <li>1 aller-retour de modifications.</li>
+        <li>Remise des accès et du code : le site appartient au client.</li>
+        <li>Aucun abonnement imposé, aucun engagement.</li>
+      </ul>
+      <h3>Délai</h3>
+      <p>Mise en ligne en 7 jours à compter de la réception de 100 % des éléments du client (textes, photos, logo, accès).</p>
+      <h3>Ce qui est exclu</h3>
+      <ul>
+        <li>Hébergement et nom de domaine, à la charge du client.</li>
+        <li>Les modifications au-delà de l'aller-retour inclus. <span class="tbc">[À COMPLÉTER : tarif]</span></li>
+        <li>Les pages supplémentaires, blog, réservation en ligne, automatisations (offre sur mesure).</li>
+      </ul>
+      <h3>Validité</h3>
+      <p>Offre valable jusqu'au 31 décembre 2026, dans la limite des créneaux disponibles.</p>
+      <h3>Insatisfaction, annulation</h3>
+      <p class="tbc">[À VALIDER : politique]</p>
+    </div>
+    <form method="dialog"><button class="modal-close" aria-label="Fermer">Fermer ✕</button></form>
+  </dialog>
+
+  <dialog class="modal" id="confidentialite" aria-labelledby="t-conf">
+    <div class="modal-body">
+      <h2 id="t-conf">Politique de confidentialité</h2>
+      <p><strong>Données collectées</strong> : nom, métier, ville, téléphone, présence d'un site existant et message, uniquement via le formulaire de rappel.</p>
+      <p><strong>Finalité</strong> : vous recontacter au sujet de votre demande. Aucune prospection, aucune revente.</p>
+      <p><strong>Prestataire du formulaire</strong> : <span class="tbc">[À COMPLÉTER : Web3Forms ou Formspree]</span>.</p>
+      <p><strong>Calendrier</strong> : le module de prise de rendez-vous (<span class="tbc">[À COMPLÉTER : Cal.com ou Calendly]</span>) n'est chargé que si vous cliquez sur « Afficher le calendrier ». Il peut alors déposer ses propres cookies.</p>
+      <p><strong>Cookies et mesure d'audience</strong> : aucun sur cette page.</p>
+      <p><strong>Durée de conservation</strong> : <span class="tbc">[À COMPLÉTER : durée]</span>.</p>
+      <p><strong>Vos droits</strong> : accès, rectification, suppression, en écrivant à <span class="tbc">[À COMPLÉTER : e-mail]</span>. Vous pouvez aussi saisir la CNIL.</p>
+    </div>
+    <form method="dialog"><button class="modal-close" aria-label="Fermer">Fermer ✕</button></form>
+  </dialog>
+
+  <script src="js/gsap.min.js" defer></script>
+  <script src="js/ScrollTrigger.min.js" defer></script>
+  <script src="js/lenis.min.js" defer></script>
+  <script src="js/main.js?v=1" defer></script>
+</body>
+</html>
