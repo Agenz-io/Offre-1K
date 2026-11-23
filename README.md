@@ -11,16 +11,18 @@ python3 -m http.server 8000
 ## Fichiers
 - `index.html` : la page (SEO, JSON-LD Organization + Service + FAQPage, Open Graph, modales légales)
 - `css/style.css` : styles et intro du hero en CSS
-- `js/main.js` : **réglages en haut du fichier** (`CRENEAUX_RESTANTS`, `FIN_OFFRE`, `CALENDRIER_URL`, `FORM_ENDPOINT`, `WEB3FORMS_ACCESS_KEY`, `TELEPHONE`), puis les animations
+- `js/main.js` : **réglages en haut du fichier** (`CRENEAUX_RESTANTS`, `FIN_OFFRE`, `PACK`, `FORM_ENDPOINT`, `WEB3FORMS_ACCESS_KEY`, `TELEPHONE`), puis les animations
 - `js/gsap.min.js`, `js/ScrollTrigger.min.js` (GSAP 3.12.5), `js/lenis.min.js` (Lenis 1.1.13) : en local
 - `fonts/` : Archivo variable (graisse + largeur) et Inter variable, en local
-- `img/` : captures des 6 sites démo (agenz-io.github.io) + photos Unsplash pour le hero et l'avant/après, en WebP
+- `img/` : captures des sites démo (agenz-io.github.io) pour le hero, les réalisations et l'avant/après, en WebP
 - `.htaccess` : compression gzip et cache pour un hébergement Apache
 
 ## Mettre à jour au quotidien
 - Créneau pris : `const CRENEAUX_RESTANTS = 3;` dans `js/main.js` (0 affiche « Décembre complet »)
 - Témoignages réels reçus : retirer `is-hidden` sur `<section class="... testimonials is-hidden">` et remplacer les textes
-- Après modification du CSS ou du JS : passer `?v=1` à `?v=2` dans `index.html`
+- Prix d'une option : attribut `data-price` de la ligne dans `index.html` (section `#options`) **et** le prix affiché juste à côté
+- Remise du pack : `const PACK` en haut de `js/main.js` (et les prix barrés du bloc « Pack Lancement local »)
+- Après modification du CSS ou du JS : incrémenter `?v=` dans `index.html` (actuellement `style.css?v=3`, `main.js?v=2`)
 
 ## Lighthouse mobile (simulation 4G lente, Chrome headless)
 | Serveur | Perf | Access. | Bonnes pratiques | SEO | FCP | LCP | TBT | CLS |
@@ -30,9 +32,8 @@ python3 -m http.server 8000
 
 ## Placeholders restants (`grep "\[À" index.html js/main.js`)
 **Offre**
-- [À VALIDER : fiche Google Business créée et optimisée incluse ? oui/non]
-- [À COMPLÉTER : ~X €/an] (hébergement + domaine, 3 endroits)
-- [À COMPLÉTER : prix] (maintenance/mois et offre premium « à partir de », 4 endroits)
+- **Prix des options à valider** (proposés, section `#options`) : fiche Google 190 €, pack avis 149 €, SEO local 149 €/mois, réservation en ligne dès 390 €, devis guidé 290 €, automatisations dès 490 €, page supplémentaire 250 €, version anglaise 390 €, site complet dès 2 490 €, hébergement & maintenance 29 €/mois, pack modifications 90 €, Pack Lancement local 1 249 €
+- Hébergement + domaine : moyenne indicative affichée (50 à 90 €/an), à ajuster si besoin
 - [À COMPLÉTER : tarif] (modifications au-delà de l'aller-retour, CGV)
 - [À COMPLÉTER : HT ou TTC, modalités de paiement]
 
@@ -47,13 +48,10 @@ python3 -m http.server 8000
 - [À COMPLÉTER : photo portrait] et [À VALIDER : texte de présentation]
 
 **Réalisations**
-- ~~Captures, liens et villes des réalisations~~ : fait, 6 démos agenz-io.github.io branchées
-- [À COMPLÉTER : vraie réalisation avant/après]
-- [À COMPLÉTER : remplacer par vos propres visuels]
+- Avant/après : vieux site reconstitué en HTML (gauche) + capture de la démo Garnier Cycles (droite). À remplacer par une vraie réalisation quand il y en aura une
 - Témoignages : [TÉMOIGNAGE CLIENT À RÉCUPÉRER] et [Nom, métier, ville] ×3 (section masquée)
 
 **Branchements techniques**
-- [À COMPLÉTER : URL Cal.com ou Calendly] (`CALENDRIER_URL`)
 - [FORM_ENDPOINT] (dans `js/main.js` ET dans l'attribut `action` du formulaire) + [À COMPLÉTER : clé Web3Forms]
 - [À COMPLÉTER : téléphone] (`TELEPHONE`, footer, JSON-LD)
 - [À COMPLÉTER : URL définitive du site] (canonical, og:url, JSON-LD : actuellement www.agenzio.fr)
@@ -63,5 +61,5 @@ python3 -m http.server 8000
 - [À COMPLÉTER : SIRET], [À COMPLÉTER : e-mail], [À COMPLÉTER : e-mail de contact], [À COMPLÉTER : e-mail, téléphone]
 - [À COMPLÉTER : forme juridique, adresse]
 - [À COMPLÉTER : nom, adresse et téléphone de l'hébergeur]
-- [À COMPLÉTER : Web3Forms ou Formspree], [À COMPLÉTER : Cal.com ou Calendly], [À COMPLÉTER : durée] (confidentialité)
+- [À COMPLÉTER : Web3Forms ou Formspree], [À COMPLÉTER : durée] (confidentialité)
 - [À COMPLÉTER : CGV complètes, à faire relire]

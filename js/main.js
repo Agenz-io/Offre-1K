@@ -10,9 +10,10 @@ const CRENEAUX_RESTANTS = 4;
 // automatiquement « Offre terminée, contactez-nous ».
 const FIN_OFFRE = new Date('2026-12-31T23:59:59+01:00');
 
-// Lien de prise de rendez-vous (appel de 15 min).
-// [À COMPLÉTER : URL Cal.com ou Calendly], ex. 'https://cal.com/agenzio/appel-15-min'
-const CALENDRIER_URL = '';
+// Pack Lancement local : options incluses et remise appliquée quand elles sont
+// toutes sélectionnées (1000 + 190 + 149 = 1339 €, moins 90 € = 1249 €).
+// Les prix des options se modifient dans index.html (attributs data-price).
+const PACK = { nom: 'Pack Lancement local', options: ['gmb', 'avis'], remise: 90 };
 
 // Adresse d'envoi du formulaire de rappel. Penser à la recopier aussi dans
 // l'attribut action="" du <form> dans index.html (fonctionnement sans JS).
@@ -76,6 +77,21 @@ const TELEPHONE = '';
 
     const mcta = $('[data-mbar-cta]');
     if (mcta) mcta.textContent = ended ? 'Nous contacter' : 'Réserver · 1000 €';
+
+    // Titre du CTA final : « Plus que 4 créneaux / en décembre. »
+    const f1 = $('[data-final-1]');
+    const f2 = $('[data-final-2]');
+    if (f1 && f2) {
+      let l1 = 'Plus que ' + n + ' créneaux';
+      let l2 = 'en décembre.';
+      if (n === 1) l1 = 'Plus qu’un créneau';
+      if (n === 0 || ended) { l1 = 'Parlons de'; l2 = 'votre projet.'; }
+      if (f1.dataset.txt !== l1 + l2) {
+        f1.dataset.txt = l1 + l2;
+        f1.textContent = l1; f2.textContent = l2;
+        const t = $('.final-title'); if (t) t.setAttribute('aria-label', l1 + ' ' + l2);
+      }
+    }
   }
   applyOffer();
   setInterval(applyOffer, 60 * 1000);
@@ -87,41 +103,72 @@ const TELEPHONE = '';
   $$('a[aria-disabled="true"]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault()));
 
   /* ------------------------------------------------------------------------
-     Offre premium : ?type=premium ou clic sur le CTA premium
+     Options à la carte : sélection, estimation, envoi avec la demande
      ------------------------------------------------------------------------ */
-  let premium = false;
-  function setPremium(on) {
-    premium = on;
-    const t = $('[data-form-type]'); if (t) t.value = on ? 'premium' : 'standard';
-    const s = $('[data-form-subject]'); if (s) s.value = on ? 'Demande site sur mesure (premium)' : 'Demande de rappel, offre 1000 €';
-    const f = $('[data-premium-flag]'); if (f) f.hidden = !on;
-  }
-  if (new URLSearchParams(location.search).get('type') === 'premium') setPremium(true);
-  $$('[data-premium]').forEach((a) => a.addEventListener('click', (e) => {
-    e.preventDefault();
-    setPremium(true);
-    try { history.replaceState(null, '', '?type=premium#reserver'); } catch (err) { /* rien */ }
-    scrollToEl($('#reserver'));
-  }));
+  const selected = new Set();
+  const optItems = $$('[data-opt]');
+  const euros = (v) => v.toLocaleString('fr-FR') + '\u00a0€';
 
-  /* ------------------------------------------------------------------------
-     Calendrier : chargé uniquement au clic (cookies tiers)
-     ------------------------------------------------------------------------ */
-  const calBtn = $('[data-cal-load]');
-  if (calBtn) calBtn.addEventListener('click', () => {
-    const box = $('[data-cal]');
-    if (!CALENDRIER_URL) { $('[data-cal-msg]').hidden = false; return; }
-    let url = CALENDRIER_URL;
-    if (premium) url += (url.includes('?') ? '&' : '?') + 'type=premium';
-    const frame = document.createElement('iframe');
-    frame.className = 'cal-frame';
-    frame.src = url;
-    frame.title = 'Calendrier de réservation';
-    frame.loading = 'lazy';
-    box.appendChild(frame);
-    $('#calendrier').classList.add('is-loaded');
-    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  function renderOptions() {
+    let once = 1000;
+    let month = 0;
+    let from = false;
+    const names = [];
+    optItems.forEach((li) => {
+      const on = selected.has(li.dataset.opt);
+      li.classList.toggle('is-on', on);
+      const btn = $('.mi-add', li);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      $('.mi-add-l', btn).textContent = on ? 'Ajouté' : 'Ajouter';
+      if (!on) return;
+      const price = Number(li.dataset.price) || 0;
+      if (li.dataset.unit === 'mois') month += price;
+      else once += price;
+      if ('replace' in li.dataset) once -= 1000; // le site complet remplace le one page
+      if ('from' in li.dataset) from = true;
+      names.push(li.dataset.name + (li.dataset.unit === 'mois' ? ' (' + price + ' €/mois)' : ''));
+    });
+    const pack = PACK.options.every((id) => selected.has(id)) && !selected.has('complet');
+    if (pack) once -= PACK.remise;
+
+    const total = (from ? 'à partir de ' : '') + euros(once) + (month ? ' + ' + euros(month) + '/mois' : '');
+    const label = names.length
+      ? 'Site + ' + names.length + ' option' + (names.length > 1 ? 's' : '') + (pack ? ' · ' + PACK.nom + ' (−' + PACK.remise + ' €)' : '')
+      : 'Site one page seul';
+
+    const bc = $('[data-basket-count]'); if (bc) bc.textContent = label;
+    const bt = $('[data-basket-total]'); if (bt) bt.textContent = 'Estimation : ' + total;
+    const basket = $('[data-basket]'); if (basket) basket.classList.toggle('has-items', names.length > 0);
+
+    const summary = names.join(', ') + (pack ? ' + ' + PACK.nom : '');
+    const fo = $('[data-form-options]'); if (fo) fo.value = names.length ? summary + ' | Estimation : ' + total : '';
+    const ft = $('[data-form-type]'); if (ft) ft.value = names.length ? 'options' : 'standard';
+    const fs = $('[data-form-subject]'); if (fs) fs.value = names.length ? 'Demande de rappel, site + options' : 'Demande de rappel, offre 1000 €';
+    const box = $('[data-form-opts]');
+    if (box) {
+      box.hidden = !names.length;
+      $('[data-form-opts-list]', box).textContent = summary;
+      $('[data-form-opts-total]', box).textContent = 'Estimation : ' + total;
+    }
+  }
+
+  optItems.forEach((li) => {
+    $('.mi-add', li).addEventListener('click', () => {
+      const id = li.dataset.opt;
+      if (selected.has(id)) selected.delete(id); else selected.add(id);
+      renderOptions();
+    });
   });
+  $$('[data-pack]').forEach((b) => b.addEventListener('click', () => {
+    b.dataset.pack.split(',').forEach((id) => selected.add(id.trim()));
+    selected.delete('complet');
+    renderOptions();
+    const basket = $('[data-basket]');
+    if (basket && window.gsap && !reduced) gsap.fromTo(basket, { scale: .96 }, { scale: 1, duration: .6, ease: 'elastic.out(1, .5)' });
+  }));
+  // Compatibilité avec l'ancien lien ?type=premium
+  if (new URLSearchParams(location.search).get('type') === 'premium') selected.add('complet');
+  renderOptions();
 
   /* ------------------------------------------------------------------------
      Formulaire de rappel
@@ -151,7 +198,7 @@ const TELEPHONE = '';
       try {
         const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
         if (!res.ok) throw new Error(res.status);
-        form.reset(); setPremium(premium);
+        form.reset(); renderOptions();
         say('Merci, votre demande est bien partie. Vous serez rappelé au numéro indiqué.', true);
       } catch (err) {
         say('L’envoi n’a pas fonctionné. Réessayez dans un instant.', false);
@@ -186,10 +233,13 @@ const TELEPHONE = '';
      ------------------------------------------------------------------------ */
   const mbar = $('[data-mbar]');
   if (mbar && 'IntersectionObserver' in window) {
+    // Masquée sur la réservation et sur les options (le panier prend le relais)
+    const visibles = new Set();
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((en) => mbar.classList.toggle('is-away', en.isIntersecting));
+      entries.forEach((en) => { if (en.isIntersecting) visibles.add(en.target); else visibles.delete(en.target); });
+      mbar.classList.toggle('is-away', visibles.size > 0);
     }, { rootMargin: '0px 0px -30% 0px' });
-    io.observe($('#reserver'));
+    ['#reserver', '#options'].forEach((sel) => { const el = $(sel); if (el) io.observe(el); });
   }
 
   /* ------------------------------------------------------------------------
@@ -499,8 +549,22 @@ const TELEPHONE = '';
       const tl = gsap.timeline({ scrollTrigger: { trigger: gauge, start: 'top 85%', once: true } });
       tl.fromTo(gauge, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .9, ease: 'expo.out' })
         .fromTo($$('.gauge-slots i', gauge), { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: .5, stagger: .12, ease: 'power3.out' }, .3);
-      gsap.fromTo('.opt', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: .12, scrollTrigger: { trigger: '.book-options', start: 'top 85%', once: true } });
+      gsap.fromTo('.opt', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: '.book-grid', start: 'top 80%', once: true } });
+      gsap.fromTo('.book-steps li', { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: .8, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '.book-steps', start: 'top 90%', once: true } });
     }
+  });
+
+  tasks.push(() => {
+    /* ---------------- Options à la carte : lignes du menu ---------------- */
+    $$('.menu-col').forEach((col) => {
+      gsap.fromTo($$('.menu-h, .mi', col), { opacity: 0, y: 30 }, {
+        opacity: 1, y: 0, duration: .9, ease: 'expo.out', stagger: .08,
+        scrollTrigger: { trigger: col, start: 'top 85%', once: true }
+      });
+      $$('.mi-dots', col).forEach((d) => {
+        gsap.fromTo(d, { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: d, start: 'top 90%', once: true } });
+      });
+    });
   });
 
   tasks.push(() => {
