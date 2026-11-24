@@ -743,3 +743,16 @@ html.modal-open .cursor { display: none !important; }
 /* Fenêtres légales */
 .modal-note { font-size: .9rem; color: var(--light-soft); }
 .modal-body a { color: var(--light-ink); font-weight: 600; }
+
+/* Formulaire : champs obligatoires, aides et erreurs */
+.req { color: #B03A06; font-weight: 700; }
+.form-note { font-size: .85rem; color: var(--light-soft); }
+.field-hint { font-size: .8rem; color: var(--light-soft); line-height: 1.4; }
+.field-err { font-size: .85rem; font-weight: 600; color: #B03A06; line-height: 1.4; }
+.field-err[hidden] { display: none; }
+.field input[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-color: #C2410C; background: #FFF6F2; }
+.field input.is-valid { border-color: #2F7A3E; }
+.field input::placeholder, .field textarea::placeholder { color: #8A8A8F; }
+.consent input[aria-invalid="true"] { outline: 2px solid #C2410C; outline-offset: 2px; }
+.field-consent { gap: .4rem; }
+.field { align-content: start; }

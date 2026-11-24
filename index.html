@@ -34,7 +34,7 @@
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" type="image/webp" href="img/hero-desk.webp" imagesrcset="img/hero-desk-640.webp 640w, img/hero-desk.webp 1200w" imagesizes="(max-width: 1100px) 84vw, 40vw" fetchpriority="high">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
@@ -595,31 +595,36 @@
         <div class="opt opt--form" id="rappel">
           <h3 class="h-md">Être rappelé</h3>
           <!-- Envoi via Web3Forms (clé publique). Réglages aussi en haut de js/main.js -->
-          <form class="form" action="https://api.web3forms.com/submit" method="post" data-form novalidate>
+          <form class="form" action="https://api.web3forms.com/submit" method="post" data-form>
             <input type="hidden" name="access_key" value="38993b20-fbdf-478c-a6d2-56cb43e60e80">
             <input type="hidden" name="subject" value="Demande de rappel, site Agenzio">
             <input type="hidden" name="from_name" value="Site Agenzio">
             <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <p class="form-note">Les champs marqués <span class="req">*</span> sont obligatoires.</p>
             <fieldset class="field field-project">
-              <legend>Votre projet</legend>
+              <legend>Votre projet <span class="req" aria-hidden="true">*</span></legend>
               <label class="project"><input type="radio" name="projet" value="Site one page à 1000 €" checked> <span><strong>Site one page</strong> · 1000&nbsp;€</span></label>
               <label class="project"><input type="radio" name="projet" value="Site plus complet ou autres services (dès 1490 €)" data-project-premium> <span><strong>Site plus complet ou autres services</strong> · dès 1&nbsp;490&nbsp;€</span></label>
             </fieldset>
             <div class="field-row">
-              <div class="field"><label for="f-nom">Nom</label><input id="f-nom" name="nom" autocomplete="name" required></div>
-              <div class="field"><label for="f-metier">Métier</label><input id="f-metier" name="metier" required></div>
+              <div class="field"><label for="f-nom">Nom et prénom <span class="req" aria-hidden="true">*</span></label><input id="f-nom" name="nom" autocomplete="name" required aria-required="true" aria-describedby="err-nom"><p class="field-err" id="err-nom" hidden></p></div>
+              <div class="field"><label for="f-metier">Métier <span class="req" aria-hidden="true">*</span></label><input id="f-metier" name="metier" required aria-required="true" placeholder="Ex. menuisier, gîte, coach…" aria-describedby="err-metier"><p class="field-err" id="err-metier" hidden></p></div>
             </div>
             <div class="field-row">
-              <div class="field"><label for="f-ville">Ville</label><input id="f-ville" name="ville" autocomplete="address-level2" required></div>
-              <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+              <div class="field"><label for="f-tel">Téléphone <span class="req" aria-hidden="true">*</span></label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required aria-required="true" placeholder="06 12 34 56 78" pattern="(?:(?:\+|00)33[\s.\-]?(?:\(0\)[\s.\-]?)?|0)[1-9](?:[\s.\-]?\d{2}){4}" title="Numéro français à 10 chiffres, par exemple 06 12 34 56 78" aria-describedby="hint-tel err-tel"><p class="field-hint" id="hint-tel">Format : 06 12 34 56 78 ou +33 6 12 34 56 78</p><p class="field-err" id="err-tel" hidden></p></div>
+              <div class="field"><label for="f-email">E-mail <span class="req" aria-hidden="true">*</span></label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-required="true" placeholder="vous@exemple.fr" aria-describedby="err-email"><p class="field-err" id="err-email" hidden></p></div>
             </div>
+            <div class="field"><label for="f-ville">Ville <span class="req" aria-hidden="true">*</span></label><input id="f-ville" name="ville" autocomplete="address-level2" required aria-required="true" aria-describedby="err-ville"><p class="field-err" id="err-ville" hidden></p></div>
             <fieldset class="field field-radio">
               <legend>Vous avez déjà un site&nbsp;?</legend>
               <label><input type="radio" name="deja_un_site" value="oui"> Oui</label>
               <label><input type="radio" name="deja_un_site" value="non"> Non</label>
             </fieldset>
             <div class="field"><label for="f-msg">Message <span class="opt-l">(facultatif)</span></label><textarea id="f-msg" name="message" rows="3"></textarea></div>
-            <label class="consent"><input type="checkbox" name="consentement_rgpd" value="oui" required> <span>J'accepte que mes informations soient utilisées pour être recontacté au sujet de ma demande. Rien d'autre. Voir la <a href="#confidentialite" data-modal="confidentialite">politique de confidentialité</a>.</span></label>
+            <div class="field field-consent">
+              <label class="consent"><input type="checkbox" id="f-consent" name="consentement_rgpd" value="oui" required aria-required="true" aria-describedby="err-consent"> <span>J'accepte que mes informations soient utilisées pour être recontacté au sujet de ma demande. Rien d'autre. Voir la <a href="#confidentialite" data-modal="confidentialite">politique de confidentialité</a>. <span class="req" aria-hidden="true">*</span></span></label>
+              <p class="field-err" id="err-consent" hidden></p>
+            </div>
             <button class="btn btn-dark btn-lg magnetic" type="submit">Être rappelé <span class="btn-arrow" aria-hidden="true">→</span></button>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
           </form>
@@ -820,7 +825,7 @@
       <h3>Responsable du traitement</h3>
       <p>Yoann Di Stefano, entrepreneur individuel (Agenzio), SIREN 924 726 672, contact@agenzio.fr.</p>
       <h3>Données collectées</h3>
-      <p>Uniquement via le formulaire de rappel : nom, métier, ville, téléphone, type de projet, présence d'un site existant et message facultatif.</p>
+      <p>Uniquement via le formulaire de rappel : nom, métier, ville, téléphone, e-mail, type de projet, présence d'un site existant et message facultatif.</p>
       <h3>Finalité et base légale</h3>
       <p>Vous recontacter au sujet de votre demande et, si vous le souhaitez, établir une proposition. Base légale : les mesures précontractuelles prises à votre demande. Aucune prospection non sollicitée, aucune revente.</p>
       <h3>Destinataires</h3>
@@ -838,6 +843,6 @@
   <script src="js/gsap.min.js" defer></script>
   <script src="js/ScrollTrigger.min.js" defer></script>
   <script src="js/lenis.min.js" defer></script>
-  <script src="js/main.js?v=5" defer></script>
+  <script src="js/main.js?v=6" defer></script>
 </body>
 </html>

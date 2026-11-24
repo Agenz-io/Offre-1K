@@ -136,15 +136,68 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
   if (form) {
     const status = $('[data-form-status]');
     const say = (msg, ok) => { status.textContent = msg; status.className = 'form-status ' + (ok ? 'is-ok' : 'is-err'); };
+    form.noValidate = true; // la validation est faite ici, avec des messages clairs
+
+    // Téléphone : numéro français à 10 chiffres (06…, 01…, 09…) ou au format +33 / 0033.
+    const phoneDigits = (v) => {
+      let d = v.replace(/[\s.\-()]/g, '');
+      if (/^(\+|00)33/.test(d)) { d = d.replace(/^(\+|00)33/, ''); if (!d.startsWith('0')) d = '0' + d; }
+      return d;
+    };
+    const phoneOk = (v) => /^0[1-9]\d{8}$/.test(phoneDigits(v));
+    const phoneFormat = (v) => phoneDigits(v).replace(/(\d{2})(?=\d)/g, '$1 ');
+    const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+
+    const rules = {
+      'f-nom': (el) => el.value.trim().length >= 2 ? '' : 'Indiquez votre nom.',
+      'f-metier': (el) => el.value.trim() ? '' : 'Indiquez votre métier.',
+      'f-ville': (el) => el.value.trim() ? '' : 'Indiquez votre ville.',
+      'f-tel': (el) => {
+        if (!el.value.trim()) return 'Indiquez un numéro pour qu’on puisse vous rappeler.';
+        const d = phoneDigits(el.value);
+        if (/[^\d]/.test(d)) return 'Le numéro ne doit contenir que des chiffres (espaces et points acceptés).';
+        if (d.length < 10) return 'Numéro incomplet : il manque ' + (10 - d.length) + ' chiffre' + (10 - d.length > 1 ? 's' : '') + '. Exemple : 06 12 34 56 78.';
+        if (!phoneOk(el.value)) return 'Numéro invalide : 10 chiffres commençant par 0, par exemple 06 12 34 56 78.';
+        return '';
+      },
+      'f-email': (el) => {
+        if (!el.value.trim()) return 'Indiquez votre adresse e-mail.';
+        return emailOk(el.value) ? '' : 'Adresse e-mail invalide, par exemple vous@exemple.fr.';
+      },
+      'f-consent': (el) => el.checked ? '' : 'Cochez cette case pour qu’on puisse vous recontacter.',
+    };
+    const touched = new Set();
+    const check = (id) => {
+      const el = document.getElementById(id);
+      const err = document.getElementById(id.replace('f-', 'err-'));
+      const msg = rules[id](el);
+      el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      el.classList.toggle('is-valid', !msg && el.type !== 'checkbox');
+      if (err) { err.textContent = msg; err.hidden = !msg; }
+      return !msg;
+    };
+    Object.keys(rules).forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('blur', () => {
+        if (!el.value && el.type !== 'checkbox' && !touched.has(id)) return;
+        touched.add(id);
+        if (id === 'f-tel' && phoneOk(el.value)) el.value = phoneFormat(el.value);
+        check(id);
+      });
+      el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', () => { if (touched.has(id)) check(id); });
+    });
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       let first = null;
-      $$('input[required], textarea[required]', form).forEach((el) => {
-        const bad = el.type === 'checkbox' ? !el.checked : !el.value.trim();
-        el.setAttribute('aria-invalid', bad ? 'true' : 'false');
-        if (bad && !first) first = el;
+      Object.keys(rules).forEach((id) => {
+        touched.add(id);
+        if (!check(id) && !first) first = document.getElementById(id);
       });
-      if (first) { say('Merci de remplir les champs obligatoires et de cocher la case de consentement.', false); first.focus(); return; }
+      if (first) { say('Vérifiez les champs signalés en rouge.', false); first.focus(); return; }
+      const tel = document.getElementById('f-tel');
+      tel.value = phoneFormat(tel.value);
       if (!/^https?:\/\//.test(FORM_ENDPOINT)) {
         say('Le formulaire n’est pas encore branché. Écrivez-nous à contact@agenzio.fr, on vous rappelle.', false);
         return;
@@ -159,6 +212,8 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
         const json = await res.json().catch(() => ({}));
         if (!res.ok || json.success === false) throw new Error(json.message || res.status);
         form.reset();
+        touched.clear();
+        $$('.is-valid', form).forEach((el) => el.classList.remove('is-valid'));
         say('Merci, votre demande est bien partie. Vous serez rappelé au numéro indiqué.', true);
       } catch (err) {
         say('L’envoi n’a pas fonctionné. Réessayez dans un instant ou écrivez à contact@agenzio.fr.', false);
