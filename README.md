@@ -32,7 +32,6 @@ python3 -m http.server 8000
 ## Avant mise en ligne
 - Formulaire : branché sur Web3Forms (clé dans `js/main.js` et dans le `<form>`). Faire un envoi test depuis le site en ligne et vérifier la réception sur contact@agenzio.fr.
 - Domaine : le site déclare `https://www.agenzio.fr/` (canonical, Open Graph, JSON-LD, `robots.txt`, `sitemap.xml`). Pointer ce domaine vers GitHub Pages (fichier `CNAME` + DNS) ou remplacer par l'adresse finale.
-- FAQ : aide à la rédaction incluse ?, outil d'édition fourni ? (placeholders visibles)
 - Témoignages : section masquée (`is-hidden`) tant qu'il n'y en a pas de réels
 - Conseillé : faire relire les CGV par un professionnel du droit
 
