@@ -21,10 +21,6 @@ const FORM_ENDPOINT = '[FORM_ENDPOINT]';
 // Web3Forms uniquement : clé d'accès publique. [À COMPLÉTER : clé Web3Forms]
 const WEB3FORMS_ACCESS_KEY = '';
 
-// Numéro du bouton d'appel (barre mobile), format international.
-// [À COMPLÉTER : téléphone], ex. '+33600000000'. Vide = le bouton mène au formulaire de rappel.
-const TELEPHONE = '';
-
 /* ========================================================================== */
 
 (() => {
@@ -97,7 +93,6 @@ const TELEPHONE = '';
   /* ------------------------------------------------------------------------
      Téléphone, liens désactivés
      ------------------------------------------------------------------------ */
-  if (TELEPHONE) $$('[data-tel]').forEach((a) => { a.href = 'tel:' + TELEPHONE.replace(/\s/g, ''); });
   $$('a[aria-disabled="true"]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault()));
 
   /* ------------------------------------------------------------------------
@@ -152,7 +147,7 @@ const TELEPHONE = '';
       });
       if (first) { say('Merci de remplir les champs obligatoires et de cocher la case de consentement.', false); first.focus(); return; }
       if (!/^https?:\/\//.test(FORM_ENDPOINT)) {
-        say('Le formulaire n’est pas encore branché ([FORM_ENDPOINT] à renseigner dans js/main.js).', false);
+        say('Le formulaire n’est pas encore branché. Écrivez-nous à contact@agenzio.fr, on vous rappelle.', false);
         return;
       }
       const data = new FormData(form);
@@ -519,7 +514,7 @@ const TELEPHONE = '';
     const portrait = $('[data-clip]');
     if (portrait) {
       gsap.fromTo($('.portrait-ph', portrait), { clipPath: 'inset(100% 0% 0% 0% round 18px)' }, { clipPath: 'inset(0% 0% 0% 0% round 18px)', duration: 1.4, ease: 'expo.inOut', scrollTrigger: { trigger: portrait, start: 'top 80%', once: true } });
-      gsap.fromTo('.portrait-initials', { yPercent: 30 }, { yPercent: -30, ease: 'none', scrollTrigger: { trigger: portrait, start: 'top bottom', end: 'bottom top', scrub: true } });
+      gsap.fromTo('.portrait-ph img', { yPercent: -4, scale: 1.1 }, { yPercent: 4, scale: 1.1, ease: 'none', scrollTrigger: { trigger: portrait, start: 'top bottom', end: 'bottom top', scrub: true } });
     }
   });
 

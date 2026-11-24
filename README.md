@@ -11,7 +11,7 @@ python3 -m http.server 8000
 ## Fichiers
 - `index.html` : la page (SEO, JSON-LD Organization + Service + FAQPage, Open Graph, modales légales)
 - `css/style.css` : styles et intro du hero en CSS
-- `js/main.js` : **réglages en haut du fichier** (`CRENEAUX_RESTANTS`, `FIN_OFFRE`, `BANDEAU_ROTATION_MS`, `FORM_ENDPOINT`, `WEB3FORMS_ACCESS_KEY`, `TELEPHONE`), puis les animations
+- `js/main.js` : **réglages en haut du fichier** (`CRENEAUX_RESTANTS`, `FIN_OFFRE`, `BANDEAU_ROTATION_MS`, `FORM_ENDPOINT`, `WEB3FORMS_ACCESS_KEY`), puis les animations
 - `js/gsap.min.js`, `js/ScrollTrigger.min.js` (GSAP 3.12.5), `js/lenis.min.js` (Lenis 1.1.13) : en local
 - `fonts/` : Archivo variable (graisse + largeur) et Inter variable, en local
 - `img/` : captures des sites démo (agenz-io.github.io) pour le hero, les réalisations et l'avant/après, en WebP
@@ -21,7 +21,7 @@ python3 -m http.server 8000
 - Créneau pris : `const CRENEAUX_RESTANTS = 3;` dans `js/main.js` (0 affiche « Décembre complet »)
 - Témoignages réels reçus : retirer `is-hidden` sur `<section class="... testimonials is-hidden">` et remplacer les textes
 - Prix « à partir de 1 490 € » des autres services : dans `index.html`, bandeau du haut, bloc « Pour aller plus loin », formulaire, FAQ (+ JSON-LD), CGV et meta description
-- Après modification du CSS ou du JS : incrémenter `?v=` dans `index.html` (actuellement `style.css?v=4`, `main.js?v=3`)
+- Après modification du CSS ou du JS : incrémenter `?v=` dans `index.html` (actuellement `style.css?v=5`, `main.js?v=4`)
 
 ## Lighthouse mobile (simulation 4G lente, Chrome headless)
 | Serveur | Perf | Access. | Bonnes pratiques | SEO | FCP | LCP | TBT | CLS |
@@ -29,36 +29,16 @@ python3 -m http.server 8000
 | Avec gzip + cache (comme un vrai hébergeur) | 97-98 | 100 | 100 | 100 | 0,8 s | 2,4 s | 30-110 ms | 0 |
 | Sans compression (serveur Python basique) | 91 | 100 | 100 | 100 | 1,2 s | 3,5 s | 50 ms | 0 |
 
-## Placeholders restants (`grep "\[À" index.html js/main.js`)
-**Offre**
-- Autres services (site multi-pages, fiche Google…) : « à partir de 1 490 € », sur devis après l'appel
-- Hébergement + domaine : moyenne indicative affichée (50 à 90 €/an), à ajuster si besoin
-- [À COMPLÉTER : tarif] (modifications au-delà de l'aller-retour, CGV)
-- [À COMPLÉTER : HT ou TTC, modalités de paiement]
+## Avant mise en ligne
+**Bloquant**
+- Formulaire : `[FORM_ENDPOINT]` dans `js/main.js` **et** l'attribut `action` du `<form>` (+ clé Web3Forms si Web3Forms). Sans ça, aucune demande n'arrive.
+- Domaine : le site déclare `https://www.agenzio.fr/` (canonical, Open Graph, JSON-LD, `robots.txt`, `sitemap.xml`). Soit on pointe ce domaine vers GitHub Pages (fichier `CNAME` + DNS), soit on remplace par l'adresse finale.
+- Mentions légales et CGV : adresse de l'entreprise, mention TVA.
 
-**FAQ / politique**
-- [À VALIDER : aide à la rédaction incluse ?]
-- [À VALIDER : outil d'édition simple fourni ? oui/non]
-- [À VALIDER : politique en cas d'insatisfaction] et [À VALIDER : politique] (CGV)
-- [À VALIDER : zone d'intervention]
+**À valider (CGV, FAQ)**
+- Modalités de paiement (proposition : 50 % à la commande, 50 % à la mise en ligne), politique d'annulation/insatisfaction, tarif des modifications supplémentaires
+- FAQ : aide à la rédaction incluse ?, outil d'édition fourni ?, zone d'intervention
+- Relecture des CGV par un professionnel du droit
+- Témoignages : section masquée (`is-hidden`) tant qu'il n'y en a pas de réels
 
-**Marque, personne**
-- [À VALIDER : orthographe définitive Agenzio / Agencio] (commentaire en tête de `index.html`)
-- [À COMPLÉTER : photo portrait] et [À VALIDER : texte de présentation]
-
-**Réalisations**
-- Avant/après : vieux site reconstitué en HTML (gauche) + capture de la démo Garnier Cycles (droite). À remplacer par une vraie réalisation quand il y en aura une
-- Témoignages : [TÉMOIGNAGE CLIENT À RÉCUPÉRER] et [Nom, métier, ville] ×3 (section masquée)
-
-**Branchements techniques**
-- [FORM_ENDPOINT] (dans `js/main.js` ET dans l'attribut `action` du formulaire) + [À COMPLÉTER : clé Web3Forms]
-- [À COMPLÉTER : téléphone] (`TELEPHONE`, footer, JSON-LD)
-- [À COMPLÉTER : URL définitive du site] (canonical, og:url, JSON-LD : actuellement www.agenzio.fr)
-- [À COMPLÉTER : image de partage 1200×630 dans img/og-image.jpg]
-
-**Légal**
-- [À COMPLÉTER : SIRET], [À COMPLÉTER : e-mail], [À COMPLÉTER : e-mail de contact], [À COMPLÉTER : e-mail, téléphone]
-- [À COMPLÉTER : forme juridique, adresse]
-- [À COMPLÉTER : nom, adresse et téléphone de l'hébergeur]
-- [À COMPLÉTER : Web3Forms ou Formspree], [À COMPLÉTER : durée] (confidentialité)
-- [À COMPLÉTER : CGV complètes, à faire relire]
+`grep -n "\[À\|\[FORM_ENDPOINT\]" index.html js/main.js` liste tout ce qui reste.

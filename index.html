@@ -1,15 +1,17 @@
 <!doctype html>
 <!--
   Agenzio : page de vente « 1 site, 1 semaine, 1000 € »
-  [À VALIDER : orthographe définitive Agenzio / Agencio]
-  Réglages (créneaux, date de fin, formulaire, téléphone) : en haut de js/main.js
+  Agenzio, nom commercial de Yoann Di Stefano, entrepreneur individuel (SIREN 924 726 672)
+  Réglages (créneaux, date de fin, formulaire) : en haut de js/main.js
 -->
 <html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Création de site internet en 7 jours pour 1000 € | Agenzio</title>
-  <meta name="description" content="Site vitrine sur mesure pour artisans, indépendants et TPE locales : en ligne en 7 jours pour 1000 €. Mobile et SEO local inclus. Site multi-pages et fiche Google dès 1490 €.">
+  <meta name="description" content="Création de site vitrine pour artisans, indépendants et TPE : en ligne en 7 jours pour 1000 €, mobile et SEO local inclus. Site multi-pages dès 1490 €.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="author" content="Yoann Di Stefano">
   <meta name="theme-color" content="#0E0E10">
   <link rel="canonical" href="https://www.agenzio.fr/"><!-- [À COMPLÉTER : URL définitive du site] -->
 
@@ -20,17 +22,21 @@
   <meta property="og:title" content="Votre site pro en ligne en 7 jours. Pour 1000 €.">
   <meta property="og:description" content="Site vitrine sur mesure pour artisans et TPE, pensé pour être trouvé sur Google. Créneaux de décembre limités.">
   <meta property="og:url" content="https://www.agenzio.fr/">
-  <!-- [À COMPLÉTER : image de partage 1200×630 dans img/og-image.jpg] -->
   <meta property="og:image" content="https://www.agenzio.fr/img/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Agenzio : votre site pro en ligne en 7 jours pour 1000 €">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Votre site pro en ligne en 7 jours. Pour 1000 €.">
+  <meta name="twitter:description" content="Site vitrine sur mesure pour artisans et TPE, pensé pour être trouvé sur Google.">
+  <meta name="twitter:image" content="https://www.agenzio.fr/img/og-image.jpg">
 
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" type="image/webp" href="img/hero-desk.webp" imagesrcset="img/hero-desk-640.webp 640w, img/hero-desk.webp 1200w" imagesizes="(max-width: 1100px) 84vw, 40vw" fetchpriority="high">
-  <link rel="stylesheet" href="css/style.css?v=4">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E0E10'/%3E%3Cpath d='M9 24 15 8h2l6 16h-3.2l-1.3-3.7h-5L12.2 24Z M14.4 17.7h3.3L16 12.6Z' fill='%23E6FF3D'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
   <!-- Active les états d'animation seulement si le JS tourne. Filet de sécurité : si main.js
        ne démarre pas en 2,5 s, on retire la classe et tout le contenu reste visible. -->
@@ -53,15 +59,38 @@
         "@type": "Organization",
         "@id": "https://www.agenzio.fr/#organisation",
         "name": "Agenzio",
+        "legalName": "Yoann Di Stefano EI",
         "url": "https://www.agenzio.fr/",
-        "description": "Agence web : création de sites, SEO et automatisation pour artisans, indépendants et TPE locales.",
-        "founder": { "@type": "Person", "name": "Yoann Di Stefano" },
-        "email": "[À COMPLÉTER : e-mail de contact]",
-        "telephone": "[À COMPLÉTER : téléphone]"
+        "logo": "https://www.agenzio.fr/img/apple-touch-icon.png",
+        "image": "https://www.agenzio.fr/img/og-image.jpg",
+        "description": "Création de sites internet, référencement local et automatisation pour artisans, indépendants et TPE.",
+        "email": "contact@agenzio.fr",
+        "identifier": { "@type": "PropertyValue", "propertyID": "SIREN", "value": "924726672" },
+        "areaServed": { "@type": "Country", "name": "France" },
+        "founder": { "@id": "https://www.agenzio.fr/#yoann" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.agenzio.fr/#yoann",
+        "name": "Yoann Di Stefano",
+        "jobTitle": "Fondateur d'Agenzio, créateur de sites internet",
+        "image": "https://www.agenzio.fr/img/yoann-di-stefano.webp",
+        "worksFor": { "@id": "https://www.agenzio.fr/#organisation" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.agenzio.fr/#page",
+        "url": "https://www.agenzio.fr/",
+        "name": "Création de site internet en 7 jours pour 1000 €",
+        "inLanguage": "fr-FR",
+        "isPartOf": { "@type": "WebSite", "name": "Agenzio", "url": "https://www.agenzio.fr/" },
+        "about": { "@id": "https://www.agenzio.fr/#service" },
+        "primaryImageOfPage": "https://www.agenzio.fr/img/og-image.jpg"
       },
       {
         "@type": "Service",
-        "name": "Site vitrine one page en 7 jours",
+        "@id": "https://www.agenzio.fr/#service",
+        "name": "Création de site vitrine en 7 jours",
         "serviceType": "Création de site internet",
         "provider": { "@id": "https://www.agenzio.fr/#organisation" },
         "areaServed": { "@type": "Country", "name": "France" },
@@ -72,6 +101,7 @@
           "price": "1000",
           "priceCurrency": "EUR",
           "validThrough": "2026-12-31T23:59:59+01:00",
+          "url": "https://www.agenzio.fr/#reserver",
           "availability": "https://schema.org/LimitedAvailability"
         }
       },
@@ -150,7 +180,7 @@
       </div>
 
       <div class="hero-copy">
-        <p class="label hero-label" data-hero="fade">Site vitrine pour artisans, indépendants &amp; TPE</p>
+        <p class="label hero-label" data-hero="fade">Création de site vitrine pour artisans, indépendants &amp; TPE</p>
         <h1 id="titre-hero" class="hero-title">
           <span class="line"><span>Votre site pro</span></span>
           <span class="line"><span>en ligne en <em>7&nbsp;jours.</em></span></span>
@@ -390,7 +420,7 @@
           <article class="work">
             <a class="work-shot" href="https://agenz-io.github.io/Vino/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
               <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/Vino</span></div>
-              <img src="img/demo-vino.webp" srcset="img/demo-vino-640.webp 640w, img/demo-vino.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <img src="img/demo-vino.webp" srcset="img/demo-vino-640.webp 640w, img/demo-vino.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="Site de démonstration d'un domaine viticole en Languedoc" loading="lazy" decoding="async">
               <span class="demo-tag">Site de démonstration</span>
             </a>
             <div class="work-info">
@@ -403,7 +433,7 @@
           <article class="work">
             <a class="work-shot" href="https://agenz-io.github.io/swim/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
               <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/swim</span></div>
-              <img src="img/demo-swim.webp" srcset="img/demo-swim-640.webp 640w, img/demo-swim.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <img src="img/demo-swim.webp" srcset="img/demo-swim-640.webp 640w, img/demo-swim.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="Site de démonstration d'un pisciniste à Aix-en-Provence" loading="lazy" decoding="async">
               <span class="demo-tag">Site de démonstration</span>
             </a>
             <div class="work-info">
@@ -416,7 +446,7 @@
           <article class="work">
             <a class="work-shot" href="https://agenz-io.github.io/Bike/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
               <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/Bike</span></div>
-              <img src="img/demo-bike.webp" srcset="img/demo-bike-640.webp 640w, img/demo-bike.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <img src="img/demo-bike.webp" srcset="img/demo-bike-640.webp 640w, img/demo-bike.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="Site de démonstration d'un cadreur de vélos sur mesure à Annecy" loading="lazy" decoding="async">
               <span class="demo-tag">Site de démonstration</span>
             </a>
             <div class="work-info">
@@ -429,7 +459,7 @@
           <article class="work">
             <a class="work-shot" href="https://agenz-io.github.io/sylve-tiny-houses/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
               <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/sylve-tiny-houses</span></div>
-              <img src="img/demo-sylve.webp" srcset="img/demo-sylve-640.webp 640w, img/demo-sylve.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <img src="img/demo-sylve.webp" srcset="img/demo-sylve-640.webp 640w, img/demo-sylve.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="Site de démonstration d'un fabricant de tiny houses dans le Vercors" loading="lazy" decoding="async">
               <span class="demo-tag">Site de démonstration</span>
             </a>
             <div class="work-info">
@@ -442,7 +472,7 @@
           <article class="work">
             <a class="work-shot" href="https://agenz-io.github.io/Osteo/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
               <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/Osteo</span></div>
-              <img src="img/demo-osteo.webp" srcset="img/demo-osteo-640.webp 640w, img/demo-osteo.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <img src="img/demo-osteo.webp" srcset="img/demo-osteo-640.webp 640w, img/demo-osteo.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="Site de démonstration d'un cabinet d'ostéopathie à Nantes" loading="lazy" decoding="async">
               <span class="demo-tag">Site de démonstration</span>
             </a>
             <div class="work-info">
@@ -455,7 +485,7 @@
           <article class="work">
             <a class="work-shot" href="https://agenz-io.github.io/The-long-distance-company/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
               <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/The-long-distance-company</span></div>
-              <img src="img/demo-longdistance.webp" srcset="img/demo-longdistance-640.webp 640w, img/demo-longdistance.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="" loading="lazy" decoding="async">
+              <img src="img/demo-longdistance.webp" srcset="img/demo-longdistance-640.webp 640w, img/demo-longdistance.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="Site de démonstration d'une entreprise d'exploration outdoor à Lyon" loading="lazy" decoding="async">
               <span class="demo-tag">Site de démonstration</span>
             </a>
             <div class="work-info">
@@ -508,17 +538,20 @@
       <div class="wrap about-grid">
         <figure class="portrait" data-clip>
           <div class="portrait-ph">
-            <span class="portrait-initials" aria-hidden="true">YD</span>
-            <span class="tbc">[À COMPLÉTER : photo portrait]</span>
+            <img src="img/yoann-di-stefano.webp" srcset="img/yoann-di-stefano-480.webp 480w, img/yoann-di-stefano.webp 800w" sizes="(max-width: 860px) 360px, 34vw" width="800" height="1000" alt="Yoann Di Stefano, fondateur d'Agenzio" loading="lazy" decoding="async">
           </div>
-          <figcaption>Yoann Di Stefano, fondateur</figcaption>
+          <figcaption>Yoann Di Stefano, fondateur d'Agenzio</figcaption>
         </figure>
         <div class="about-copy">
           <p class="label"><span class="num">06</span>Qui je suis</p>
-          <h2 id="titre-about" class="h-lg split">Je m'appelle Yoann.</h2>
-          <p class="about-p" data-reveal>Je fais des sites rapides, honnêtes et efficaces pour les pros locaux.</p>
-          <p class="about-p about-p--strong" data-reveal>Vous parlez à la personne qui fait votre site, pas à un commercial.</p>
-          <p class="tbc" data-reveal>[À VALIDER : texte de présentation]</p>
+          <h2 id="titre-about" class="h-lg split">Un seul interlocuteur, du premier appel à la mise en ligne.</h2>
+          <p class="about-p" data-reveal>Je suis Yoann Di Stefano, fondateur d'Agenzio. Je conçois des sites vitrines rapides, clairs et pensés pour être trouvés sur Google, pour les artisans, les indépendants et les TPE.</p>
+          <p class="about-p about-p--strong" data-reveal>Vous parlez directement à la personne qui fait votre site : pas de commercial, pas d'intermédiaire, pas de jargon.</p>
+          <ul class="about-points" data-reveal>
+            <li>Livré en 7 jours</li>
+            <li>Pensé pour Google et le mobile</li>
+            <li>Accès et code remis à la livraison</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -556,6 +589,7 @@
             <li>On bloque votre semaine de décembre.</li>
           </ol>
           <p class="reassure" data-reveal>Appel de 15 min, sans engagement, sans relance commerciale.</p>
+          <p class="book-mail">Vous préférez écrire&nbsp;? <a href="mailto:contact@agenzio.fr">contact@agenzio.fr</a></p>
         </div>
 
         <div class="opt opt--form" id="rappel">
@@ -682,59 +716,92 @@
         <a href="#confidentialite" data-modal="confidentialite">Politique de confidentialité</a>
       </nav>
       <div class="footer-contact">
-        <p>Contact : <span class="tbc">[À COMPLÉTER : e-mail]</span></p>
-        <p>Téléphone : <span class="tbc">[À COMPLÉTER : téléphone]</span></p>
-        <p>SIRET : <span class="tbc">[À COMPLÉTER : SIRET]</span></p>
+        <p>Contact : <a href="mailto:contact@agenzio.fr">contact@agenzio.fr</a></p>
+        <p>Création de sites internet pour artisans, indépendants et TPE, partout en France.</p>
       </div>
     </div>
-    <p class="wrap footer-bottom">© 2026 Agenzio. Aucun cookie de suivi, aucun tracker.</p>
+    <p class="wrap footer-bottom">© 2026 Agenzio · Yoann Di Stefano EI. Aucun cookie de suivi, aucun tracker.</p>
   </footer>
 
   <!-- 3.14 Barre CTA mobile -->
   <div class="mbar" data-mbar>
     <a class="mbar-cta" href="#reserver" data-mbar-cta>Réserver · 1000&nbsp;€</a>
-    <a class="mbar-call" href="#rappel" data-tel aria-label="Nous appeler">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h3l1.5 4.5L8 9a12 12 0 0 0 7 7l1.5-2.5L21 15v3a2 2 0 0 1-2 2C10.6 20 4 13.4 4 5a2 2 0 0 1 2-2z"/></svg>
-    </a>
   </div>
 
   <!-- Modales légales (s'affichent aussi via #ancre sans JS) -->
   <dialog class="modal" id="mentions" aria-labelledby="t-mentions">
     <div class="modal-body">
       <h2 id="t-mentions">Mentions légales</h2>
-      <p><strong>Éditeur</strong> : Agenzio, <span class="tbc">[À COMPLÉTER : forme juridique, adresse]</span>. SIRET <span class="tbc">[À COMPLÉTER : SIRET]</span>.</p>
+      <h3>Éditeur du site</h3>
+      <p>Agenzio est le nom commercial de <strong>Yoann Di Stefano, entrepreneur individuel (EI)</strong>.<br>
+      SIREN : 924 726 672<br>
+      Adresse : <span class="tbc">[À COMPLÉTER : adresse de l'entreprise]</span><br>
+      E-mail : <a href="mailto:contact@agenzio.fr">contact@agenzio.fr</a><br>
+      <span class="tbc">[À VALIDER : « TVA non applicable, art. 293 B du CGI » si vous êtes en franchise de TVA, sinon votre n° de TVA intracommunautaire]</span></p>
       <p><strong>Directeur de la publication</strong> : Yoann Di Stefano.</p>
-      <p><strong>Contact</strong> : <span class="tbc">[À COMPLÉTER : e-mail, téléphone]</span>.</p>
-      <p><strong>Hébergeur</strong> : <span class="tbc">[À COMPLÉTER : nom, adresse et téléphone de l'hébergeur]</span>.</p>
-      <p>Visuels : captures des sites de démonstration réalisés par Agenzio (photos Unsplash).</p>
+      <h3>Hébergement</h3>
+      <p>GitHub, Inc. (GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Téléphone : +1 877 448 4820. Site : github.com.</p>
+      <h3>Propriété intellectuelle</h3>
+      <p>Les textes, la mise en page et les éléments graphiques de ce site sont la propriété d'Agenzio. Toute reproduction sans autorisation est interdite. Les captures présentées dans « Réalisations » sont celles de sites de démonstration conçus par Agenzio, pour des entreprises fictives ; leurs photos proviennent d'Unsplash.</p>
+      <h3>Données personnelles et cookies</h3>
+      <p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience. Le traitement des données du formulaire est décrit dans la <a href="#confidentialite" data-modal="confidentialite">politique de confidentialité</a>.</p>
     </div>
     <form method="dialog"><button class="modal-close" aria-label="Fermer">Fermer ✕</button></form>
   </dialog>
 
   <dialog class="modal" id="cgv" aria-labelledby="t-cgv">
     <div class="modal-body">
-      <h2 id="t-cgv">Conditions générales de vente, offre « 1 site, 1 semaine, 1000 € »</h2>
-      <p class="tbc">[À COMPLÉTER : CGV complètes, à faire relire]</p>
-      <h3>Ce que comprend l'offre</h3>
+      <h2 id="t-cgv">Conditions générales de vente</h2>
+      <p class="modal-note">Offre « 1 site, 1 semaine, 1000 € ». Version du 24 novembre 2026. <span class="tbc">[À VALIDER : faire relire par un professionnel du droit]</span></p>
+
+      <h3>1. Vendeur</h3>
+      <p>Agenzio, nom commercial de Yoann Di Stefano, entrepreneur individuel (EI), SIREN 924 726 672, <span class="tbc">[À COMPLÉTER : adresse]</span>, contact@agenzio.fr.</p>
+
+      <h3>2. Clients concernés</h3>
+      <p>Ces conditions s'appliquent aux ventes conclues avec des professionnels (artisans, indépendants, sociétés, associations) pour les besoins de leur activité. Toute commande vaut acceptation de ces conditions.</p>
+
+      <h3>3. Contenu de l'offre</h3>
       <ul>
-        <li>Un site one page sur mesure, adapté au mobile, optimisé pour le référencement local.</li>
-        <li>Prix : 1000 €. <span class="tbc">[À COMPLÉTER : HT ou TTC, modalités de paiement]</span></li>
-        <li>1 aller-retour de modifications.</li>
-        <li>Remise des accès et du code : le site appartient au client.</li>
-        <li>Services complémentaires (site multi-pages, fiche Google Business…) sur demande, à partir de 1490 €.</li>
+        <li>Conception d'un site one page sur mesure, adapté au mobile et optimisé pour le référencement local.</li>
+        <li>Formulaire de contact, bouton d'appel, mentions légales et page de confidentialité.</li>
+        <li>Mise en ligne du site.</li>
+        <li>Un aller-retour de modifications avant la mise en ligne.</li>
+        <li>Remise des accès et du code source à la livraison.</li>
       </ul>
-      <h3>Délai</h3>
-      <p>Mise en ligne en 7 jours à compter de la réception de 100 % des éléments du client (textes, photos, logo, accès).</p>
-      <h3>Ce qui est exclu</h3>
+
+      <h3>4. Ce qui n'est pas inclus</h3>
       <ul>
-        <li>Hébergement et nom de domaine, à la charge du client.</li>
-        <li>Les modifications au-delà de l'aller-retour inclus. <span class="tbc">[À COMPLÉTER : tarif]</span></li>
-        <li>Les services complémentaires : fiche Google Business, pages supplémentaires, réservation en ligne, automatisations, maintenance.</li>
+        <li>L'hébergement et le nom de domaine, souscrits au nom du client et à sa charge.</li>
+        <li>La rédaction complète des textes et la production de photos, sauf accord écrit.</li>
+        <li>Les modifications demandées au-delà de l'aller-retour inclus. <span class="tbc">[À COMPLÉTER : tarif]</span></li>
+        <li>Les services complémentaires (site multi-pages, fiche Google Business, réservation en ligne, automatisations, maintenance), qui font l'objet d'un devis séparé, à partir de 1490 €.</li>
       </ul>
-      <h3>Validité</h3>
+
+      <h3>5. Prix et paiement</h3>
+      <p>Le prix de l'offre est de 1000 €. <span class="tbc">[À VALIDER : mention TVA (« TVA non applicable, art. 293 B du CGI » ou prix HT)]</span><br>
+      Modalités de paiement : <span class="tbc">[À VALIDER : proposition : 50 % à la commande, 50 % à la mise en ligne, par virement]</span>.<br>
+      En cas de retard de paiement, des pénalités au taux de trois fois le taux d'intérêt légal et une indemnité forfaitaire de 40 € pour frais de recouvrement sont dues (articles L441-10 et D441-5 du Code de commerce).</p>
+
+      <h3>6. Délai</h3>
+      <p>Le site est mis en ligne dans un délai de 7 jours à compter de la réception de 100 % des éléments demandés au client (textes, photos, logo, accès). Le délai est suspendu tant que des éléments manquent ou pendant la validation par le client.</p>
+
+      <h3>7. Validation et livraison</h3>
+      <p>Le client valide le site après l'aller-retour de modifications. Sans réponse de sa part dans un délai de 7 jours après l'envoi de la version finale, le site est réputé accepté.</p>
+
+      <h3>8. Propriété</h3>
+      <p>Après paiement intégral, le client devient propriétaire du site livré et reçoit ses accès et le code source. Les éléments fournis par le client restent sa propriété ; il garantit disposer des droits nécessaires sur ces éléments. Agenzio peut présenter le site dans ses réalisations, sauf refus écrit du client.</p>
+
+      <h3>9. Responsabilité</h3>
+      <p>Agenzio est tenu à une obligation de moyens. Le positionnement sur Google dépend de facteurs extérieurs et ne peut être garanti. La responsabilité d'Agenzio est limitée au montant payé pour la prestation.</p>
+
+      <h3>10. Annulation et insatisfaction</h3>
+      <p class="tbc">[À VALIDER : votre politique, par exemple : annulation possible avant le début de la production avec remboursement de l'acompte]</p>
+
+      <h3>11. Validité de l'offre</h3>
       <p>Offre valable jusqu'au 31 décembre 2026, dans la limite des créneaux disponibles.</p>
-      <h3>Insatisfaction, annulation</h3>
-      <p class="tbc">[À VALIDER : politique]</p>
+
+      <h3>12. Litiges</h3>
+      <p>Ces conditions sont soumises au droit français. En cas de litige, une solution amiable sera recherchée en priorité. À défaut, le tribunal compétent est celui du ressort du siège d'Agenzio.</p>
     </div>
     <form method="dialog"><button class="modal-close" aria-label="Fermer">Fermer ✕</button></form>
   </dialog>
@@ -742,12 +809,20 @@
   <dialog class="modal" id="confidentialite" aria-labelledby="t-conf">
     <div class="modal-body">
       <h2 id="t-conf">Politique de confidentialité</h2>
-      <p><strong>Données collectées</strong> : nom, métier, ville, téléphone, présence d'un site existant, type de projet et message, uniquement via le formulaire de rappel.</p>
-      <p><strong>Finalité</strong> : vous recontacter au sujet de votre demande. Aucune prospection, aucune revente.</p>
-      <p><strong>Prestataire du formulaire</strong> : <span class="tbc">[À COMPLÉTER : Web3Forms ou Formspree]</span>.</p>
-      <p><strong>Cookies et mesure d'audience</strong> : aucun sur cette page.</p>
-      <p><strong>Durée de conservation</strong> : <span class="tbc">[À COMPLÉTER : durée]</span>.</p>
-      <p><strong>Vos droits</strong> : accès, rectification, suppression, en écrivant à <span class="tbc">[À COMPLÉTER : e-mail]</span>. Vous pouvez aussi saisir la CNIL.</p>
+      <h3>Responsable du traitement</h3>
+      <p>Yoann Di Stefano, entrepreneur individuel (Agenzio), SIREN 924 726 672, contact@agenzio.fr.</p>
+      <h3>Données collectées</h3>
+      <p>Uniquement via le formulaire de rappel : nom, métier, ville, téléphone, type de projet, présence d'un site existant et message facultatif.</p>
+      <h3>Finalité et base légale</h3>
+      <p>Vous recontacter au sujet de votre demande et, si vous le souhaitez, établir une proposition. Base légale : les mesures précontractuelles prises à votre demande. Aucune prospection non sollicitée, aucune revente.</p>
+      <h3>Destinataires</h3>
+      <p>Yoann Di Stefano (Agenzio) uniquement. Les messages transitent par le service d'envoi du formulaire <span class="tbc">[À COMPLÉTER : Web3Forms ou Formspree]</span>. Le site est hébergé par GitHub, Inc. (États-Unis), qui peut enregistrer l'adresse IP des visiteurs pour des raisons de sécurité. Ces prestataires peuvent traiter des données hors de l'Union européenne, dans le cadre des garanties prévues par le RGPD.</p>
+      <h3>Durée de conservation</h3>
+      <p>3 ans à compter du dernier échange, puis suppression. En cas de commande, les données nécessaires à la facturation sont conservées 10 ans (obligation comptable).</p>
+      <h3>Cookies</h3>
+      <p>Aucun cookie, aucun outil de mesure d'audience, aucun traceur publicitaire.</p>
+      <h3>Vos droits</h3>
+      <p>Vous pouvez accéder à vos données, les rectifier, les supprimer, vous opposer à leur traitement ou en demander la limitation, en écrivant à <a href="mailto:contact@agenzio.fr">contact@agenzio.fr</a>. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
     </div>
     <form method="dialog"><button class="modal-close" aria-label="Fermer">Fermer ✕</button></form>
   </dialog>
@@ -755,6 +830,6 @@
   <script src="js/gsap.min.js" defer></script>
   <script src="js/ScrollTrigger.min.js" defer></script>
   <script src="js/lenis.min.js" defer></script>
-  <script src="js/main.js?v=3" defer></script>
+  <script src="js/main.js?v=4" defer></script>
 </body>
 </html>

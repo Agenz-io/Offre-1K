@@ -725,3 +725,21 @@ html.has-cursor input:not([type="range"]):not([type="checkbox"]):not([type="radi
 html.has-cursor dialog, html.has-cursor dialog * { cursor: auto; }
 html.has-cursor dialog a, html.has-cursor dialog button { cursor: pointer; }
 html.modal-open .cursor { display: none !important; }
+
+/* Qui je suis : photo et points forts */
+.portrait-ph { padding: 0; display: block; }
+.portrait-ph::after { display: none; }
+.portrait-ph img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.about-copy .h-lg { max-width: 18ch; }
+.about-points { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .6rem; }
+.about-points li { display: inline-flex; align-items: center; gap: .5rem; padding: .55rem 1rem; border: 1px solid rgba(242, 240, 235, .2); border-radius: 999px; font-weight: 500; font-size: .95rem; }
+.about-points li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+/* Réserver : e-mail */
+.book-mail { font-size: .98rem; color: var(--light-soft); }
+.book-mail a { color: var(--light-ink); font-weight: 600; }
+.footer-contact a { color: var(--ink); }
+
+/* Fenêtres légales */
+.modal-note { font-size: .9rem; color: var(--light-soft); }
+.modal-body a { color: var(--light-ink); font-weight: 600; }
