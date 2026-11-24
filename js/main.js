@@ -13,13 +13,12 @@ const FIN_OFFRE = new Date('2026-12-31T23:59:59+01:00');
 // Bandeau du haut : durée d'affichage de chaque message (en millisecondes).
 const BANDEAU_ROTATION_MS = 6000;
 
-// Adresse d'envoi du formulaire de rappel. Penser à la recopier aussi dans
-// l'attribut action="" du <form> dans index.html (fonctionnement sans JS).
-// Web3Forms : 'https://api.web3forms.com/submit'   Formspree : 'https://formspree.io/f/XXXXXXX'
-const FORM_ENDPOINT = '[FORM_ENDPOINT]';
+// Envoi du formulaire de rappel (Web3Forms). Si vous changez de service,
+// changez aussi l'attribut action="" et le champ access_key du <form> dans index.html.
+const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
 
-// Web3Forms uniquement : clé d'accès publique. [À COMPLÉTER : clé Web3Forms]
-const WEB3FORMS_ACCESS_KEY = '';
+// Web3Forms : clé d'accès publique (elle peut être visible dans le code).
+const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
 
 /* ========================================================================== */
 
@@ -151,17 +150,18 @@ const WEB3FORMS_ACCESS_KEY = '';
         return;
       }
       const data = new FormData(form);
-      if (WEB3FORMS_ACCESS_KEY) data.append('access_key', WEB3FORMS_ACCESS_KEY);
+      if (WEB3FORMS_ACCESS_KEY) data.set('access_key', WEB3FORMS_ACCESS_KEY);
       const btn = $('button[type="submit"]', form);
       btn.disabled = true;
       say('Envoi en cours…', true);
       try {
         const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-        if (!res.ok) throw new Error(res.status);
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || json.success === false) throw new Error(json.message || res.status);
         form.reset();
         say('Merci, votre demande est bien partie. Vous serez rappelé au numéro indiqué.', true);
       } catch (err) {
-        say('L’envoi n’a pas fonctionné. Réessayez dans un instant.', false);
+        say('L’envoi n’a pas fonctionné. Réessayez dans un instant ou écrivez à contact@agenzio.fr.', false);
       } finally { btn.disabled = false; }
     });
   }

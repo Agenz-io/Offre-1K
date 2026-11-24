@@ -114,8 +114,8 @@
           { "@type": "Question", "name": "L'hébergement, ça coûte combien et qui s'en occupe ?", "acceptedAnswer": { "@type": "Answer", "text": "L'hébergement et le nom de domaine ne sont pas inclus dans les 1000 €. En moyenne, comptez 50 à 90 € par an : environ 10 à 15 € par an pour le nom de domaine et 3 à 6 € par mois pour l'hébergement, à votre nom. Si vous préférez ne pas vous en occuper, dites-le pendant l'appel : on peut s'en charger." } },
           { "@type": "Question", "name": "Et si j'ai besoin de plus qu'une page ?", "acceptedAnswer": { "@type": "Answer", "text": "Site multi-pages, fiche Google Business, réservation en ligne, avis clients, automatisations : c'est possible, à partir de 1490 €. Cochez « Site plus complet ou autres services » dans le formulaire, on en parle à l'appel." } },
           { "@type": "Question", "name": "Et après le 31 décembre ?", "acceptedAnswer": { "@type": "Answer", "text": "L'offre à 1000 € s'arrête le 31 décembre 2026, ou avant si tous les créneaux sont pris. Après cette date, contactez-nous pour connaître les conditions." } },
-          { "@type": "Question", "name": "Que se passe-t-il si je ne suis pas satisfait ?", "acceptedAnswer": { "@type": "Answer", "text": "[À VALIDER : politique en cas d'insatisfaction] Le prix comprend 1 aller-retour de modifications, au jour 5, avant la mise en ligne." } },
-          { "@type": "Question", "name": "Vous travaillez dans toute la France ?", "acceptedAnswer": { "@type": "Answer", "text": "L'appel, le brief et la validation se font à distance. [À VALIDER : zone d'intervention]" } }
+          { "@type": "Question", "name": "Que se passe-t-il si je ne suis pas satisfait ?", "acceptedAnswer": { "@type": "Answer", "text": "Avant la mise en ligne, vous voyez le site et vous demandez vos changements : un aller-retour de modifications est inclus. Les modifications supplémentaires sont facturées 25 € chacune. Si vous annulez avant le début de la production, votre acompte vous est remboursé." } },
+          { "@type": "Question", "name": "Vous travaillez dans toute la France ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. L'appel, le brief et la validation se font à distance : où que vous soyez en France, le délai et le prix sont les mêmes." } }
         ]
       }
     ]
@@ -594,9 +594,11 @@
 
         <div class="opt opt--form" id="rappel">
           <h3 class="h-md">Être rappelé</h3>
-          <!-- [FORM_ENDPOINT] : URL Web3Forms ou Formspree, à renseigner dans js/main.js (et ici pour le fonctionnement sans JS) -->
-          <form class="form" action="[FORM_ENDPOINT]" method="post" data-form novalidate>
+          <!-- Envoi via Web3Forms (clé publique). Réglages aussi en haut de js/main.js -->
+          <form class="form" action="https://api.web3forms.com/submit" method="post" data-form novalidate>
+            <input type="hidden" name="access_key" value="38993b20-fbdf-478c-a6d2-56cb43e60e80">
             <input type="hidden" name="subject" value="Demande de rappel, site Agenzio">
+            <input type="hidden" name="from_name" value="Site Agenzio">
             <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <fieldset class="field field-project">
               <legend>Votre projet</legend>
@@ -685,11 +687,11 @@
           </details>
           <details class="qa">
             <summary>Que se passe-t-il si je ne suis pas satisfait&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p><span class="tbc">[À VALIDER : politique en cas d'insatisfaction]</span> Le prix comprend 1 aller-retour de modifications, au jour 5, avant la mise en ligne.</p></div>
+            <div class="qa-a"><p>Avant la mise en ligne, vous voyez le site et vous demandez vos changements&nbsp;: un aller-retour de modifications est inclus. Les modifications supplémentaires sont facturées 25&nbsp;€ chacune. Si vous annulez avant le début de la production, votre acompte vous est remboursé.</p></div>
           </details>
           <details class="qa">
             <summary>Vous travaillez dans toute la France&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p>L'appel, le brief et la validation se font à distance. <span class="tbc">[À VALIDER : zone d'intervention]</span></p></div>
+            <div class="qa-a"><p>Oui. L'appel, le brief et la validation se font à distance&nbsp;: où que vous soyez en France, le délai et le prix sont les mêmes.</p></div>
           </details>
         </div>
       </div>
@@ -729,15 +731,15 @@
   </div>
 
   <!-- Modales légales (s'affichent aussi via #ancre sans JS) -->
-  <dialog class="modal" id="mentions" aria-labelledby="t-mentions">
+  <dialog class="modal" id="mentions" aria-labelledby="t-mentions" data-lenis-prevent>
     <div class="modal-body">
       <h2 id="t-mentions">Mentions légales</h2>
       <h3>Éditeur du site</h3>
       <p>Agenzio est le nom commercial de <strong>Yoann Di Stefano, entrepreneur individuel (EI)</strong>.<br>
       SIREN : 924 726 672<br>
-      Adresse : <span class="tbc">[À COMPLÉTER : adresse de l'entreprise]</span><br>
+      Adresse : 161 allée du Golf, 34280 La Grande-Motte<br>
       E-mail : <a href="mailto:contact@agenzio.fr">contact@agenzio.fr</a><br>
-      <span class="tbc">[À VALIDER : « TVA non applicable, art. 293 B du CGI » si vous êtes en franchise de TVA, sinon votre n° de TVA intracommunautaire]</span></p>
+      TVA non applicable, art. 293 B du CGI.</p>
       <p><strong>Directeur de la publication</strong> : Yoann Di Stefano.</p>
       <h3>Hébergement</h3>
       <p>GitHub, Inc. (GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Téléphone : +1 877 448 4820. Site : github.com.</p>
@@ -749,13 +751,13 @@
     <form method="dialog"><button class="modal-close" aria-label="Fermer">Fermer ✕</button></form>
   </dialog>
 
-  <dialog class="modal" id="cgv" aria-labelledby="t-cgv">
+  <dialog class="modal" id="cgv" aria-labelledby="t-cgv" data-lenis-prevent>
     <div class="modal-body">
       <h2 id="t-cgv">Conditions générales de vente</h2>
-      <p class="modal-note">Offre « 1 site, 1 semaine, 1000 € ». Version du 24 novembre 2026. <span class="tbc">[À VALIDER : faire relire par un professionnel du droit]</span></p>
+      <p class="modal-note">Offre « 1 site, 1 semaine, 1000 € ». Version du 24 novembre 2026.</p>
 
       <h3>1. Vendeur</h3>
-      <p>Agenzio, nom commercial de Yoann Di Stefano, entrepreneur individuel (EI), SIREN 924 726 672, <span class="tbc">[À COMPLÉTER : adresse]</span>, contact@agenzio.fr.</p>
+      <p>Agenzio, nom commercial de Yoann Di Stefano, entrepreneur individuel (EI), SIREN 924 726 672, 161 allée du Golf, 34280 La Grande-Motte, contact@agenzio.fr.</p>
 
       <h3>2. Clients concernés</h3>
       <p>Ces conditions s'appliquent aux ventes conclues avec des professionnels (artisans, indépendants, sociétés, associations) pour les besoins de leur activité. Toute commande vaut acceptation de ces conditions.</p>
@@ -773,13 +775,13 @@
       <ul>
         <li>L'hébergement et le nom de domaine, souscrits au nom du client et à sa charge.</li>
         <li>La rédaction complète des textes et la production de photos, sauf accord écrit.</li>
-        <li>Les modifications demandées au-delà de l'aller-retour inclus. <span class="tbc">[À COMPLÉTER : tarif]</span></li>
+        <li>Les modifications demandées au-delà de l'aller-retour inclus, facturées 25 € par modification.</li>
         <li>Les services complémentaires (site multi-pages, fiche Google Business, réservation en ligne, automatisations, maintenance), qui font l'objet d'un devis séparé, à partir de 1490 €.</li>
       </ul>
 
       <h3>5. Prix et paiement</h3>
-      <p>Le prix de l'offre est de 1000 €. <span class="tbc">[À VALIDER : mention TVA (« TVA non applicable, art. 293 B du CGI » ou prix HT)]</span><br>
-      Modalités de paiement : <span class="tbc">[À VALIDER : proposition : 50 % à la commande, 50 % à la mise en ligne, par virement]</span>.<br>
+      <p>Le prix de l'offre est de 1000 €, TVA non applicable (art. 293 B du CGI).<br>
+      Paiement par virement : un acompte de 50 % à la commande, le solde de 50 % à la mise en ligne. La production démarre à réception de l'acompte.<br>
       En cas de retard de paiement, des pénalités au taux de trois fois le taux d'intérêt légal et une indemnité forfaitaire de 40 € pour frais de recouvrement sont dues (articles L441-10 et D441-5 du Code de commerce).</p>
 
       <h3>6. Délai</h3>
@@ -794,8 +796,14 @@
       <h3>9. Responsabilité</h3>
       <p>Agenzio est tenu à une obligation de moyens. Le positionnement sur Google dépend de facteurs extérieurs et ne peut être garanti. La responsabilité d'Agenzio est limitée au montant payé pour la prestation.</p>
 
-      <h3>10. Annulation et insatisfaction</h3>
-      <p class="tbc">[À VALIDER : votre politique, par exemple : annulation possible avant le début de la production avec remboursement de l'acompte]</p>
+      <h3>10. Annulation</h3>
+      <p>Toute annulation est notifiée par écrit à contact@agenzio.fr.</p>
+      <ul>
+        <li>Avant le début de la production : l'acompte est intégralement remboursé.</li>
+        <li>Après le début de la production : l'acompte reste acquis à Agenzio, en contrepartie du travail engagé.</li>
+        <li>Après la mise en ligne : la totalité du prix est due.</li>
+      </ul>
+      <p>Si le client ne transmet pas ses éléments dans un délai de 30 jours après la commande, Agenzio peut considérer la commande comme annulée ; l'acompte reste alors acquis.</p>
 
       <h3>11. Validité de l'offre</h3>
       <p>Offre valable jusqu'au 31 décembre 2026, dans la limite des créneaux disponibles.</p>
@@ -806,7 +814,7 @@
     <form method="dialog"><button class="modal-close" aria-label="Fermer">Fermer ✕</button></form>
   </dialog>
 
-  <dialog class="modal" id="confidentialite" aria-labelledby="t-conf">
+  <dialog class="modal" id="confidentialite" aria-labelledby="t-conf" data-lenis-prevent>
     <div class="modal-body">
       <h2 id="t-conf">Politique de confidentialité</h2>
       <h3>Responsable du traitement</h3>
@@ -816,7 +824,7 @@
       <h3>Finalité et base légale</h3>
       <p>Vous recontacter au sujet de votre demande et, si vous le souhaitez, établir une proposition. Base légale : les mesures précontractuelles prises à votre demande. Aucune prospection non sollicitée, aucune revente.</p>
       <h3>Destinataires</h3>
-      <p>Yoann Di Stefano (Agenzio) uniquement. Les messages transitent par le service d'envoi du formulaire <span class="tbc">[À COMPLÉTER : Web3Forms ou Formspree]</span>. Le site est hébergé par GitHub, Inc. (États-Unis), qui peut enregistrer l'adresse IP des visiteurs pour des raisons de sécurité. Ces prestataires peuvent traiter des données hors de l'Union européenne, dans le cadre des garanties prévues par le RGPD.</p>
+      <p>Yoann Di Stefano (Agenzio) uniquement. Les messages transitent par le service d'envoi de formulaires Web3Forms. Le site est hébergé par GitHub, Inc. (États-Unis), qui peut enregistrer l'adresse IP des visiteurs pour des raisons de sécurité. Ces prestataires peuvent traiter des données hors de l'Union européenne, dans le cadre des garanties prévues par le RGPD.</p>
       <h3>Durée de conservation</h3>
       <p>3 ans à compter du dernier échange, puis suppression. En cas de commande, les données nécessaires à la facturation sont conservées 10 ans (obligation comptable).</p>
       <h3>Cookies</h3>
@@ -830,6 +838,6 @@
   <script src="js/gsap.min.js" defer></script>
   <script src="js/ScrollTrigger.min.js" defer></script>
   <script src="js/lenis.min.js" defer></script>
-  <script src="js/main.js?v=4" defer></script>
+  <script src="js/main.js?v=5" defer></script>
 </body>
 </html>
