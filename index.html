@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Création de site internet en 7 jours pour 1000 € | Agenzio</title>
-  <meta name="description" content="Site vitrine sur mesure pour artisans, indépendants et TPE locales : en ligne en 7 jours pour 1000 €. Mobile, SEO local, fiche Google et options à la carte.">
+  <meta name="description" content="Site vitrine sur mesure pour artisans, indépendants et TPE locales : en ligne en 7 jours pour 1000 €. Mobile et SEO local inclus. Site multi-pages et fiche Google dès 1490 €.">
   <meta name="theme-color" content="#0E0E10">
   <link rel="canonical" href="https://www.agenzio.fr/"><!-- [À COMPLÉTER : URL définitive du site] -->
 
@@ -29,7 +29,7 @@
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" type="image/webp" href="img/hero-desk.webp" imagesrcset="img/hero-desk-640.webp 640w, img/hero-desk.webp 1200w" imagesizes="(max-width: 1100px) 84vw, 40vw" fetchpriority="high">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E0E10'/%3E%3Cpath d='M9 24 15 8h2l6 16h-3.2l-1.3-3.7h-5L12.2 24Z M14.4 17.7h3.3L16 12.6Z' fill='%23E6FF3D'/%3E%3C/svg%3E">
 
   <!-- Active les états d'animation seulement si le JS tourne. Filet de sécurité : si main.js
@@ -81,8 +81,8 @@
           { "@type": "Question", "name": "Pourquoi c'est si rapide ?", "acceptedAnswer": { "@type": "Answer", "text": "Parce que le process est rodé et que les outils sont modernes. Et parce que vous n'avez qu'un seul interlocuteur : la personne qui fait votre site. Pas de réunions internes, pas de transmission entre services." } },
           { "@type": "Question", "name": "Que se passe-t-il si je n'ai pas de photos ou de textes ?", "acceptedAnswer": { "@type": "Answer", "text": "Dites-le dès l'appel, on regarde ensemble ce qui manque. [À VALIDER : aide à la rédaction incluse ?] Le délai de 7 jours démarre à réception de 100 % de vos éléments." } },
           { "@type": "Question", "name": "Je peux modifier mon site moi-même ensuite ?", "acceptedAnswer": { "@type": "Answer", "text": "Le site vous appartient : vous récupérez vos accès et votre code. Vous pouvez le modifier ou le faire modifier par qui vous voulez. [À VALIDER : outil d'édition simple fourni ? oui/non]" } },
-          { "@type": "Question", "name": "L'hébergement, ça coûte combien et qui s'en occupe ?", "acceptedAnswer": { "@type": "Answer", "text": "L'hébergement et le nom de domaine ne sont pas inclus dans les 1000 €. En moyenne, comptez 50 à 90 € par an : environ 10 à 15 € par an pour le nom de domaine et 3 à 6 € par mois pour l'hébergement, à votre nom. Si vous préférez ne pas vous en occuper, l'option Hébergement et maintenance est à 29 € par mois, sans engagement." } },
-          { "@type": "Question", "name": "Je peux ajouter des options plus tard ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Fiche Google Business, pack avis, réservation en ligne, pages supplémentaires : chaque option s'ajoute quand vous voulez, au prix de la carte." } },
+          { "@type": "Question", "name": "L'hébergement, ça coûte combien et qui s'en occupe ?", "acceptedAnswer": { "@type": "Answer", "text": "L'hébergement et le nom de domaine ne sont pas inclus dans les 1000 €. En moyenne, comptez 50 à 90 € par an : environ 10 à 15 € par an pour le nom de domaine et 3 à 6 € par mois pour l'hébergement, à votre nom. Si vous préférez ne pas vous en occuper, dites-le pendant l'appel : on peut s'en charger." } },
+          { "@type": "Question", "name": "Et si j'ai besoin de plus qu'une page ?", "acceptedAnswer": { "@type": "Answer", "text": "Site multi-pages, fiche Google Business, réservation en ligne, avis clients, automatisations : c'est possible, à partir de 1490 €. Cochez « Site plus complet ou autres services » dans le formulaire, on en parle à l'appel." } },
           { "@type": "Question", "name": "Et après le 31 décembre ?", "acceptedAnswer": { "@type": "Answer", "text": "L'offre à 1000 € s'arrête le 31 décembre 2026, ou avant si tous les créneaux sont pris. Après cette date, contactez-nous pour connaître les conditions." } },
           { "@type": "Question", "name": "Que se passe-t-il si je ne suis pas satisfait ?", "acceptedAnswer": { "@type": "Answer", "text": "[À VALIDER : politique en cas d'insatisfaction] Le prix comprend 1 aller-retour de modifications, au jour 5, avant la mise en ligne." } },
           { "@type": "Question", "name": "Vous travaillez dans toute la France ?", "acceptedAnswer": { "@type": "Answer", "text": "L'appel, le brief et la validation se font à distance. [À VALIDER : zone d'intervention]" } }
@@ -108,14 +108,23 @@
   <div class="cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-ring"></span></div>
 
   <!-- 3.1 Bandeau d'urgence -->
-  <div class="promo" id="promo" role="region" aria-label="Offre en cours">
-    <p class="promo-text" data-promo-active>
-      <span class="promo-dot" aria-hidden="true"></span>
-      Offre valable jusqu'au 31&nbsp;décembre <span class="promo-sep" aria-hidden="true">·</span>
-      <span class="promo-slots">Plus que <strong data-creneaux>4</strong> créneaux en décembre</span>
-    </p>
-    <p class="promo-text" data-promo-ended hidden>Offre terminée, contactez-nous.</p>
-    <a class="promo-link" href="#reserver" data-promo-cta>Réserver <span aria-hidden="true">→</span></a>
+  <div class="promo" id="promo" role="region" aria-label="Offres en cours">
+    <div class="promo-slide is-active" data-slide>
+      <p class="promo-text" data-promo-active>
+        <span class="promo-dot" aria-hidden="true"></span>
+        Offre valable jusqu'au 31&nbsp;décembre <span class="promo-sep" aria-hidden="true">·</span>
+        <span class="promo-slots">Plus que <strong data-creneaux>4</strong> créneaux en décembre</span>
+      </p>
+      <p class="promo-text" data-promo-ended hidden>Offre terminée, contactez-nous.</p>
+      <a class="promo-link" href="#reserver" data-promo-cta>Réserver <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="promo-slide" data-slide>
+      <p class="promo-text">
+        <span class="promo-dot" aria-hidden="true"></span>
+        <span><span class="promo-long">Site multi-pages, fiche Google et autres services&nbsp;: </span><span class="promo-short">Multi-pages, fiche Google… </span>dès&nbsp;1&nbsp;490&nbsp;€</span>
+      </p>
+      <a class="promo-link" href="#reserver" data-premium>Nous contacter <span aria-hidden="true">→</span></a>
+    </div>
   </div>
 
   <header class="nav" id="haut">
@@ -126,7 +135,6 @@
       <a href="#inclus">L'offre</a>
       <a href="#process">Le process</a>
       <a href="#realisations">Réalisations</a>
-      <a href="#options">Options</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-accent btn-sm magnetic" href="#reserver">Réserver</a>
@@ -186,7 +194,7 @@
         </div>
         <div class="fig fig--price">
           <span class="fig-num"><span data-count="1000">1000</span><span class="fig-euro">€</span></span>
-          <span class="fig-meta"><span class="fig-unit">le site one page</span><span class="fig-cap">sur mesure, sans devis</span></span>
+          <span class="fig-meta"><span class="fig-unit">le site one page</span><span class="fig-cap">site sur mesure</span></span>
         </div>
         <p class="fig-note">*À compter de la réception de tous vos éléments.</p>
       </div>
@@ -248,7 +256,7 @@
                 <th scope="row">Prix</th>
                 <td data-l="Agences classiques">« À partir de », sur devis</td>
                 <td data-l="Contrats de location">Mensualités sur 48 mois</td>
-                <td data-l="Agenzio" class="us"><strong>1000 €, sans devis</strong></td>
+                <td data-l="Agenzio" class="us"><strong>1000 €</strong></td>
               </tr>
               <tr>
                 <th scope="row">Délai</th>
@@ -261,12 +269,6 @@
                 <td data-l="Agences classiques">Variable</td>
                 <td data-l="Contrats de location">Le site ne vous appartient pas</td>
                 <td data-l="Agenzio" class="us"><strong>100 % à vous</strong></td>
-              </tr>
-              <tr>
-                <th scope="row">Après la mise en ligne</th>
-                <td data-l="Agences classiques">Variable</td>
-                <td data-l="Contrats de location">Inclus, mais sur 48 mois</td>
-                <td data-l="Agenzio" class="us"><strong>À la carte</strong></td>
               </tr>
             </tbody>
           </table>
@@ -323,7 +325,7 @@
         <aside class="not-included" data-reveal aria-label="Ce qui n'est pas inclus">
           <p class="ni-title">Non inclus, on préfère le dire</p>
           <p class="ni-text"><strong>Hébergement et nom de domaine</strong> : comptez en moyenne <strong>50 à 90&nbsp;€ par an</strong> (nom de domaine ~10 à 15&nbsp;€/an, hébergement ~3 à 6&nbsp;€/mois), à votre nom, chez le prestataire de votre choix.</p>
-          <p class="ni-opt">Vous préférez ne rien gérer&nbsp;? Hébergement &amp; maintenance : 29&nbsp;€/mois, sans engagement. <a href="#options">Voir les options</a></p>
+          <p class="ni-opt">Vous préférez ne rien gérer&nbsp;? Dites-le pendant l'appel, on peut s'en charger.</p>
         </aside>
       </div>
     </section>
@@ -560,16 +562,13 @@
           <h3 class="h-md">Être rappelé</h3>
           <!-- [FORM_ENDPOINT] : URL Web3Forms ou Formspree, à renseigner dans js/main.js (et ici pour le fonctionnement sans JS) -->
           <form class="form" action="[FORM_ENDPOINT]" method="post" data-form novalidate>
-            <input type="hidden" name="type" value="standard" data-form-type>
-            <input type="hidden" name="subject" value="Demande de rappel, offre 1000 €" data-form-subject>
-            <input type="hidden" name="options" value="" data-form-options>
+            <input type="hidden" name="subject" value="Demande de rappel, site Agenzio">
             <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <div class="form-opts" data-form-opts hidden>
-              <p class="form-opts-k">Vos options</p>
-              <p data-form-opts-list></p>
-              <p class="form-opts-t" data-form-opts-total></p>
-              <a class="form-opts-edit" href="#options">Modifier ma sélection</a>
-            </div>
+            <fieldset class="field field-project">
+              <legend>Votre projet</legend>
+              <label class="project"><input type="radio" name="projet" value="Site one page à 1000 €" checked> <span><strong>Site one page</strong> · 1000&nbsp;€</span></label>
+              <label class="project"><input type="radio" name="projet" value="Site plus complet ou autres services (dès 1490 €)" data-project-premium> <span><strong>Site plus complet ou autres services</strong> · dès 1&nbsp;490&nbsp;€</span></label>
+            </fieldset>
             <div class="field-row">
               <div class="field"><label for="f-nom">Nom</label><input id="f-nom" name="nom" autocomplete="name" required></div>
               <div class="field"><label for="f-metier">Métier</label><input id="f-metier" name="metier" required></div>
@@ -592,119 +591,28 @@
       </div>
     </section>
 
-    <!-- 3.11 Options à la carte. Prix proposés, À VALIDER avant mise en ligne. -->
-    <section class="section dark carte" id="options" aria-labelledby="titre-carte">
+    <!-- 3.11 Pour aller plus loin : services au-delà du site one page -->
+    <section class="section dark premium-sec" id="plus" aria-labelledby="titre-premium">
       <div class="wrap">
-        <div class="carte-head">
-          <div>
-            <p class="label"><span class="num">08</span>À la carte</p>
-            <h2 id="titre-carte" class="h-lg split">Le site, c'est le début.</h2>
-          </div>
-          <p class="lead" data-reveal>Ajoutez ce qui vous ramène des clients, maintenant ou plus tard. Cliquez sur « Ajouter » : votre sélection part avec votre demande de rappel.</p>
-        </div>
-
-        <div class="premium pack" data-reveal>
-          <div class="premium-inner pack-inner">
+        <div class="premium" data-reveal>
+          <div class="premium-inner">
             <div>
-              <p class="pack-k">Pack conseillé</p>
-              <h3 class="pack-t">Pack Lancement local</h3>
-              <p class="pack-d">Le site one page + la fiche Google Business + le pack avis Google. De quoi être trouvé, puis choisi, dans votre ville.</p>
+              <p class="label">Pour aller plus loin</p>
+              <h2 id="titre-premium" class="h-lg">Besoin de plus qu'une page&nbsp;?</h2>
+              <ul class="premium-list">
+                <li>Site multi-pages</li>
+                <li>Fiche Google Business</li>
+                <li>Réservation en ligne</li>
+                <li>Avis clients</li>
+                <li>Automatisations</li>
+                <li>SEO local</li>
+              </ul>
             </div>
-            <div class="pack-side">
-              <p class="pack-price"><s>1&nbsp;339&nbsp;€</s> <strong>1&nbsp;249&nbsp;€</strong></p>
-              <button class="btn btn-accent btn-lg magnetic" type="button" data-pack="gmb,avis">Choisir ce pack <span class="btn-arrow" aria-hidden="true">→</span></button>
-              <a class="pack-nojs" href="#reserver">Demander ce pack</a>
+            <div class="premium-side">
+              <p class="premium-price"><span>À partir de</span> <strong>1&nbsp;490&nbsp;€</strong></p>
+              <a class="btn btn-accent btn-lg magnetic" href="#reserver" data-premium>Contactez-nous <span class="btn-arrow" aria-hidden="true">→</span></a>
             </div>
           </div>
-        </div>
-
-        <div class="menu">
-          <div class="menu-col">
-            <h3 class="menu-h">Être trouvé</h3>
-            <ul>
-              <li class="mi" data-opt="gmb" data-name="Fiche Google Business" data-price="190">
-                <p class="mi-row"><span class="mi-name">Fiche Google Business</span><span class="mi-dots" aria-hidden="true"></span><span class="mi-price">190&nbsp;€</span></p>
-                <p class="mi-desc">Création ou reprise : catégories, services, photos, horaires. Votre entreprise bien placée sur Google Maps.</p>
-                <button class="mi-add" type="button" aria-pressed="false"><span class="mi-add-l">Ajouter</span><span class="sr-only"> : Fiche Google Business</span></button>
-              </li>
-              <li class="mi" data-opt="avis" data-name="Pack avis Google" data-price="149">
-                <p class="mi-row"><span class="mi-name">Pack avis Google</span><span class="mi-dots" aria-hidden="true"></span><span class="mi-price">149&nbsp;€</span></p>
-                <p class="mi-desc">QR code, cartes à remettre à vos clients et message prêt à envoyer pour récolter des avis après chaque chantier.</p>
-                <button class="mi-add" type="button" aria-pressed="false"><span class="mi-add-l">Ajouter</span><span class="sr-only"> : Pack avis Google</span></button>
-              </li>
-              <li class="mi" data-opt="seo" data-name="SEO local en continu" data-price="149" data-unit="mois">
-                <p class="mi-row"><span class="mi-name">SEO local en continu</span><span class="mi-dots" aria-hidden="true"></span><span class="mi-price">149&nbsp;€<small>/mois</small></span></p>
-                <p class="mi-desc">Chaque mois : une nouvelle page ou un article, des publications sur votre fiche Google et un point simple sur vos positions.</p>
-                <button class="mi-add" type="button" aria-pressed="false"><span class="mi-add-l">Ajouter</span><span class="sr-only"> : SEO local en continu</span></button>
-              </li>
-            </ul>
-          </div>
-
-          <div class="menu-col">
-            <h3 class="menu-h">Gagner du temps</h3>
-            <ul>
-              <li class="mi" data-opt="rdv" data-name="Réservation en ligne" data-price="390" data-from>
-                <p class="mi-row"><span class="mi-name">Réservation en ligne</span><span class="mi-dots" aria-hidden="true"></span><span class="mi-price"><small>dès </small>390&nbsp;€</span></p>
-                <p class="mi-desc">Vos clients réservent une visite, un cours ou un rendez-vous sans vous appeler. Rappels automatiques inclus.</p>
-                <button class="mi-add" type="button" aria-pressed="false"><span class="mi-add-l">Ajouter</span><span class="sr-only"> : Réservation en ligne</span></button>
-              </li>
-              <li class="mi" data-opt="devis" data-name="Demande de devis guidée" data-price="290">
-                <p class="mi-row"><span class="mi-name">Demande de devis guidée</span><span class="mi-dots" aria-hidden="true"></span><span class="mi-price">290&nbsp;€</span></p>
-                <p class="mi-desc">Un formulaire en étapes : type de travaux, budget, photos. Vous rappelez les bons clients, avec toutes les infos.</p>
-                <button class="mi-add" type="button" aria-pressed="false"><span class="mi-add-l">Ajouter</span><span class="sr-only"> : Demande de devis guidée</span></button>
-              </li>
-              <li class="mi" data-opt="auto" data-name="Automatisations" data-price="490" data-from>
-                <p class="mi-row"><span class="mi-name">Automatisations</span><span class="mi-dots" aria-hidden="true"></span><span class="mi-price"><small>dès </small>490&nbsp;€</span></p>
-                <p class="mi-desc">Relances de devis, rappels SMS, envoi vers votre agenda ou votre tableur. Ce que vous faites à la main, fait tout seul.</p>
-                <button class="mi-add" type="button" aria-pressed="false"><span class="mi-add-l">Ajouter</span><span class="sr-only"> : Automatisations</span></button>
-              </li>
-            </ul>
-          </div>
-
-          <div class="menu-col">
-            <h3 class="menu-h">Voir plus grand</h3>
-            <ul>
-              <li class="mi" data-opt="page" data-name="Page supplémentaire" data-price="250">
-                <p class="mi-row"><span class="mi-name">Page supplémentaire</span><span class="mi-dots" aria-hidden="true"></span><span class="mi-price">250&nbsp;€</span></p>
-                <p class="mi-desc">Une page par service ou par ville, pour ressortir sur plus de recherches Google.</p>
-                <button class="mi-add" type="button" aria-pressed="false"><span class="mi-add-l">Ajouter</span><span class="sr-only"> : Page supplémentaire</span></button>
-              </li>
-              <li class="mi" data-opt="en" data-name="Version anglaise" data-price="390">
-                <p class="mi-row"><span class="mi-name">Version anglaise</span><span class="mi-dots" aria-hidden="true"></span><span class="mi-price">390&nbsp;€</span></p>
-                <p class="mi-desc">Pour les gîtes, moniteurs et commerces qui accueillent des touristes.</p>
-                <button class="mi-add" type="button" aria-pressed="false"><span class="mi-add-l">Ajouter</span><span class="sr-only"> : Version anglaise</span></button>
-              </li>
-              <li class="mi" data-opt="complet" data-name="Site complet multi-pages" data-price="2490" data-from data-replace>
-                <p class="mi-row"><span class="mi-name">Site complet multi-pages</span><span class="mi-dots" aria-hidden="true"></span><span class="mi-price"><small>dès </small>2&nbsp;490&nbsp;€</span></p>
-                <p class="mi-desc">Plusieurs pages, blog, réalisations, sur mesure. Remplace l'offre one page. On en parle à l'appel.</p>
-                <button class="mi-add" type="button" aria-pressed="false"><span class="mi-add-l">Ajouter</span><span class="sr-only"> : Site complet multi-pages</span></button>
-              </li>
-            </ul>
-          </div>
-
-          <div class="menu-col">
-            <h3 class="menu-h">L'esprit tranquille</h3>
-            <ul>
-              <li class="mi" data-opt="maint" data-name="Hébergement et maintenance" data-price="29" data-unit="mois">
-                <p class="mi-row"><span class="mi-name">Hébergement &amp; maintenance</span><span class="mi-dots" aria-hidden="true"></span><span class="mi-price">29&nbsp;€<small>/mois</small></span></p>
-                <p class="mi-desc">Hébergement, nom de domaine, sauvegardes, mises à jour et petites modifications. Sans engagement.</p>
-                <button class="mi-add" type="button" aria-pressed="false"><span class="mi-add-l">Ajouter</span><span class="sr-only"> : Hébergement et maintenance</span></button>
-              </li>
-              <li class="mi" data-opt="modifs" data-name="Pack modifications" data-price="90">
-                <p class="mi-row"><span class="mi-name">Pack modifications</span><span class="mi-dots" aria-hidden="true"></span><span class="mi-price">90&nbsp;€</span></p>
-                <p class="mi-desc">Une heure de changements quand vous en avez besoin : nouveaux tarifs, photos, horaires, promo du moment.</p>
-                <button class="mi-add" type="button" aria-pressed="false"><span class="mi-add-l">Ajouter</span><span class="sr-only"> : Pack modifications</span></button>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="basket" data-basket>
-          <div class="basket-l">
-            <p class="basket-k" data-basket-count>Site one page seul</p>
-            <p class="basket-v" aria-live="polite"><span data-basket-total>1&nbsp;000&nbsp;€</span></p>
-          </div>
-          <a class="btn btn-accent magnetic" href="#reserver" data-basket-go>Envoyer ma demande <span class="btn-arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -713,7 +621,7 @@
     <section class="section light faq" id="faq" aria-labelledby="titre-faq">
       <div class="wrap faq-grid">
         <div>
-          <p class="label"><span class="num">09</span>FAQ</p>
+          <p class="label"><span class="num">08</span>FAQ</p>
           <h2 id="titre-faq" class="h-lg split">Vos questions, nos réponses franches.</h2>
         </div>
         <div class="faq-list">
@@ -731,11 +639,11 @@
           </details>
           <details class="qa">
             <summary>L'hébergement, ça coûte combien et qui s'en occupe&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p>L'hébergement et le nom de domaine ne sont pas inclus dans les 1000&nbsp;€. En moyenne, comptez 50 à 90&nbsp;€ par an : environ 10 à 15&nbsp;€ par an pour le nom de domaine et 3 à 6&nbsp;€ par mois pour l'hébergement, à votre nom. Si vous préférez ne pas vous en occuper, l'option Hébergement &amp; maintenance est à 29&nbsp;€ par mois, sans engagement.</p></div>
+            <div class="qa-a"><p>L'hébergement et le nom de domaine ne sont pas inclus dans les 1000&nbsp;€. En moyenne, comptez 50 à 90&nbsp;€ par an : environ 10 à 15&nbsp;€ par an pour le nom de domaine et 3 à 6&nbsp;€ par mois pour l'hébergement, à votre nom. Si vous préférez ne pas vous en occuper, dites-le pendant l'appel&nbsp;: on peut s'en charger.</p></div>
           </details>
           <details class="qa">
-            <summary>Je peux ajouter des options plus tard&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p>Oui. Fiche Google Business, pack avis, réservation en ligne, pages supplémentaires : chaque option s'ajoute quand vous voulez, au prix de la carte.</p></div>
+            <summary>Et si j'ai besoin de plus qu'une page&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>Site multi-pages, fiche Google Business, réservation en ligne, avis clients, automatisations&nbsp;: c'est possible, à partir de 1&nbsp;490&nbsp;€. Cochez «&nbsp;Site plus complet ou autres services&nbsp;» dans le formulaire, on en parle à l'appel.</p></div>
           </details>
           <details class="qa">
             <summary>Et après le 31 décembre&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
@@ -813,7 +721,7 @@
         <li>Prix : 1000 €. <span class="tbc">[À COMPLÉTER : HT ou TTC, modalités de paiement]</span></li>
         <li>1 aller-retour de modifications.</li>
         <li>Remise des accès et du code : le site appartient au client.</li>
-        <li>Options et services complémentaires facultatifs, à la carte.</li>
+        <li>Services complémentaires (site multi-pages, fiche Google Business…) sur demande, à partir de 1490 €.</li>
       </ul>
       <h3>Délai</h3>
       <p>Mise en ligne en 7 jours à compter de la réception de 100 % des éléments du client (textes, photos, logo, accès).</p>
@@ -821,7 +729,7 @@
       <ul>
         <li>Hébergement et nom de domaine, à la charge du client.</li>
         <li>Les modifications au-delà de l'aller-retour inclus. <span class="tbc">[À COMPLÉTER : tarif]</span></li>
-        <li>Les options : fiche Google Business, pages supplémentaires, réservation en ligne, automatisations, maintenance (voir la carte des options).</li>
+        <li>Les services complémentaires : fiche Google Business, pages supplémentaires, réservation en ligne, automatisations, maintenance.</li>
       </ul>
       <h3>Validité</h3>
       <p>Offre valable jusqu'au 31 décembre 2026, dans la limite des créneaux disponibles.</p>
@@ -834,7 +742,7 @@
   <dialog class="modal" id="confidentialite" aria-labelledby="t-conf">
     <div class="modal-body">
       <h2 id="t-conf">Politique de confidentialité</h2>
-      <p><strong>Données collectées</strong> : nom, métier, ville, téléphone, présence d'un site existant, options sélectionnées et message, uniquement via le formulaire de rappel.</p>
+      <p><strong>Données collectées</strong> : nom, métier, ville, téléphone, présence d'un site existant, type de projet et message, uniquement via le formulaire de rappel.</p>
       <p><strong>Finalité</strong> : vous recontacter au sujet de votre demande. Aucune prospection, aucune revente.</p>
       <p><strong>Prestataire du formulaire</strong> : <span class="tbc">[À COMPLÉTER : Web3Forms ou Formspree]</span>.</p>
       <p><strong>Cookies et mesure d'audience</strong> : aucun sur cette page.</p>
@@ -847,6 +755,6 @@
   <script src="js/gsap.min.js" defer></script>
   <script src="js/ScrollTrigger.min.js" defer></script>
   <script src="js/lenis.min.js" defer></script>
-  <script src="js/main.js?v=2" defer></script>
+  <script src="js/main.js?v=3" defer></script>
 </body>
 </html>

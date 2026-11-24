@@ -10,10 +10,8 @@ const CRENEAUX_RESTANTS = 4;
 // automatiquement « Offre terminée, contactez-nous ».
 const FIN_OFFRE = new Date('2026-12-31T23:59:59+01:00');
 
-// Pack Lancement local : options incluses et remise appliquée quand elles sont
-// toutes sélectionnées (1000 + 190 + 149 = 1339 €, moins 90 € = 1249 €).
-// Les prix des options se modifient dans index.html (attributs data-price).
-const PACK = { nom: 'Pack Lancement local', options: ['gmb', 'avis'], remise: 90 };
+// Bandeau du haut : durée d'affichage de chaque message (en millisecondes).
+const BANDEAU_ROTATION_MS = 6000;
 
 // Adresse d'envoi du formulaire de rappel. Penser à la recopier aussi dans
 // l'attribut action="" du <form> dans index.html (fonctionnement sans JS).
@@ -103,72 +101,39 @@ const TELEPHONE = '';
   $$('a[aria-disabled="true"]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault()));
 
   /* ------------------------------------------------------------------------
-     Options à la carte : sélection, estimation, envoi avec la demande
+     « Site plus complet / autres services » : présélectionne le projet
      ------------------------------------------------------------------------ */
-  const selected = new Set();
-  const optItems = $$('[data-opt]');
-  const euros = (v) => v.toLocaleString('fr-FR') + '\u00a0€';
-
-  function renderOptions() {
-    let once = 1000;
-    let month = 0;
-    let from = false;
-    const names = [];
-    optItems.forEach((li) => {
-      const on = selected.has(li.dataset.opt);
-      li.classList.toggle('is-on', on);
-      const btn = $('.mi-add', li);
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      $('.mi-add-l', btn).textContent = on ? 'Ajouté' : 'Ajouter';
-      if (!on) return;
-      const price = Number(li.dataset.price) || 0;
-      if (li.dataset.unit === 'mois') month += price;
-      else once += price;
-      if ('replace' in li.dataset) once -= 1000; // le site complet remplace le one page
-      if ('from' in li.dataset) from = true;
-      names.push(li.dataset.name + (li.dataset.unit === 'mois' ? ' (' + price + ' €/mois)' : ''));
-    });
-    const pack = PACK.options.every((id) => selected.has(id)) && !selected.has('complet');
-    if (pack) once -= PACK.remise;
-
-    const total = (from ? 'à partir de ' : '') + euros(once) + (month ? ' + ' + euros(month) + '/mois' : '');
-    const label = names.length
-      ? 'Site + ' + names.length + ' option' + (names.length > 1 ? 's' : '') + (pack ? ' · ' + PACK.nom + ' (−' + PACK.remise + ' €)' : '')
-      : 'Site one page seul';
-
-    const bc = $('[data-basket-count]'); if (bc) bc.textContent = label;
-    const bt = $('[data-basket-total]'); if (bt) bt.textContent = 'Estimation : ' + total;
-    const basket = $('[data-basket]'); if (basket) basket.classList.toggle('has-items', names.length > 0);
-
-    const summary = names.join(', ') + (pack ? ' + ' + PACK.nom : '');
-    const fo = $('[data-form-options]'); if (fo) fo.value = names.length ? summary + ' | Estimation : ' + total : '';
-    const ft = $('[data-form-type]'); if (ft) ft.value = names.length ? 'options' : 'standard';
-    const fs = $('[data-form-subject]'); if (fs) fs.value = names.length ? 'Demande de rappel, site + options' : 'Demande de rappel, offre 1000 €';
-    const box = $('[data-form-opts]');
-    if (box) {
-      box.hidden = !names.length;
-      $('[data-form-opts-list]', box).textContent = summary;
-      $('[data-form-opts-total]', box).textContent = 'Estimation : ' + total;
-    }
+  function choosePremium() {
+    const r = $('[data-project-premium]');
+    if (r) r.checked = true;
   }
+  $$('[data-premium]').forEach((a) => a.addEventListener('click', choosePremium));
+  if (new URLSearchParams(location.search).get('type') === 'premium') choosePremium();
 
-  optItems.forEach((li) => {
-    $('.mi-add', li).addEventListener('click', () => {
-      const id = li.dataset.opt;
-      if (selected.has(id)) selected.delete(id); else selected.add(id);
-      renderOptions();
+  /* ------------------------------------------------------------------------
+     Bandeau du haut : alterne entre l'offre 1000 € et les autres services
+     ------------------------------------------------------------------------ */
+  const slides = $$('[data-slide]');
+  if (slides.length > 1 && !reduced) {
+    let cur = 0;
+    let paused = false;
+    const promo = $('#promo');
+    // Pause au survol de la souris uniquement (pas au toucher, sinon le bandeau resterait bloqué)
+    if (fine) {
+      promo.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') paused = true; });
+      promo.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') paused = false; });
+    }
+    promo.addEventListener('focusin', () => { paused = true; });
+    promo.addEventListener('focusout', () => { paused = false; });
+    const show = (i) => slides.forEach((sl, k) => {
+      sl.classList.toggle('is-active', k === i);
+      sl.toggleAttribute('inert', k !== i);
     });
-  });
-  $$('[data-pack]').forEach((b) => b.addEventListener('click', () => {
-    b.dataset.pack.split(',').forEach((id) => selected.add(id.trim()));
-    selected.delete('complet');
-    renderOptions();
-    const basket = $('[data-basket]');
-    if (basket && window.gsap && !reduced) gsap.fromTo(basket, { scale: .96 }, { scale: 1, duration: .6, ease: 'elastic.out(1, .5)' });
-  }));
-  // Compatibilité avec l'ancien lien ?type=premium
-  if (new URLSearchParams(location.search).get('type') === 'premium') selected.add('complet');
-  renderOptions();
+    show(0);
+    setInterval(() => { if (!paused && !document.hidden) { cur = (cur + 1) % slides.length; show(cur); } }, BANDEAU_ROTATION_MS);
+  } else if (slides.length > 1) {
+    slides.slice(1).forEach((sl) => sl.setAttribute('inert', ''));
+  }
 
   /* ------------------------------------------------------------------------
      Formulaire de rappel
@@ -198,7 +163,7 @@ const TELEPHONE = '';
       try {
         const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
         if (!res.ok) throw new Error(res.status);
-        form.reset(); renderOptions();
+        form.reset();
         say('Merci, votre demande est bien partie. Vous serez rappelé au numéro indiqué.', true);
       } catch (err) {
         say('L’envoi n’a pas fonctionné. Réessayez dans un instant.', false);
@@ -209,17 +174,34 @@ const TELEPHONE = '';
   /* ------------------------------------------------------------------------
      Modales légales
      ------------------------------------------------------------------------ */
+  const openModal = (d) => {
+    if (!d || typeof d.showModal !== 'function' || d.open) return;
+    d.showModal();
+    html.classList.add('modal-open');
+    if (lenis) lenis.stop();
+  };
   $$('[data-modal]').forEach((a) => a.addEventListener('click', (e) => {
     const d = document.getElementById(a.dataset.modal);
     if (!d || typeof d.showModal !== 'function') return;
     e.preventDefault();
-    d.showModal();
-    if (lenis) lenis.stop();
+    openModal(d);
   }));
   $$('dialog.modal').forEach((d) => {
-    d.addEventListener('close', () => { if (lenis) lenis.start(); });
+    d.addEventListener('close', () => {
+      html.classList.remove('modal-open');
+      if (lenis) lenis.start();
+      if (location.hash === '#' + d.id) { try { history.replaceState(null, '', location.pathname + location.search); } catch (err) { /* rien */ } }
+    });
     d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+    $$('.modal-close', d).forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); d.close(); }));
   });
+  // Lien direct (…/#mentions, #cgv, #confidentialite) : ouvre la fenêtre
+  const openFromHash = () => {
+    const d = location.hash && document.getElementById(location.hash.slice(1));
+    if (d && d.matches('dialog.modal')) openModal(d);
+  };
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
 
   /* ------------------------------------------------------------------------
      Avant / après
@@ -233,13 +215,13 @@ const TELEPHONE = '';
      ------------------------------------------------------------------------ */
   const mbar = $('[data-mbar]');
   if (mbar && 'IntersectionObserver' in window) {
-    // Masquée sur la réservation et sur les options (le panier prend le relais)
+    // Masquée quand la section Réserver est à l'écran
     const visibles = new Set();
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => { if (en.isIntersecting) visibles.add(en.target); else visibles.delete(en.target); });
       mbar.classList.toggle('is-away', visibles.size > 0);
     }, { rootMargin: '0px 0px -30% 0px' });
-    ['#reserver', '#options'].forEach((sel) => { const el = $(sel); if (el) io.observe(el); });
+    ['#reserver'].forEach((sel) => { const el = $(sel); if (el) io.observe(el); });
   }
 
   /* ------------------------------------------------------------------------
@@ -512,7 +494,6 @@ const TELEPHONE = '';
         scrollTrigger: { trigger: '.works-pin', pin: true, start: 'top top', end: () => '+=' + dist(), scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 }
       });
       $$('.work', track).forEach((card) => {
-        gsap.fromTo($('img', card), { xPercent: -6, scale: 1.12 }, { xPercent: 6, scale: 1.12, ease: 'none', scrollTrigger: { trigger: card, containerAnimation: tween, start: 'left right', end: 'right left', scrub: true } });
         gsap.fromTo(card, { rotation: 3, y: 50 }, { rotation: 0, y: 0, ease: 'none', scrollTrigger: { trigger: card, containerAnimation: tween, start: 'left right', end: 'left 55%', scrub: true } });
       });
       return () => { works.classList.remove('is-pinned'); gsap.set(track, { clearProps: 'transform' }); };
@@ -555,15 +536,10 @@ const TELEPHONE = '';
   });
 
   tasks.push(() => {
-    /* ---------------- Options à la carte : lignes du menu ---------------- */
-    $$('.menu-col').forEach((col) => {
-      gsap.fromTo($$('.menu-h, .mi', col), { opacity: 0, y: 30 }, {
-        opacity: 1, y: 0, duration: .9, ease: 'expo.out', stagger: .08,
-        scrollTrigger: { trigger: col, start: 'top 85%', once: true }
-      });
-      $$('.mi-dots', col).forEach((d) => {
-        gsap.fromTo(d, { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: d, start: 'top 90%', once: true } });
-      });
+    /* ---------------- Pour aller plus loin : liste des services ---------------- */
+    gsap.fromTo('.premium-list li', { opacity: 0, y: 16 }, {
+      opacity: 1, y: 0, duration: .7, ease: 'expo.out', stagger: .06,
+      scrollTrigger: { trigger: '.premium-list', start: 'top 88%', once: true }
     });
   });
 
