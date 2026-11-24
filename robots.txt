@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.agenzio.fr/sitemap.xml
+Sitemap: https://agenz-io.github.io/Offre-1K/sitemap.xml

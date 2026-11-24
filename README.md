@@ -29,10 +29,10 @@ python3 -m http.server 8000
 | Avec gzip + cache (comme un vrai hébergeur) | 97-98 | 100 | 100 | 100 | 0,8 s | 2,4 s | 30-110 ms | 0 |
 | Sans compression (serveur Python basique) | 91 | 100 | 100 | 100 | 1,2 s | 3,5 s | 50 ms | 0 |
 
-## Avant mise en ligne
-- Formulaire : branché sur Web3Forms (clé dans `js/main.js` et dans le `<form>`). Faire un envoi test depuis le site en ligne et vérifier la réception sur contact@agenzio.fr.
-- Domaine : le site déclare `https://www.agenzio.fr/` (canonical, Open Graph, JSON-LD, `robots.txt`, `sitemap.xml`). Pointer ce domaine vers GitHub Pages (fichier `CNAME` + DNS) ou remplacer par l'adresse finale.
-- Témoignages : section masquée (`is-hidden`) tant qu'il n'y en a pas de réels
+## En ligne
+- Adresse : https://agenz-io.github.io/Offre-1K/ (page de vente temporaire)
+- Non indexée par Google (`<meta name="robots" content="noindex, follow">`), aperçu de partage (image 1200×630) actif
+- Formulaire : Web3Forms, réception sur contact@agenzio.fr
+- Le jour d'un passage sur agenzio.fr : remplacer `https://agenz-io.github.io/Offre-1K/` dans `index.html`, `robots.txt` et `sitemap.xml`, et retirer `noindex` si la page doit être trouvée sur Google
 - Conseillé : faire relire les CGV par un professionnel du droit
-
-`grep -n "\[À" index.html js/main.js` liste tout ce qui reste.
+- Témoignages : section masquée (`is-hidden`) tant qu'il n'y en a pas de réels
