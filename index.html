@@ -34,7 +34,7 @@
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" type="image/webp" href="img/hero-desk.webp" imagesrcset="img/hero-desk-640.webp 640w, img/hero-desk.webp 1200w" imagesizes="(max-width: 1100px) 84vw, 40vw" fetchpriority="high">
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
@@ -95,7 +95,7 @@
         "provider": { "@id": "https://agenz-io.github.io/Offre-1K/#organisation" },
         "areaServed": { "@type": "Country", "name": "France" },
         "audience": { "@type": "Audience", "audienceType": "Artisans, indépendants et TPE locales" },
-        "description": "Site one page sur mesure, mobile, optimisé SEO local. En ligne en 7 jours à compter de la réception de tous vos éléments. 1 aller-retour de modifications inclus. Maquette offerte après un appel de 15 min. Nom de domaine et hébergement inclus la première année, enregistrés au nom du client. Aucun abonnement.",
+        "description": "Site one page sur mesure, mobile, optimisé SEO local. En ligne en 7 jours à compter de la réception de tous vos éléments. 1 aller-retour de modifications inclus. Maquette offerte après un appel de 15 min. Nom de domaine et hébergement non inclus : nom de domaine environ 10 à 15 € par an, hébergement gratuit, enregistrés au nom du client. Aucun abonnement.",
         "offers": {
           "@type": "Offer",
           "price": "1000",
@@ -111,7 +111,7 @@
           { "@type": "Question", "name": "Pourquoi c'est si rapide ?", "acceptedAnswer": { "@type": "Answer", "text": "Parce que le process est rodé et que les outils sont modernes. Et parce que vous n'avez qu'un seul interlocuteur : la personne qui fait votre site. Pas de réunions internes, pas de transmission entre services." } },
           { "@type": "Question", "name": "Que se passe-t-il si je n'ai pas de photos ou de textes ?", "acceptedAnswer": { "@type": "Answer", "text": "Les textes et les photos sont à fournir : la rédaction n'est pas incluse dans l'offre. Un formulaire simple vous guide section par section, pour savoir quoi écrire et quelles photos envoyer. Pas de photos pro ? Celles de votre téléphone font souvent l'affaire. Le délai de 7 jours démarre à réception de 100 % de vos éléments." } },
           { "@type": "Question", "name": "Je peux modifier mon site moi-même ensuite ?", "acceptedAnswer": { "@type": "Answer", "text": "Le site est à vous, sans abonnement. Il n'y a pas d'outil d'édition simplifié : pour un changement, demandez-le moi (25 € la modification) ou confiez-le au prestataire de votre choix." } },
-          { "@type": "Question", "name": "L'hébergement, ça coûte combien et qui s'en occupe ?", "acceptedAnswer": { "@type": "Answer", "text": "Le nom de domaine et l'hébergement sont inclus la première année, enregistrés à votre nom. Ensuite, comptez environ 10 à 15 € par an pour le nom de domaine, payés directement depuis votre compte. L'hébergement reste gratuit. Rien ne passe par moi." } },
+          { "@type": "Question", "name": "L'hébergement, ça coûte combien et qui s'en occupe ?", "acceptedAnswer": { "@type": "Answer", "text": "Ils ne sont pas inclus dans les 1000 €. Le nom de domaine coûte environ 10 à 15 € par an, enregistré à votre nom et payé directement depuis votre compte. L'hébergement est gratuit. Rien ne passe par moi." } },
           { "@type": "Question", "name": "Et si j'ai besoin de plus qu'une page ?", "acceptedAnswer": { "@type": "Answer", "text": "On en parle pendant l'appel : je vous fais un devis sur mesure." } },
           { "@type": "Question", "name": "Et après le 31 décembre ?", "acceptedAnswer": { "@type": "Answer", "text": "L'offre à 1000 € s'arrête le 31 décembre 2026, ou avant si tous les créneaux sont pris. Après cette date, contactez-nous pour connaître les conditions." } },
           { "@type": "Question", "name": "Que se passe-t-il si je ne suis pas satisfait ?", "acceptedAnswer": { "@type": "Answer", "text": "Vous voyez la maquette avant de payer quoi que ce soit : si elle ne vous plaît pas, vous ne payez rien. Ensuite, un aller-retour de modifications est inclus avant la mise en ligne ; les modifications supplémentaires sont facturées 25 € chacune. Si vous annulez avant le début de la production, votre acompte vous est remboursé." } },
@@ -341,15 +341,11 @@
             <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 20a16 16 0 0 1 29-7"/><path d="M38 6v8h-8"/><path d="M40 28a16 16 0 0 1-29 7"/><path d="M10 42v-8h8"/></svg>
             <h3>1 aller-retour de modifications</h3><p>Vous relisez, vous demandez vos changements, on les fait.</p>
           </li>
-          <li data-feat>
-            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M6 24h36"/><path d="M24 6c6 5 8 11 8 18s-2 13-8 18c-6-5-8-11-8-18s2-13 8-18z"/></svg>
-            <h3>Nom de domaine + hébergement</h3><p>Inclus la 1<sup>re</sup> année, enregistrés à votre nom.</p>
-          </li>
         </ul>
 
-        <aside class="not-included" data-reveal aria-label="Après la première année">
-          <p class="ni-title">Ensuite&nbsp;?</p>
-          <p class="ni-text">Environ <strong>10–15&nbsp;€/an</strong> pour votre nom de domaine, payés directement depuis votre compte. L'hébergement reste gratuit. Rien ne passe par moi.</p>
+        <aside class="not-included" data-reveal aria-label="Ce qui n'est pas inclus">
+          <p class="ni-title">Non inclus</p>
+          <p class="ni-text"><strong>Nom de domaine et hébergement</strong>, enregistrés à votre nom. Environ <strong>10–15&nbsp;€/an</strong> pour le nom de domaine, payés directement depuis votre compte. L'hébergement est gratuit. Rien ne passe par moi.</p>
         </aside>
       </div>
     </section>
@@ -642,7 +638,7 @@
           </details>
           <details class="qa">
             <summary>L'hébergement, ça coûte combien et qui s'en occupe&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p>Le nom de domaine et l'hébergement sont inclus la première année, enregistrés à votre nom. Ensuite, comptez environ 10 à 15&nbsp;€ par an pour le nom de domaine, payés directement depuis votre compte. L'hébergement reste gratuit. Rien ne passe par moi.</p></div>
+            <div class="qa-a"><p>Ils ne sont pas inclus dans les 1000&nbsp;€. Le nom de domaine coûte environ 10 à 15&nbsp;€ par an, enregistré à votre nom et payé directement depuis votre compte. L'hébergement est gratuit. Rien ne passe par moi.</p></div>
           </details>
           <details class="qa">
             <summary>Et si j'ai besoin de plus qu'une page&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
@@ -739,15 +735,14 @@
       <ul>
         <li>Conception d'un site one page sur mesure, adapté au mobile et optimisé pour le référencement local.</li>
         <li>Formulaire de contact, bouton d'appel, mentions légales et page de confidentialité.</li>
-        <li>Nom de domaine et hébergement inclus la première année, enregistrés au nom du client.</li>
         <li>Mise en ligne du site.</li>
         <li>Un aller-retour de modifications avant la mise en ligne.</li>
-        <li>Remise au client de l'ensemble des accès (nom de domaine, hébergement).</li>
+        <li>Mise en ligne sur un hébergement gratuit et le nom de domaine du client, enregistrés à son nom ; le client en détient les accès.</li>
       </ul>
 
       <h3>5. Ce qui n'est pas inclus</h3>
       <ul>
-        <li>Le renouvellement du nom de domaine après la première année (environ 10 à 15 € par an), payé directement par le client depuis son compte. L'hébergement reste gratuit.</li>
+        <li>Le nom de domaine (environ 10 à 15 € par an), souscrit au nom du client et payé directement depuis son compte. L'hébergement est gratuit.</li>
         <li>La rédaction complète des textes et la production de photos, sauf accord écrit.</li>
         <li>Les modifications demandées au-delà de l'aller-retour inclus, facturées 25 € par modification.</li>
         <li>Les services complémentaires (site multi-pages, fiche Google Business, réservation en ligne, automatisations, maintenance), qui font l'objet d'un devis séparé.</li>

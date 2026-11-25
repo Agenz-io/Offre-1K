@@ -21,7 +21,7 @@ python3 -m http.server 8000
 - Créneau pris : `const SLOTS_LEFT = 3;` dans `js/main.js` (0 affiche « Décembre complet »)
 - Suivi des sources : ajouter `?src=linkedin`, `?src=youtube`, `?src=mail`… au lien partagé ; la valeur arrive dans l'e-mail Web3Forms et dans Calendly (utm_source)
 - Témoignages réels reçus : retirer `is-hidden` sur `<section class="... testimonials is-hidden">` et remplacer les textes
-- Après modification du CSS ou du JS : incrémenter `?v=` dans `index.html` (actuellement `style.css?v=7`, `main.js?v=7`)
+- Après modification du CSS ou du JS : incrémenter `?v=` dans `index.html` (actuellement `style.css?v=8`, `main.js?v=7`)
 
 ## Lighthouse mobile (simulation 4G lente, Chrome headless)
 | Serveur | Perf | Access. | Bonnes pratiques | SEO | FCP | LCP | TBT | CLS |
