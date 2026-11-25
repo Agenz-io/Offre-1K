@@ -358,7 +358,7 @@ ol, ul { padding: 0; list-style: none; }
 
 /* Inclus */
 .included-head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem 4rem; align-items: end; margin-bottom: clamp(3rem, 6vw, 5rem); }
-.feat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line-l); border: 1px solid var(--line-l); border-radius: var(--radius); overflow: hidden; }
+.feat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-l); border: 1px solid var(--line-l); border-radius: var(--radius); overflow: hidden; }
 .feat li { background: var(--light); padding: clamp(1.5rem, 3vw, 2.6rem); display: grid; align-content: start; gap: .7rem; transition: background-color .4s var(--ease); }
 .feat li:hover { background: #FBFAF6; }
 .feat svg { width: 46px; height: 46px; fill: none; stroke: var(--light-ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; margin-bottom: .6rem; }
@@ -571,6 +571,7 @@ html:not(.js) dialog:target { display: block; position: static; margin: 2rem aut
   .hero-stage { max-width: 760px; width: 88%; justify-self: end; margin-block: 1rem 3rem; }
   .included-head, .premium-inner { grid-template-columns: 1fr; }
   .feat { grid-template-columns: repeat(2, 1fr); }
+  .feat li:last-child { grid-column: span 2; }
   .faq-grid { grid-template-columns: 1fr; }
   .faq-grid > div:first-child { position: static; }
 }
@@ -645,7 +646,7 @@ html:not(.js) dialog:target { display: block; position: static; margin: 2rem aut
   }
   .mbar.is-away { transform: translateY(110%); }
   .mbar-cta { flex: 1; display: grid; place-items: center; min-height: 52px; border-radius: 99px; background: var(--accent); color: var(--accent-ink); font-weight: 700; text-decoration: none; font-size: 1.02rem; }
-  .mbar-call { flex: none; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid rgba(242, 240, 235, .3); }
+  .mbar-call { flex: none; display: inline-flex; align-items: center; gap: .45rem; min-height: 52px; padding: 0 1.1rem; border-radius: 99px; border: 1.5px solid rgba(242, 240, 235, .3); color: var(--ink); font-weight: 600; text-decoration: none; font-size: .98rem; }
   .mbar-call svg { width: 22px; height: 22px; fill: none; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
 }
 
@@ -756,3 +757,51 @@ html.modal-open .cursor { display: none !important; }
 .consent input[aria-invalid="true"] { outline: 2px solid #C2410C; outline-offset: 2px; }
 .field-consent { gap: .4rem; }
 .field { align-content: start; }
+
+/* ==========================================================================
+   Funnel : header, CTA, formulaire, Calendly
+   ========================================================================== */
+.nav-right { display: flex; align-items: center; gap: 1.4rem; }
+.nav-phone { display: inline-flex; align-items: center; gap: .5rem; color: var(--ink); text-decoration: none; font-weight: 600; font-size: .95rem; white-space: nowrap; }
+.nav-phone svg { width: 18px; height: 18px; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.nav-phone:hover span { text-decoration: underline; text-underline-offset: 3px; }
+
+.cta-micro { margin-top: -.9rem; margin-bottom: 1.6rem; font-size: .9rem; color: var(--ink-soft); }
+.js .cta-micro[data-hero] { animation-delay: calc(var(--d0) + .57s); }
+.cta-micro--light { margin: -.4rem 0 0; color: var(--light-soft); font-size: .88rem; }
+.section-cta { margin-top: 2rem; }
+
+.form-sub { color: var(--light-soft); margin-top: -.3rem; }
+.form-alt { margin-top: .2rem; }
+.link-btn { appearance: none; background: none; border: 0; padding: 0; font: inherit; font-weight: 600; color: var(--light-ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.link-btn:hover { text-decoration-thickness: 2px; }
+.link-btn[aria-busy="true"] { opacity: .6; cursor: progress; }
+.link-btn--strong { font-size: 1.05rem; }
+html:not(.js) [data-calendly], html:not(.js) .form-alt { display: none; }
+.form-success { display: grid; gap: .8rem; padding: 1.4rem 1.5rem; border-radius: var(--radius-sm); background: var(--light-ink); color: var(--ink); outline: none; }
+.form-success[hidden] { display: none; }
+.form-success-t { font-family: var(--f-display); font-stretch: 108%; font-weight: 800; font-size: clamp(1.3rem, 2.2vw, 1.7rem); letter-spacing: -.02em; line-height: 1.1; color: var(--accent); }
+.form-success .link-btn { color: var(--accent); }
+
+.about-contact { margin-top: 1.4rem; color: var(--ink-soft); }
+.about-contact a, .footer-contact a[data-phone] { color: var(--ink); font-weight: 600; }
+
+/* Calendly : au-dessus de tout (curseur custom, barre mobile, bandeau), curseur natif visible */
+.calendly-overlay { z-index: 100000 !important; }
+html.has-cursor .calendly-overlay, html.has-cursor .calendly-overlay * { cursor: auto; }
+html.has-cursor .calendly-overlay .calendly-close-overlay, html.has-cursor .calendly-overlay .calendly-popup-close { cursor: pointer; }
+
+@media (max-width: 767px) {
+  .nav-phone, .nav-cta { display: none; }
+  .feat li:last-child { grid-column: auto; }
+  .mbar-cta { font-size: .95rem; padding: 0 .8rem; text-align: center; }
+}
+@media (max-width: 380px) {
+  .mbar-call span { display: none; }
+  .mbar-call { padding: 0; width: 52px; justify-content: center; }
+}
+.form[hidden] { display: none; }
+@media (max-width: 767px) {
+  .mbar-cta { font-size: .9rem; white-space: nowrap; }
+  .mbar-call { padding: 0 .9rem; font-size: .9rem; }
+}

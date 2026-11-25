@@ -11,17 +11,17 @@ python3 -m http.server 8000
 ## Fichiers
 - `index.html` : la page (SEO, JSON-LD Organization + Service + FAQPage, Open Graph, modales légales)
 - `css/style.css` : styles et intro du hero en CSS
-- `js/main.js` : **réglages en haut du fichier** (`CRENEAUX_RESTANTS`, `FIN_OFFRE`, `BANDEAU_ROTATION_MS`, `FORM_ENDPOINT`, `WEB3FORMS_ACCESS_KEY`), puis les animations
+- `js/main.js` : **réglages en haut du fichier** (`SLOTS_LEFT`, `OFFER_END`, `CALENDLY_URL`, `PHONE`, `OFFER_END_DATE`, `FORM_ENDPOINT`, `WEB3FORMS_ACCESS_KEY`), injectés partout dans la page, puis les animations
 - `js/gsap.min.js`, `js/ScrollTrigger.min.js` (GSAP 3.12.5), `js/lenis.min.js` (Lenis 1.1.13) : en local
 - `fonts/` : Archivo variable (graisse + largeur) et Inter variable, en local
 - `img/` : captures des sites démo (agenz-io.github.io) pour le hero, les réalisations et l'avant/après, en WebP
 - `.htaccess` : compression gzip et cache pour un hébergement Apache
 
 ## Mettre à jour au quotidien
-- Créneau pris : `const CRENEAUX_RESTANTS = 3;` dans `js/main.js` (0 affiche « Décembre complet »)
+- Créneau pris : `const SLOTS_LEFT = 3;` dans `js/main.js` (0 affiche « Décembre complet »)
+- Suivi des sources : ajouter `?src=linkedin`, `?src=youtube`, `?src=mail`… au lien partagé ; la valeur arrive dans l'e-mail Web3Forms et dans Calendly (utm_source)
 - Témoignages réels reçus : retirer `is-hidden` sur `<section class="... testimonials is-hidden">` et remplacer les textes
-- Prix « à partir de 1 490 € » des autres services : dans `index.html`, bandeau du haut, bloc « Pour aller plus loin », formulaire, FAQ (+ JSON-LD), CGV et meta description
-- Après modification du CSS ou du JS : incrémenter `?v=` dans `index.html` (actuellement `style.css?v=6`, `main.js?v=6`)
+- Après modification du CSS ou du JS : incrémenter `?v=` dans `index.html` (actuellement `style.css?v=7`, `main.js?v=7`)
 
 ## Lighthouse mobile (simulation 4G lente, Chrome headless)
 | Serveur | Perf | Access. | Bonnes pratiques | SEO | FCP | LCP | TBT | CLS |
@@ -32,7 +32,7 @@ python3 -m http.server 8000
 ## En ligne
 - Adresse : https://agenz-io.github.io/Offre-1K/ (page de vente temporaire)
 - Non indexée par Google (`<meta name="robots" content="noindex, follow">`), aperçu de partage (image 1200×630) actif
-- Formulaire : Web3Forms, réception sur contact@agenzio.fr
+- Formulaire : Web3Forms, réception sur contact@agenzio.fr ; popup Calendly chargé au premier clic seulement
 - Le jour d'un passage sur agenzio.fr : remplacer `https://agenz-io.github.io/Offre-1K/` dans `index.html`, `robots.txt` et `sitemap.xml`, et retirer `noindex` si la page doit être trouvée sur Google
 - Conseillé : faire relire les CGV par un professionnel du droit
 - Témoignages : section masquée (`is-hidden`) tant qu'il n'y en a pas de réels

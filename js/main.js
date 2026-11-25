@@ -4,14 +4,20 @@
 
 // Nombre de créneaux encore disponibles en décembre.
 // À mettre à jour À LA MAIN quand un créneau est pris. 0 = « Décembre complet ».
-const CRENEAUX_RESTANTS = 4;
+const SLOTS_LEFT = 4;
 
-// Fin réelle de l'offre (heure de Paris). Passé ce moment, le bandeau affiche
-// automatiquement « Offre terminée, contactez-nous ».
-const FIN_OFFRE = new Date('2026-12-31T23:59:59+01:00');
+// Date de fin de l'offre telle qu'affichée sur la page (bandeau, FAQ, CGV).
+const OFFER_END = '31 décembre';
 
-// Bandeau du haut : durée d'affichage de chaque message (en millisecondes).
-const BANDEAU_ROTATION_MS = 6000;
+// Lien Calendly (popup « Vous préférez choisir votre créneau ? »).
+const CALENDLY_URL = 'https://calendly.com/blowawaythebox/call-15';
+
+// Téléphone affiché (header, Qui je suis, pied de page, barre mobile, mentions légales).
+const PHONE = '0783975890';
+
+// Fin réelle de l'offre (heure de Paris), à faire correspondre à OFFER_END.
+// Passé ce moment, le bandeau affiche automatiquement « Offre terminée, contactez-nous ».
+const OFFER_END_DATE = new Date('2026-12-31T23:59:59+01:00');
 
 // Envoi du formulaire de rappel (Web3Forms). Si vous changez de service,
 // changez aussi l'attribut action="" et le champ access_key du <form> dans index.html.
@@ -38,9 +44,16 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
   /* ------------------------------------------------------------------------
      Offre : créneaux + date de fin
      ------------------------------------------------------------------------ */
+  // Valeurs injectées partout dans la page depuis les constantes ci-dessus
+  const phoneDisplay = String(PHONE).replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1 ');
+  const phoneHref = 'tel:+33' + String(PHONE).replace(/\D/g, '').replace(/^0/, '');
+  $$('[data-offer-end]').forEach((el) => { el.textContent = OFFER_END; });
+  $$('a[data-phone]').forEach((a) => { a.href = phoneHref; });
+  $$('[data-phone-text]').forEach((el) => { el.textContent = phoneDisplay; });
+
   function applyOffer() {
-    const ended = Date.now() > FIN_OFFRE.getTime();
-    const n = Math.max(0, Math.floor(Number(CRENEAUX_RESTANTS) || 0));
+    const ended = Date.now() > OFFER_END_DATE.getTime();
+    const n = Math.max(0, Math.floor(Number(SLOTS_LEFT) || 0));
     html.classList.toggle('offre-terminee', ended);
 
     const active = $('[data-promo-active]');
@@ -48,13 +61,13 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
     if (active) active.hidden = ended;
     if (over) over.hidden = !ended;
     const promoCta = $('[data-promo-cta]');
-    if (promoCta) promoCta.innerHTML = ended ? 'Nous contacter <span aria-hidden="true">→</span>' : 'Réserver <span aria-hidden="true">→</span>';
+    if (promoCta) promoCta.innerHTML = ended ? 'Nous contacter <span aria-hidden="true">→</span>' : 'Réserver mon appel <span aria-hidden="true">→</span>';
 
     $$('[data-creneaux]').forEach((el) => { el.textContent = String(n); });
     const slotsText = $('.promo-slots');
     if (slotsText) {
       if (n === 0) slotsText.textContent = 'Décembre complet';
-      else if (n === 1) slotsText.innerHTML = 'Plus qu’<strong data-creneaux>1</strong> créneau en décembre';
+      else if (n === 1) slotsText.innerHTML = 'Plus qu’<strong data-creneaux>1</strong> créneau<span class="promo-long"> en décembre</span>';
     }
 
     const gauge = $('[data-gauge]');
@@ -69,7 +82,7 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
     }
 
     const mcta = $('[data-mbar-cta]');
-    if (mcta) mcta.textContent = ended ? 'Nous contacter' : 'Réserver · 1000 €';
+    if (mcta) mcta.textContent = ended ? 'Nous contacter' : 'Réserver mon appel gratuit';
 
     // Titre du CTA final : « Plus que 4 créneaux / en décembre. »
     const f1 = $('[data-final-1]');
@@ -95,48 +108,71 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
   $$('a[aria-disabled="true"]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault()));
 
   /* ------------------------------------------------------------------------
-     « Site plus complet / autres services » : présélectionne le projet
+     Calendly : popup chargé seulement au premier clic (cookies tiers)
      ------------------------------------------------------------------------ */
-  function choosePremium() {
-    const r = $('[data-project-premium]');
-    if (r) r.checked = true;
-  }
-  $$('[data-premium]').forEach((a) => a.addEventListener('click', choosePremium));
-  if (new URLSearchParams(location.search).get('type') === 'premium') choosePremium();
-
-  /* ------------------------------------------------------------------------
-     Bandeau du haut : alterne entre l'offre 1000 € et les autres services
-     ------------------------------------------------------------------------ */
-  const slides = $$('[data-slide]');
-  if (slides.length > 1 && !reduced) {
-    let cur = 0;
-    let paused = false;
-    const promo = $('#promo');
-    // Pause au survol de la souris uniquement (pas au toucher, sinon le bandeau resterait bloqué)
-    if (fine) {
-      promo.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') paused = true; });
-      promo.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') paused = false; });
-    }
-    promo.addEventListener('focusin', () => { paused = true; });
-    promo.addEventListener('focusout', () => { paused = false; });
-    const show = (i) => slides.forEach((sl, k) => {
-      sl.classList.toggle('is-active', k === i);
-      sl.toggleAttribute('inert', k !== i);
+  let calendlyLoading = null;
+  const loadCalendly = () => {
+    if (window.Calendly) return Promise.resolve();
+    if (calendlyLoading) return calendlyLoading;
+    calendlyLoading = new Promise((resolve, reject) => {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'https://assets.calendly.com/assets/external/widget.css';
+      document.head.appendChild(css);
+      const js = document.createElement('script');
+      js.src = 'https://assets.calendly.com/assets/external/widget.js';
+      js.async = true;
+      js.onload = () => resolve();
+      js.onerror = () => { calendlyLoading = null; reject(new Error('calendly')); };
+      document.head.appendChild(js);
     });
-    show(0);
-    setInterval(() => { if (!paused && !document.hidden) { cur = (cur + 1) % slides.length; show(cur); } }, BANDEAU_ROTATION_MS);
-  } else if (slides.length > 1) {
-    slides.slice(1).forEach((sl) => sl.setAttribute('inert', ''));
+    return calendlyLoading;
+  };
+  const srcParam = (() => {
+    const v = new URLSearchParams(location.search).get('src') || 'direct';
+    return v.replace(/[^\w\-.]/g, '').slice(0, 60) || 'direct';
+  })();
+  let calendlyPrefill = {};
+  function openCalendly(withPrefill) {
+    const btns = $$('[data-calendly]');
+    btns.forEach((b) => b.setAttribute('aria-busy', 'true'));
+    loadCalendly()
+      .then(() => {
+        window.Calendly.initPopupWidget({
+          url: CALENDLY_URL,
+          prefill: withPrefill ? calendlyPrefill : {},
+          utm: { utmSource: srcParam },
+        });
+      })
+      .catch(() => { window.open(CALENDLY_URL, '_blank', 'noopener'); })
+      .finally(() => btns.forEach((b) => b.removeAttribute('aria-busy')));
+  }
+  $$('[data-calendly]').forEach((b) => b.addEventListener('click', () => openCalendly(b.dataset.calendly === 'prefill')));
+
+  // Popup ouvert : curseur natif, curseur custom masqué, Lenis à l'arrêt
+  if ('MutationObserver' in window) {
+    let calendlyOpen = false;
+    new MutationObserver(() => {
+      const ov = document.querySelector('.calendly-overlay');
+      if (ov && !ov.hasAttribute('data-lenis-prevent')) ov.setAttribute('data-lenis-prevent', '');
+      const open = !!ov;
+      if (open === calendlyOpen) return;
+      calendlyOpen = open;
+      html.classList.toggle('modal-open', open);
+      if (lenis) { if (open) lenis.stop(); else lenis.start(); }
+    }).observe(document.body, { childList: true });
   }
 
   /* ------------------------------------------------------------------------
-     Formulaire de rappel
+     Formulaire « Réservez votre appel »
      ------------------------------------------------------------------------ */
   const form = $('[data-form]');
   if (form) {
     const status = $('[data-form-status]');
     const say = (msg, ok) => { status.textContent = msg; status.className = 'form-status ' + (ok ? 'is-ok' : 'is-err'); };
     form.noValidate = true; // la validation est faite ici, avec des messages clairs
+    const srcInput = $('[data-src]', form);
+    if (srcInput) srcInput.value = srcParam;
 
     // Téléphone : numéro français à 10 chiffres (06…, 01…, 09…) ou au format +33 / 0033.
     const phoneDigits = (v) => {
@@ -149,11 +185,9 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
     const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
 
     const rules = {
-      'f-nom': (el) => el.value.trim().length >= 2 ? '' : 'Indiquez votre nom.',
-      'f-metier': (el) => el.value.trim() ? '' : 'Indiquez votre métier.',
-      'f-ville': (el) => el.value.trim() ? '' : 'Indiquez votre ville.',
+      'f-prenom': (el) => el.value.trim().length >= 2 ? '' : 'Indiquez votre prénom.',
       'f-tel': (el) => {
-        if (!el.value.trim()) return 'Indiquez un numéro pour qu’on puisse vous rappeler.';
+        if (!el.value.trim()) return 'Indiquez un numéro pour que je puisse vous rappeler.';
         const d = phoneDigits(el.value);
         if (/[^\d]/.test(d)) return 'Le numéro ne doit contenir que des chiffres (espaces et points acceptés).';
         if (d.length < 10) return 'Numéro incomplet : il manque ' + (10 - d.length) + ' chiffre' + (10 - d.length > 1 ? 's' : '') + '. Exemple : 06 12 34 56 78.';
@@ -164,7 +198,8 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
         if (!el.value.trim()) return 'Indiquez votre adresse e-mail.';
         return emailOk(el.value) ? '' : 'Adresse e-mail invalide, par exemple vous@exemple.fr.';
       },
-      'f-consent': (el) => el.checked ? '' : 'Cochez cette case pour qu’on puisse vous recontacter.',
+      'f-metier': (el) => el.value.trim().length >= 3 ? '' : 'Indiquez votre métier et votre ville.',
+      'f-consent': (el) => el.checked ? '' : 'Cochez cette case pour que je puisse vous recontacter.',
     };
     const touched = new Set();
     const check = (id) => {
@@ -198,10 +233,6 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
       if (first) { say('Vérifiez les champs signalés en rouge.', false); first.focus(); return; }
       const tel = document.getElementById('f-tel');
       tel.value = phoneFormat(tel.value);
-      if (!/^https?:\/\//.test(FORM_ENDPOINT)) {
-        say('Le formulaire n’est pas encore branché. Écrivez-nous à contact@agenzio.fr, on vous rappelle.', false);
-        return;
-      }
       const data = new FormData(form);
       if (WEB3FORMS_ACCESS_KEY) data.set('access_key', WEB3FORMS_ACCESS_KEY);
       const btn = $('button[type="submit"]', form);
@@ -211,12 +242,14 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
         const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
         const json = await res.json().catch(() => ({}));
         if (!res.ok || json.success === false) throw new Error(json.message || res.status);
-        form.reset();
-        touched.clear();
-        $$('.is-valid', form).forEach((el) => el.classList.remove('is-valid'));
-        say('Merci, votre demande est bien partie. Vous serez rappelé au numéro indiqué.', true);
+        // Pré-remplissage du calendrier depuis le message de succès
+        calendlyPrefill = { name: document.getElementById('f-prenom').value.trim(), email: document.getElementById('f-email').value.trim() };
+        const ok = $('[data-form-success]');
+        form.hidden = true;
+        if (ok) { ok.hidden = false; ok.focus(); }
+        if (window.ScrollTrigger) ScrollTrigger.refresh();
       } catch (err) {
-        say('L’envoi n’a pas fonctionné. Réessayez dans un instant ou écrivez à contact@agenzio.fr.', false);
+        say('L’envoi n’a pas fonctionné. Réessayez dans un instant, ou écrivez à contact@agenzio.fr.', false);
       } finally { btn.disabled = false; }
     });
   }
@@ -332,7 +365,7 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
   if (!hasGsap) { html.classList.remove('js'); return; }
   if (reduced) {
     $$('.step').forEach((s) => s.classList.add('is-on'));
-    const d = $('[data-day]'); if (d) d.textContent = '7';
+    const d = $('[data-day]'); if (d) d.textContent = '4';
     return;
   }
 
@@ -483,47 +516,34 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
   });
 
   tasks.push(() => {
-    /* ---------------- Process : le 7 se remplit au rythme de la semaine (signature) ---------------- */
+    /* ---------------- Process : le 7 se remplit au fil des 4 étapes (signature) ---------------- */
     const timeline = $('.timeline');
     if (timeline) {
       const seven = $('.seven');
       const lineFill = $('.tl-line span');
-      const dayEl = $('[data-day]');
+      const stepEl = $('[data-day]');
       const steps = $$('.step', timeline);
-      const values = [0, 1, 2, 5, 6]; // jour de départ de chaque étape
       let anchors = [];
       const measure = () => {
         const h = timeline.offsetHeight || 1;
-        anchors = steps.map((s) => (s.offsetTop + 30) / h);
+        anchors = steps.map((st) => (st.offsetTop + 30) / h);
       };
       measure();
-      const dayAt = (p) => {
-        if (p >= 1) return 7;
-        if (p <= anchors[0]) return 0;
-        for (let i = 0; i < anchors.length; i++) {
-          const a0 = anchors[i];
-          const a1 = i + 1 < anchors.length ? anchors[i + 1] : 1;
-          const v0 = values[i];
-          const v1 = i + 1 < values.length ? values[i + 1] : 7;
-          if (p < a1) return v0 + (v1 - v0) * ((p - a0) / (a1 - a0));
-        }
-        return 7;
-      };
-      let lastDay = -1;
+      let lastStep = -1;
       ScrollTrigger.create({
         trigger: timeline, start: 'top 62%', end: 'bottom 62%', scrub: true,
         onRefresh: measure,
         onUpdate: (self) => {
           const p = self.progress;
-          const d = dayAt(p);
           lineFill.style.setProperty('--p', p.toFixed(4));
-          seven.style.setProperty('--p', (d / 7).toFixed(4));
-          steps.forEach((s, i) => s.classList.toggle('is-on', p >= anchors[i] - .005));
-          const di = Math.min(7, Math.floor(d + .001));
-          if (di !== lastDay) {
-            lastDay = di;
-            dayEl.textContent = di;
-            gsap.fromTo(dayEl, { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .35, ease: 'power2.out' });
+          seven.style.setProperty('--p', p.toFixed(4));
+          let on = 0;
+          steps.forEach((st, i) => { const a = p >= anchors[i] - .005; st.classList.toggle('is-on', a); if (a) on = i + 1; });
+          const cur = Math.max(1, on);
+          if (cur !== lastStep) {
+            lastStep = cur;
+            stepEl.textContent = cur;
+            gsap.fromTo(stepEl, { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .35, ease: 'power2.out' });
           }
         }
       });
@@ -583,14 +603,6 @@ const WEB3FORMS_ACCESS_KEY = '38993b20-fbdf-478c-a6d2-56cb43e60e80';
       gsap.fromTo('.opt', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: '.book-grid', start: 'top 80%', once: true } });
       gsap.fromTo('.book-steps li', { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: .8, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '.book-steps', start: 'top 90%', once: true } });
     }
-  });
-
-  tasks.push(() => {
-    /* ---------------- Pour aller plus loin : liste des services ---------------- */
-    gsap.fromTo('.premium-list li', { opacity: 0, y: 16 }, {
-      opacity: 1, y: 0, duration: .7, ease: 'expo.out', stagger: .06,
-      scrollTrigger: { trigger: '.premium-list', start: 'top 88%', once: true }
-    });
   });
 
   tasks.push(() => {

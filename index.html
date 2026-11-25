@@ -2,14 +2,14 @@
 <!--
   Agenzio : page de vente « 1 site, 1 semaine, 1000 € »
   Agenzio, nom commercial de Yoann Di Stefano, entrepreneur individuel (SIREN 924 726 672)
-  Réglages (créneaux, date de fin, formulaire) : en haut de js/main.js
+  Réglages (créneaux, date de fin, Calendly, téléphone, formulaire) : en haut de js/main.js
 -->
 <html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Création de site internet en 7 jours pour 1000 € | Agenzio</title>
-  <meta name="description" content="Création de site vitrine pour artisans, indépendants et TPE : en ligne en 7 jours pour 1000 €, mobile et SEO local inclus. Site multi-pages dès 1490 €.">
+  <meta name="description" content="Création de site vitrine pour artisans, indépendants et TPE : en ligne en 7 jours pour 1000 €. Appel de 15 min, maquette offerte, 100 % à vous, aucun abonnement.">
   <!-- Page de vente temporaire : non indexée par les moteurs de recherche (retirer noindex pour l'indexer) -->
   <meta name="robots" content="noindex, follow">
   <meta name="author" content="Yoann Di Stefano">
@@ -20,7 +20,7 @@
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="Agenzio">
   <meta property="og:title" content="Votre site pro en ligne en 7 jours. Pour 1000 €.">
-  <meta property="og:description" content="Site vitrine sur mesure pour artisans et TPE, pensé pour être trouvé sur Google. Créneaux de décembre limités.">
+  <meta property="og:description" content="Un appel de 15 min, puis je vous montre gratuitement votre futur site. Vous ne payez que s'il vous plaît.">
   <meta property="og:url" content="https://agenz-io.github.io/Offre-1K/">
   <meta property="og:image" content="https://agenz-io.github.io/Offre-1K/img/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -28,13 +28,13 @@
   <meta property="og:image:alt" content="Agenzio : votre site pro en ligne en 7 jours pour 1000 €">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Votre site pro en ligne en 7 jours. Pour 1000 €.">
-  <meta name="twitter:description" content="Site vitrine sur mesure pour artisans et TPE, pensé pour être trouvé sur Google.">
+  <meta name="twitter:description" content="Un appel de 15 min, puis je vous montre gratuitement votre futur site. Vous ne payez que s'il vous plaît.">
   <meta name="twitter:image" content="https://agenz-io.github.io/Offre-1K/img/og-image.jpg">
 
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" type="image/webp" href="img/hero-desk.webp" imagesrcset="img/hero-desk-640.webp 640w, img/hero-desk.webp 1200w" imagesizes="(max-width: 1100px) 84vw, 40vw" fetchpriority="high">
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=7">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
@@ -95,7 +95,7 @@
         "provider": { "@id": "https://agenz-io.github.io/Offre-1K/#organisation" },
         "areaServed": { "@type": "Country", "name": "France" },
         "audience": { "@type": "Audience", "audienceType": "Artisans, indépendants et TPE locales" },
-        "description": "Site one page sur mesure, mobile, optimisé SEO local. En ligne en 7 jours à compter de la réception de tous vos éléments. 1 aller-retour de modifications inclus. Le site vous appartient. Hébergement et nom de domaine non inclus.",
+        "description": "Site one page sur mesure, mobile, optimisé SEO local. En ligne en 7 jours à compter de la réception de tous vos éléments. 1 aller-retour de modifications inclus. Maquette offerte après un appel de 15 min. Nom de domaine et hébergement inclus la première année, enregistrés au nom du client. Aucun abonnement.",
         "offers": {
           "@type": "Offer",
           "price": "1000",
@@ -109,12 +109,12 @@
         "@type": "FAQPage",
         "mainEntity": [
           { "@type": "Question", "name": "Pourquoi c'est si rapide ?", "acceptedAnswer": { "@type": "Answer", "text": "Parce que le process est rodé et que les outils sont modernes. Et parce que vous n'avez qu'un seul interlocuteur : la personne qui fait votre site. Pas de réunions internes, pas de transmission entre services." } },
-          { "@type": "Question", "name": "Que se passe-t-il si je n'ai pas de photos ou de textes ?", "acceptedAnswer": { "@type": "Answer", "text": "Les textes et les photos sont à fournir : la rédaction n'est pas incluse dans l'offre. Le brief de 15 minutes vous guide section par section, pour savoir quoi écrire et quelles photos envoyer. Pas de photos pro ? Celles de votre téléphone font souvent l'affaire. Le délai de 7 jours démarre à réception de 100 % de vos éléments." } },
-          { "@type": "Question", "name": "Je peux modifier mon site moi-même ensuite ?", "acceptedAnswer": { "@type": "Answer", "text": "Le site vous appartient : vous récupérez vos accès et votre code. Il n'y a pas d'outil d'édition simplifié : pour un changement, demandez-le nous (25 € la modification) ou confiez-le au prestataire de votre choix." } },
-          { "@type": "Question", "name": "L'hébergement, ça coûte combien et qui s'en occupe ?", "acceptedAnswer": { "@type": "Answer", "text": "L'hébergement et le nom de domaine ne sont pas inclus dans les 1000 €. En moyenne, comptez 50 à 90 € par an : environ 10 à 15 € par an pour le nom de domaine et 3 à 6 € par mois pour l'hébergement, à votre nom. Si vous préférez ne pas vous en occuper, dites-le pendant l'appel : on peut s'en charger." } },
-          { "@type": "Question", "name": "Et si j'ai besoin de plus qu'une page ?", "acceptedAnswer": { "@type": "Answer", "text": "Site multi-pages, fiche Google Business, réservation en ligne, avis clients, automatisations : c'est possible, à partir de 1490 €. Cochez « Site plus complet ou autres services » dans le formulaire, on en parle à l'appel." } },
+          { "@type": "Question", "name": "Que se passe-t-il si je n'ai pas de photos ou de textes ?", "acceptedAnswer": { "@type": "Answer", "text": "Les textes et les photos sont à fournir : la rédaction n'est pas incluse dans l'offre. Un formulaire simple vous guide section par section, pour savoir quoi écrire et quelles photos envoyer. Pas de photos pro ? Celles de votre téléphone font souvent l'affaire. Le délai de 7 jours démarre à réception de 100 % de vos éléments." } },
+          { "@type": "Question", "name": "Je peux modifier mon site moi-même ensuite ?", "acceptedAnswer": { "@type": "Answer", "text": "Le site est à vous, sans abonnement. Il n'y a pas d'outil d'édition simplifié : pour un changement, demandez-le moi (25 € la modification) ou confiez-le au prestataire de votre choix." } },
+          { "@type": "Question", "name": "L'hébergement, ça coûte combien et qui s'en occupe ?", "acceptedAnswer": { "@type": "Answer", "text": "Le nom de domaine et l'hébergement sont inclus la première année, enregistrés à votre nom. Ensuite, comptez environ 10 à 15 € par an pour le nom de domaine, payés directement depuis votre compte. L'hébergement reste gratuit. Rien ne passe par moi." } },
+          { "@type": "Question", "name": "Et si j'ai besoin de plus qu'une page ?", "acceptedAnswer": { "@type": "Answer", "text": "On en parle pendant l'appel : je vous fais un devis sur mesure." } },
           { "@type": "Question", "name": "Et après le 31 décembre ?", "acceptedAnswer": { "@type": "Answer", "text": "L'offre à 1000 € s'arrête le 31 décembre 2026, ou avant si tous les créneaux sont pris. Après cette date, contactez-nous pour connaître les conditions." } },
-          { "@type": "Question", "name": "Que se passe-t-il si je ne suis pas satisfait ?", "acceptedAnswer": { "@type": "Answer", "text": "Avant la mise en ligne, vous voyez le site et vous demandez vos changements : un aller-retour de modifications est inclus. Les modifications supplémentaires sont facturées 25 € chacune. Si vous annulez avant le début de la production, votre acompte vous est remboursé." } },
+          { "@type": "Question", "name": "Que se passe-t-il si je ne suis pas satisfait ?", "acceptedAnswer": { "@type": "Answer", "text": "Vous voyez la maquette avant de payer quoi que ce soit : si elle ne vous plaît pas, vous ne payez rien. Ensuite, un aller-retour de modifications est inclus avant la mise en ligne ; les modifications supplémentaires sont facturées 25 € chacune. Si vous annulez avant le début de la production, votre acompte vous est remboursé." } },
           { "@type": "Question", "name": "Vous travaillez dans toute la France ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. L'appel, le brief et la validation se font à distance : où que vous soyez en France, le délai et le prix sont les mêmes." } }
         ]
       }
@@ -138,22 +138,15 @@
   <div class="cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-ring"></span></div>
 
   <!-- 3.1 Bandeau d'urgence -->
-  <div class="promo" id="promo" role="region" aria-label="Offres en cours">
-    <div class="promo-slide is-active" data-slide>
+  <div class="promo" id="promo" role="region" aria-label="Offre en cours">
+    <div class="promo-slide is-active">
       <p class="promo-text" data-promo-active>
         <span class="promo-dot" aria-hidden="true"></span>
-        Offre valable jusqu'au 31&nbsp;décembre <span class="promo-sep" aria-hidden="true">·</span>
-        <span class="promo-slots">Plus que <strong data-creneaux>4</strong> créneaux en décembre</span>
+        <span><span class="promo-long">Offre valable jusqu'au</span><span class="promo-short">Jusqu'au</span> <span data-offer-end>31 décembre</span></span> <span class="promo-sep" aria-hidden="true">·</span>
+        <span class="promo-slots">Plus que <strong data-creneaux>4</strong> créneaux<span class="promo-long"> en décembre</span></span>
       </p>
       <p class="promo-text" data-promo-ended hidden>Offre terminée, contactez-nous.</p>
-      <a class="promo-link" href="#reserver" data-promo-cta>Réserver <span aria-hidden="true">→</span></a>
-    </div>
-    <div class="promo-slide" data-slide>
-      <p class="promo-text">
-        <span class="promo-dot" aria-hidden="true"></span>
-        <span><span class="promo-long">Site multi-pages, fiche Google et autres services&nbsp;: </span><span class="promo-short">Multi-pages, fiche Google… </span>dès&nbsp;1&nbsp;490&nbsp;€</span>
-      </p>
-      <a class="promo-link" href="#reserver" data-premium>Nous contacter <span aria-hidden="true">→</span></a>
+      <a class="promo-link" href="#reserver" data-promo-cta>Réserver mon appel <span aria-hidden="true">→</span></a>
     </div>
   </div>
 
@@ -161,13 +154,10 @@
     <a class="logo" href="#haut">
       <span class="logo-mark" aria-hidden="true">A</span><span class="logo-word">Agenzio</span>
     </a>
-    <nav class="nav-links" aria-label="Navigation principale">
-      <a href="#inclus">L'offre</a>
-      <a href="#process">Le process</a>
-      <a href="#realisations">Réalisations</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <a class="btn btn-accent btn-sm magnetic" href="#reserver">Réserver</a>
+    <div class="nav-right">
+      <a class="nav-phone" href="tel:+33783975890" data-phone><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h3l1.5 4.5L8 9a12 12 0 0 0 7 7l1.5-2.5L21 15v3a2 2 0 0 1-2 2C10.6 20 4 13.4 4 5a2 2 0 0 1 2-2z"/></svg><span data-phone-text>07 83 97 58 90</span></a>
+      <a class="btn btn-accent btn-sm magnetic nav-cta" href="#reserver">Réserver mon appel gratuit</a>
+    </div>
   </header>
 
   <main id="contenu">
@@ -186,15 +176,16 @@
           <span class="line"><span>en ligne en <em>7&nbsp;jours.</em></span></span>
           <span class="line"><span>Pour <em>1000&nbsp;€.</em></span></span>
         </h1>
-        <p class="hero-sub" data-hero="fade">Un site sur mesure, pensé pour être trouvé sur Google et pour faire sonner votre téléphone.</p>
+        <p class="hero-sub" data-hero="fade">Un appel de 15 min, puis je vous montre gratuitement votre futur site. Vous ne payez que s'il vous plaît.</p>
         <div class="hero-ctas" data-hero="fade">
-          <a class="btn btn-accent btn-lg magnetic" href="#reserver">Réserver mon créneau <span class="btn-arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-accent btn-lg magnetic" href="#reserver">Réserver mon appel gratuit <span class="btn-arrow" aria-hidden="true">→</span></a>
           <a class="btn btn-ghost btn-lg magnetic" href="#realisations">Voir des exemples</a>
         </div>
+        <p class="cta-micro" data-hero="fade">Maquette de votre site offerte après l'appel</p>
         <ul class="badges" data-hero="fade" aria-label="En bref">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Mobile &amp; SEO local</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>7 jours garantis</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Un seul interlocuteur</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Maquette offerte</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>En ligne en 7 jours</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>100&nbsp;% à vous, aucun abonnement</li>
         </ul>
       </div>
 
@@ -226,7 +217,7 @@
           <span class="fig-num"><span data-count="1000">1000</span><span class="fig-euro">€</span></span>
           <span class="fig-meta"><span class="fig-unit">le site one page</span><span class="fig-cap">site sur mesure</span></span>
         </div>
-        <p class="fig-note">*À compter de la réception de tous vos éléments.</p>
+        <p class="fig-note">*7 jours à réception de vos textes et photos.</p>
       </div>
     </section>
 
@@ -284,21 +275,21 @@
             <tbody>
               <tr>
                 <th scope="row">Prix</th>
-                <td data-l="Agences classiques">« À partir de », sur devis</td>
-                <td data-l="Contrats de location">Mensualités sur 48 mois</td>
+                <td data-l="Agences classiques">Souvent « à partir de », sur devis</td>
+                <td data-l="Contrats de location">Mensualités, souvent sur 48 mois</td>
                 <td data-l="Agenzio" class="us"><strong>1000 €</strong></td>
               </tr>
               <tr>
                 <th scope="row">Délai</th>
-                <td data-l="Agences classiques">4 à 8 semaines</td>
-                <td data-l="Contrats de location">Variable</td>
+                <td data-l="Agences classiques">En général 4 à 8 semaines</td>
+                <td data-l="Contrats de location">Variable selon le contrat</td>
                 <td data-l="Agenzio" class="us"><strong>7 jours</strong></td>
               </tr>
               <tr>
                 <th scope="row">Propriété du site</th>
-                <td data-l="Agences classiques">Variable</td>
-                <td data-l="Contrats de location">Le site ne vous appartient pas</td>
-                <td data-l="Agenzio" class="us"><strong>100 % à vous</strong></td>
+                <td data-l="Agences classiques">Variable selon le contrat</td>
+                <td data-l="Contrats de location">En général, le site ne vous appartient pas</td>
+                <td data-l="Agenzio" class="us"><strong>100 % à vous (domaine et hébergement à votre nom)</strong></td>
               </tr>
             </tbody>
           </table>
@@ -350,12 +341,15 @@
             <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 20a16 16 0 0 1 29-7"/><path d="M38 6v8h-8"/><path d="M40 28a16 16 0 0 1-29 7"/><path d="M10 42v-8h8"/></svg>
             <h3>1 aller-retour de modifications</h3><p>Vous relisez, vous demandez vos changements, on les fait.</p>
           </li>
+          <li data-feat>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M6 24h36"/><path d="M24 6c6 5 8 11 8 18s-2 13-8 18c-6-5-8-11-8-18s2-13 8-18z"/></svg>
+            <h3>Nom de domaine + hébergement</h3><p>Inclus la 1<sup>re</sup> année, enregistrés à votre nom.</p>
+          </li>
         </ul>
 
-        <aside class="not-included" data-reveal aria-label="Ce qui n'est pas inclus">
-          <p class="ni-title">Non inclus, on préfère le dire</p>
-          <p class="ni-text"><strong>Hébergement et nom de domaine</strong> : comptez en moyenne <strong>50 à 90&nbsp;€ par an</strong> (nom de domaine ~10 à 15&nbsp;€/an, hébergement ~3 à 6&nbsp;€/mois), à votre nom, chez le prestataire de votre choix.</p>
-          <p class="ni-opt">Vous préférez ne rien gérer&nbsp;? Dites-le pendant l'appel, on peut s'en charger.</p>
+        <aside class="not-included" data-reveal aria-label="Après la première année">
+          <p class="ni-title">Ensuite&nbsp;?</p>
+          <p class="ni-text">Environ <strong>10–15&nbsp;€/an</strong> pour votre nom de domaine, payés directement depuis votre compte. L'hébergement reste gratuit. Rien ne passe par moi.</p>
         </aside>
       </div>
     </section>
@@ -368,40 +362,36 @@
             <span class="seven-outline">7</span>
             <span class="seven-fill">7</span>
           </div>
-          <p class="seven-day">Jour <span data-day>0</span></p>
+          <p class="seven-day">Étape <span data-day>1</span> sur 4</p>
         </div>
         <div class="process-main">
           <p class="label"><span class="num">04</span>Le process</p>
           <h2 id="titre-process" class="h-lg split">Une semaine. Pas une de plus.</h2>
           <ol class="timeline">
             <li class="tl-line" aria-hidden="true"><span></span></li>
-            <li class="step" data-step="0">
-              <span class="step-day">Jour 0</span>
-              <h3>Vous réservez votre créneau</h3>
-              <p>Un appel de 15 minutes pour comprendre votre activité.</p>
+            <li class="step">
+              <span class="step-day">Étape 1</span>
+              <h3>Appel de 15 min</h3>
+              <p>Je comprends votre activité et vos besoins.</p>
             </li>
-            <li class="step" data-step="1">
-              <span class="step-day">Jour 1</span>
-              <h3>Vous remplissez le brief (15&nbsp;min) et envoyez vos éléments</h3>
-              <p>Textes, photos, logo, accès. Tout est listé, rien à deviner.</p>
+            <li class="step">
+              <span class="step-day">Étape 2</span>
+              <h3>Maquette offerte</h3>
+              <p>Vous voyez votre site avant de payer quoi que ce soit.</p>
             </li>
-            <li class="step" data-step="4">
-              <span class="step-day">Jours 2-4</span>
-              <h3>Production</h3>
-              <p>Design, rédaction de la structure, intégration, SEO local.</p>
+            <li class="step">
+              <span class="step-day">Étape 3</span>
+              <h3>Vous validez</h3>
+              <p>Acompte de 50&nbsp;%, puis vous m'envoyez textes et photos via un formulaire simple.</p>
             </li>
-            <li class="step" data-step="5">
-              <span class="step-day">Jour 5</span>
-              <h3>Vous validez, 1 aller-retour de modifications</h3>
-              <p>Vous voyez le site, vous demandez vos changements.</p>
-            </li>
-            <li class="step" data-step="7">
-              <span class="step-day">Jours 6-7</span>
-              <h3>Mise en ligne</h3>
-              <p>Votre site est public. Vous récupérez vos accès et votre code.</p>
+            <li class="step">
+              <span class="step-day">Étape 4</span>
+              <h3>En ligne en 7 jours</h3>
+              <p>1 aller-retour de modifications inclus, solde à la mise en ligne.</p>
             </li>
           </ol>
           <p class="process-note" data-reveal>Le délai démarre à réception de 100&nbsp;% de vos éléments.</p>
+          <p class="section-cta" data-reveal><a class="btn btn-accent btn-lg magnetic" href="#reserver">Réserver mon appel gratuit <span class="btn-arrow" aria-hidden="true">→</span></a></p>
         </div>
       </div>
     </section>
@@ -414,7 +404,7 @@
             <p class="label"><span class="num">05</span>Réalisations</p>
             <h2 id="titre-realisations" class="h-lg split">À quoi ressemble un site à 1000&nbsp;€.</h2>
             <p class="lead">Six sites de démonstration, pour six métiers. Entreprises fictives, sites bien réels : cliquez, faites défiler, testez-les sur votre téléphone.</p>
-            <p class="works-hint" aria-hidden="true"><span class="hint-desk">Continuez à faire défiler</span><span class="hint-touch">Glissez pour voir la suite</span> →</p>
+            <p class="works-hint" aria-hidden="true"><span class="hint-touch">Glissez pour voir la suite →</span></p>
           </div>
 
           <article class="work">
@@ -446,13 +436,13 @@
           <article class="work">
             <a class="work-shot" href="https://agenz-io.github.io/Bike/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
               <div class="mock-bar"><i></i><i></i><i></i><span>agenz-io.github.io/Bike</span></div>
-              <img src="img/demo-bike.webp" srcset="img/demo-bike-640.webp 640w, img/demo-bike.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="Site de démonstration d'un cadreur de vélos sur mesure à Annecy" loading="lazy" decoding="async">
+              <img src="img/demo-bike.webp" srcset="img/demo-bike-640.webp 640w, img/demo-bike.webp 1200w" sizes="(max-width: 767px) 84vw, 40rem" width="1200" height="800" alt="Site de démonstration d'un atelier vélo à Annecy" loading="lazy" decoding="async">
               <span class="demo-tag">Site de démonstration</span>
             </a>
             <div class="work-info">
-              <h3>Cadreur vélo sur mesure</h3>
+              <h3>Atelier vélo</h3>
               <p class="work-city">Garnier Cycles · Annecy</p>
-              <a class="work-link" href="https://agenz-io.github.io/Bike/" target="_blank" rel="noopener">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> du atelier de vélos Garnier Cycles (site de démonstration, nouvel onglet)</span></a>
+              <a class="work-link" href="https://agenz-io.github.io/Bike/" target="_blank" rel="noopener">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> de l'atelier vélo Garnier Cycles (site de démonstration, nouvel onglet)</span></a>
             </div>
           </article>
 
@@ -491,7 +481,7 @@
             <div class="work-info">
               <h3>Exploration &amp; outdoor</h3>
               <p class="work-city">The Long Distance Company · Lyon</p>
-              <a class="work-link" href="https://agenz-io.github.io/The-long-distance-company/" target="_blank" rel="noopener">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> du The Long Distance Company (site de démonstration, nouvel onglet)</span></a>
+              <a class="work-link" href="https://agenz-io.github.io/The-long-distance-company/" target="_blank" rel="noopener">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> de The Long Distance Company (site de démonstration, nouvel onglet)</span></a>
             </div>
           </article>
         </div>
@@ -550,8 +540,9 @@
           <ul class="about-points" data-reveal>
             <li>Livré en 7 jours</li>
             <li>Pensé pour Google et le mobile</li>
-            <li>Accès et code remis à la livraison</li>
+            <li>Domaine et hébergement à votre nom</li>
           </ul>
+          <p class="about-contact" data-reveal>Une question avant de réserver&nbsp;? Appelez-moi au <a href="tel:+33783975890" data-phone><span data-phone-text>07 83 97 58 90</span></a></p>
         </div>
       </div>
     </section>
@@ -585,74 +576,45 @@
           </div>
           <ol class="book-steps">
             <li>Vous laissez vos coordonnées.</li>
-            <li>Je vous rappelle : 15 minutes pour comprendre votre activité.</li>
-            <li>On bloque votre semaine de décembre.</li>
+            <li>Je vous rappelle sous 24 h : 15 minutes pour comprendre votre activité.</li>
+            <li>Je vous montre gratuitement la maquette de votre site.</li>
           </ol>
-          <p class="reassure" data-reveal>Appel de 15 min, sans engagement, sans relance commerciale.</p>
+          <p class="reassure" data-reveal>Appel de 15 min, sans engagement.</p>
           <p class="book-mail">Vous préférez écrire&nbsp;? <a href="mailto:contact@agenzio.fr">contact@agenzio.fr</a></p>
         </div>
 
         <div class="opt opt--form" id="rappel">
-          <h3 class="h-md">Être rappelé</h3>
+          <h3 class="h-md">Réservez votre appel de 15 min</h3>
+          <p class="form-sub">Je vous rappelle sous 24 h. Maquette de votre site offerte après l'appel.</p>
           <!-- Envoi via Web3Forms (clé publique). Réglages aussi en haut de js/main.js -->
           <form class="form" action="https://api.web3forms.com/submit" method="post" data-form>
             <input type="hidden" name="access_key" value="38993b20-fbdf-478c-a6d2-56cb43e60e80">
-            <input type="hidden" name="subject" value="Demande de rappel, site Agenzio">
+            <input type="hidden" name="subject" value="Demande d'appel, offre site 1000 €">
             <input type="hidden" name="from_name" value="Site Agenzio">
+            <input type="hidden" name="src" value="direct" data-src>
             <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <p class="form-note">Les champs marqués <span class="req">*</span> sont obligatoires.</p>
-            <fieldset class="field field-project">
-              <legend>Votre projet <span class="req" aria-hidden="true">*</span></legend>
-              <label class="project"><input type="radio" name="projet" value="Site one page à 1000 €" checked> <span><strong>Site one page</strong> · 1000&nbsp;€</span></label>
-              <label class="project"><input type="radio" name="projet" value="Site plus complet ou autres services (dès 1490 €)" data-project-premium> <span><strong>Site plus complet ou autres services</strong> · dès 1&nbsp;490&nbsp;€</span></label>
-            </fieldset>
+            <p class="form-note">Tous les champs sont obligatoires.</p>
             <div class="field-row">
-              <div class="field"><label for="f-nom">Nom et prénom <span class="req" aria-hidden="true">*</span></label><input id="f-nom" name="nom" autocomplete="name" required aria-required="true" aria-describedby="err-nom"><p class="field-err" id="err-nom" hidden></p></div>
-              <div class="field"><label for="f-metier">Métier <span class="req" aria-hidden="true">*</span></label><input id="f-metier" name="metier" required aria-required="true" placeholder="Ex. menuisier, gîte, coach…" aria-describedby="err-metier"><p class="field-err" id="err-metier" hidden></p></div>
+              <div class="field"><label for="f-prenom">Prénom</label><input id="f-prenom" name="prenom" autocomplete="given-name" required aria-required="true" aria-describedby="err-prenom"><p class="field-err" id="err-prenom" hidden></p></div>
+              <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required aria-required="true" placeholder="06 12 34 56 78" pattern="(?:(?:\+|00)33[\s.\-]?(?:\(0\)[\s.\-]?)?|0)[1-9](?:[\s.\-]?\d{2}){4}" title="Numéro français à 10 chiffres, par exemple 06 12 34 56 78" aria-describedby="hint-tel err-tel"><p class="field-hint" id="hint-tel">Format : 06 12 34 56 78 ou +33 6 12 34 56 78</p><p class="field-err" id="err-tel" hidden></p></div>
             </div>
             <div class="field-row">
-              <div class="field"><label for="f-tel">Téléphone <span class="req" aria-hidden="true">*</span></label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required aria-required="true" placeholder="06 12 34 56 78" pattern="(?:(?:\+|00)33[\s.\-]?(?:\(0\)[\s.\-]?)?|0)[1-9](?:[\s.\-]?\d{2}){4}" title="Numéro français à 10 chiffres, par exemple 06 12 34 56 78" aria-describedby="hint-tel err-tel"><p class="field-hint" id="hint-tel">Format : 06 12 34 56 78 ou +33 6 12 34 56 78</p><p class="field-err" id="err-tel" hidden></p></div>
-              <div class="field"><label for="f-email">E-mail <span class="req" aria-hidden="true">*</span></label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-required="true" placeholder="vous@exemple.fr" aria-describedby="err-email"><p class="field-err" id="err-email" hidden></p></div>
+              <div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-required="true" placeholder="vous@exemple.fr" aria-describedby="err-email"><p class="field-err" id="err-email" hidden></p></div>
+              <div class="field"><label for="f-metier">Métier et ville</label><input id="f-metier" name="metier_ville" required aria-required="true" placeholder="Ex. menuisier à Montpellier" aria-describedby="err-metier"><p class="field-err" id="err-metier" hidden></p></div>
             </div>
-            <div class="field"><label for="f-ville">Ville <span class="req" aria-hidden="true">*</span></label><input id="f-ville" name="ville" autocomplete="address-level2" required aria-required="true" aria-describedby="err-ville"><p class="field-err" id="err-ville" hidden></p></div>
-            <fieldset class="field field-radio">
-              <legend>Vous avez déjà un site&nbsp;?</legend>
-              <label><input type="radio" name="deja_un_site" value="oui"> Oui</label>
-              <label><input type="radio" name="deja_un_site" value="non"> Non</label>
-            </fieldset>
-            <div class="field"><label for="f-msg">Message <span class="opt-l">(facultatif)</span></label><textarea id="f-msg" name="message" rows="3"></textarea></div>
             <div class="field field-consent">
-              <label class="consent"><input type="checkbox" id="f-consent" name="consentement_rgpd" value="oui" required aria-required="true" aria-describedby="err-consent"> <span>J'accepte que mes informations soient utilisées pour être recontacté au sujet de ma demande. Rien d'autre. Voir la <a href="#confidentialite" data-modal="confidentialite">politique de confidentialité</a>. <span class="req" aria-hidden="true">*</span></span></label>
+              <label class="consent"><input type="checkbox" id="f-consent" name="consentement" value="oui" required aria-required="true" aria-describedby="err-consent"> <span>J'accepte d'être recontacté par téléphone et email au sujet de mon projet et de recevoir des offres d'Agenzio. Désinscription en 1 clic. Voir la <a href="#confidentialite" data-modal="confidentialite">politique de confidentialité</a>.</span></label>
               <p class="field-err" id="err-consent" hidden></p>
             </div>
-            <button class="btn btn-dark btn-lg magnetic" type="submit">Être rappelé <span class="btn-arrow" aria-hidden="true">→</span></button>
+            <button class="btn btn-dark btn-lg magnetic" type="submit">Réserver mon appel gratuit <span class="btn-arrow" aria-hidden="true">→</span></button>
+            <p class="cta-micro cta-micro--light">Maquette de votre site offerte après l'appel</p>
+            <p class="form-alt"><button type="button" class="link-btn" data-calendly>Vous préférez choisir votre créneau&nbsp;?</button></p>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
           </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3.11 Pour aller plus loin : services au-delà du site one page -->
-    <section class="section dark premium-sec" id="plus" aria-labelledby="titre-premium">
-      <div class="wrap">
-        <div class="premium" data-reveal>
-          <div class="premium-inner">
-            <div>
-              <p class="label">Pour aller plus loin</p>
-              <h2 id="titre-premium" class="h-lg">Besoin de plus qu'une page&nbsp;?</h2>
-              <ul class="premium-list">
-                <li>Site multi-pages</li>
-                <li>Fiche Google Business</li>
-                <li>Réservation en ligne</li>
-                <li>Avis clients</li>
-                <li>Automatisations</li>
-                <li>SEO local</li>
-              </ul>
-            </div>
-            <div class="premium-side">
-              <p class="premium-price"><span>À partir de</span> <strong>1&nbsp;490&nbsp;€</strong></p>
-              <a class="btn btn-accent btn-lg magnetic" href="#reserver" data-premium>Contactez-nous <span class="btn-arrow" aria-hidden="true">→</span></a>
-            </div>
+          <div class="form-success" data-form-success hidden tabindex="-1">
+            <p class="form-success-t">C'est reçu, je vous appelle sous 24&nbsp;h.</p>
+            <p>Pour aller plus vite, choisissez votre créneau&nbsp;:</p>
+            <p><button type="button" class="link-btn link-btn--strong" data-calendly="prefill">Choisir mon créneau dans le calendrier →</button></p>
           </div>
         </div>
       </div>
@@ -672,27 +634,27 @@
           </details>
           <details class="qa">
             <summary>Que se passe-t-il si je n'ai pas de photos ou de textes&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p>Les textes et les photos sont à fournir&nbsp;: la rédaction n'est pas incluse dans l'offre. Le brief de 15 minutes vous guide section par section, pour savoir quoi écrire et quelles photos envoyer. Pas de photos pro&nbsp;? Celles de votre téléphone font souvent l'affaire. Le délai de 7 jours démarre à réception de 100&nbsp;% de vos éléments.</p></div>
+            <div class="qa-a"><p>Les textes et les photos sont à fournir&nbsp;: la rédaction n'est pas incluse dans l'offre. Un formulaire simple vous guide section par section, pour savoir quoi écrire et quelles photos envoyer. Pas de photos pro&nbsp;? Celles de votre téléphone font souvent l'affaire. Le délai de 7 jours démarre à réception de 100&nbsp;% de vos éléments.</p></div>
           </details>
           <details class="qa">
             <summary>Je peux modifier mon site moi-même ensuite&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p>Le site vous appartient&nbsp;: vous récupérez vos accès et votre code. Il n'y a pas d'outil d'édition simplifié&nbsp;: pour un changement, demandez-le nous (25&nbsp;€ la modification) ou confiez-le au prestataire de votre choix.</p></div>
+            <div class="qa-a"><p>Le site est à vous, sans abonnement. Il n'y a pas d'outil d'édition simplifié&nbsp;: pour un changement, demandez-le moi (25&nbsp;€ la modification) ou confiez-le au prestataire de votre choix.</p></div>
           </details>
           <details class="qa">
             <summary>L'hébergement, ça coûte combien et qui s'en occupe&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p>L'hébergement et le nom de domaine ne sont pas inclus dans les 1000&nbsp;€. En moyenne, comptez 50 à 90&nbsp;€ par an : environ 10 à 15&nbsp;€ par an pour le nom de domaine et 3 à 6&nbsp;€ par mois pour l'hébergement, à votre nom. Si vous préférez ne pas vous en occuper, dites-le pendant l'appel&nbsp;: on peut s'en charger.</p></div>
+            <div class="qa-a"><p>Le nom de domaine et l'hébergement sont inclus la première année, enregistrés à votre nom. Ensuite, comptez environ 10 à 15&nbsp;€ par an pour le nom de domaine, payés directement depuis votre compte. L'hébergement reste gratuit. Rien ne passe par moi.</p></div>
           </details>
           <details class="qa">
             <summary>Et si j'ai besoin de plus qu'une page&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p>Site multi-pages, fiche Google Business, réservation en ligne, avis clients, automatisations&nbsp;: c'est possible, à partir de 1&nbsp;490&nbsp;€. Cochez «&nbsp;Site plus complet ou autres services&nbsp;» dans le formulaire, on en parle à l'appel.</p></div>
+            <div class="qa-a"><p>On en parle pendant l'appel&nbsp;: je vous fais un devis sur mesure.</p></div>
           </details>
           <details class="qa">
-            <summary>Et après le 31 décembre&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p>L'offre à 1000&nbsp;€ s'arrête le 31 décembre 2026, ou avant si tous les créneaux sont pris. Après cette date, contactez-nous pour connaître les conditions.</p></div>
+            <summary>Et après le <span data-offer-end>31 décembre</span>&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>L'offre à 1000&nbsp;€ s'arrête le <span data-offer-end>31 décembre</span> 2026, ou avant si tous les créneaux sont pris. Après cette date, contactez-nous pour connaître les conditions.</p></div>
           </details>
           <details class="qa">
             <summary>Que se passe-t-il si je ne suis pas satisfait&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p>Avant la mise en ligne, vous voyez le site et vous demandez vos changements&nbsp;: un aller-retour de modifications est inclus. Les modifications supplémentaires sont facturées 25&nbsp;€ chacune. Si vous annulez avant le début de la production, votre acompte vous est remboursé.</p></div>
+            <div class="qa-a"><p>Vous voyez la maquette avant de payer quoi que ce soit&nbsp;: si elle ne vous plaît pas, vous ne payez rien. Ensuite, un aller-retour de modifications est inclus avant la mise en ligne&nbsp;; les modifications supplémentaires sont facturées 25&nbsp;€ chacune. Si vous annulez avant le début de la production, votre acompte vous est remboursé.</p></div>
           </details>
           <details class="qa">
             <summary>Vous travaillez dans toute la France&nbsp;?<span class="qa-i" aria-hidden="true"></span></summary>
@@ -706,7 +668,7 @@
     <section class="final" aria-labelledby="titre-final">
       <div class="wrap final-inner">
         <h2 id="titre-final" class="final-title"><span class="final-l" data-final-1>Plus que 4 créneaux</span> <span class="final-l" data-final-2>en décembre.</span></h2>
-        <a class="btn btn-dark btn-xl magnetic" href="#reserver">Réserver mon créneau <span class="btn-arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn-dark btn-xl magnetic" href="#reserver">Réserver mon appel gratuit <span class="btn-arrow" aria-hidden="true">→</span></a>
       </div>
     </section>
   </main>
@@ -724,15 +686,17 @@
       </nav>
       <div class="footer-contact">
         <p>Contact : <a href="mailto:contact@agenzio.fr">contact@agenzio.fr</a></p>
+        <p>Téléphone : <a href="tel:+33783975890" data-phone><span data-phone-text>07 83 97 58 90</span></a></p>
         <p>Création de sites internet pour artisans, indépendants et TPE, partout en France.</p>
       </div>
     </div>
-    <p class="wrap footer-bottom">© 2026 Agenzio · Yoann Di Stefano EI. Aucun cookie de suivi, aucun tracker.</p>
+    <p class="wrap footer-bottom">© 2026 Agenzio · Yoann Di Stefano EI. Aucun traceur publicitaire.</p>
   </footer>
 
   <!-- 3.14 Barre CTA mobile -->
   <div class="mbar" data-mbar>
-    <a class="mbar-cta" href="#reserver" data-mbar-cta>Réserver · 1000&nbsp;€</a>
+    <a class="mbar-cta" href="#reserver" data-mbar-cta>Réserver mon appel gratuit</a>
+    <a class="mbar-call" href="tel:+33783975890" data-phone><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h3l1.5 4.5L8 9a12 12 0 0 0 7 7l1.5-2.5L21 15v3a2 2 0 0 1-2 2C10.6 20 4 13.4 4 5a2 2 0 0 1 2-2z"/></svg><span>Appeler</span></a>
   </div>
 
   <!-- Modales légales (s'affichent aussi via #ancre sans JS) -->
@@ -744,6 +708,7 @@
       SIREN : 924 726 672<br>
       Adresse : 161 allée du Golf, 34280 La Grande-Motte<br>
       E-mail : <a href="mailto:contact@agenzio.fr">contact@agenzio.fr</a><br>
+      Téléphone : <a href="tel:+33783975890" data-phone><span data-phone-text>07 83 97 58 90</span></a><br>
       TVA non applicable, art. 293 B du CGI.</p>
       <p><strong>Directeur de la publication</strong> : Yoann Di Stefano.</p>
       <h3>Hébergement</h3>
@@ -751,7 +716,7 @@
       <h3>Propriété intellectuelle</h3>
       <p>Les textes, la mise en page et les éléments graphiques de ce site sont la propriété d'Agenzio. Toute reproduction sans autorisation est interdite. Les captures présentées dans « Réalisations » sont celles de sites de démonstration conçus par Agenzio, pour des entreprises fictives ; leurs photos proviennent d'Unsplash.</p>
       <h3>Données personnelles et cookies</h3>
-      <p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience. Le traitement des données du formulaire est décrit dans la <a href="#confidentialite" data-modal="confidentialite">politique de confidentialité</a>.</p>
+      <p>Ce site ne dépose aucun cookie au chargement et n'utilise aucun outil de mesure d'audience. Le calendrier Calendly n'est chargé que si vous l'ouvrez. Le traitement des données est décrit dans la <a href="#confidentialite" data-modal="confidentialite">politique de confidentialité</a>.</p>
     </div>
     <form method="dialog"><button class="modal-close" aria-label="Fermer">Fermer ✕</button></form>
   </dialog>
@@ -759,7 +724,7 @@
   <dialog class="modal" id="cgv" aria-labelledby="t-cgv" data-lenis-prevent>
     <div class="modal-body">
       <h2 id="t-cgv">Conditions générales de vente</h2>
-      <p class="modal-note">Offre « 1 site, 1 semaine, 1000 € ». Version du 24 novembre 2026.</p>
+      <p class="modal-note">Offre « 1 site, 1 semaine, 1000 € ». Version du 25 novembre 2026.</p>
 
       <h3>1. Vendeur</h3>
       <p>Agenzio, nom commercial de Yoann Di Stefano, entrepreneur individuel (EI), SIREN 924 726 672, 161 allée du Golf, 34280 La Grande-Motte, contact@agenzio.fr.</p>
@@ -767,42 +732,46 @@
       <h3>2. Clients concernés</h3>
       <p>Ces conditions s'appliquent aux ventes conclues avec des professionnels (artisans, indépendants, sociétés, associations) pour les besoins de leur activité. Toute commande vaut acceptation de ces conditions.</p>
 
-      <h3>3. Contenu de l'offre</h3>
+      <h3>3. Déroulement</h3>
+      <p>Après un appel de 15 minutes, Agenzio présente au client une maquette de son site, gratuitement et sans engagement. Si le client ne donne pas suite, il ne doit rien. La commande est passée lorsque le client valide la maquette et verse l'acompte.</p>
+
+      <h3>4. Contenu de l'offre</h3>
       <ul>
         <li>Conception d'un site one page sur mesure, adapté au mobile et optimisé pour le référencement local.</li>
         <li>Formulaire de contact, bouton d'appel, mentions légales et page de confidentialité.</li>
+        <li>Nom de domaine et hébergement inclus la première année, enregistrés au nom du client.</li>
         <li>Mise en ligne du site.</li>
         <li>Un aller-retour de modifications avant la mise en ligne.</li>
-        <li>Remise des accès et du code source à la livraison.</li>
+        <li>Remise au client de l'ensemble des accès (nom de domaine, hébergement).</li>
       </ul>
 
-      <h3>4. Ce qui n'est pas inclus</h3>
+      <h3>5. Ce qui n'est pas inclus</h3>
       <ul>
-        <li>L'hébergement et le nom de domaine, souscrits au nom du client et à sa charge.</li>
+        <li>Le renouvellement du nom de domaine après la première année (environ 10 à 15 € par an), payé directement par le client depuis son compte. L'hébergement reste gratuit.</li>
         <li>La rédaction complète des textes et la production de photos, sauf accord écrit.</li>
         <li>Les modifications demandées au-delà de l'aller-retour inclus, facturées 25 € par modification.</li>
-        <li>Les services complémentaires (site multi-pages, fiche Google Business, réservation en ligne, automatisations, maintenance), qui font l'objet d'un devis séparé, à partir de 1490 €.</li>
+        <li>Les services complémentaires (site multi-pages, fiche Google Business, réservation en ligne, automatisations, maintenance), qui font l'objet d'un devis séparé.</li>
       </ul>
 
-      <h3>5. Prix et paiement</h3>
+      <h3>6. Prix et paiement</h3>
       <p>Le prix de l'offre est de 1000 €, TVA non applicable (art. 293 B du CGI).<br>
       Paiement par virement : un acompte de 50 % à la commande, le solde de 50 % à la mise en ligne. La production démarre à réception de l'acompte.<br>
       En cas de retard de paiement, des pénalités au taux de trois fois le taux d'intérêt légal et une indemnité forfaitaire de 40 € pour frais de recouvrement sont dues (articles L441-10 et D441-5 du Code de commerce).</p>
 
-      <h3>6. Délai</h3>
+      <h3>7. Délai</h3>
       <p>Le site est mis en ligne dans un délai de 7 jours à compter de la réception de 100 % des éléments demandés au client (textes, photos, logo, accès). Le délai est suspendu tant que des éléments manquent ou pendant la validation par le client.</p>
 
-      <h3>7. Validation et livraison</h3>
+      <h3>8. Validation et livraison</h3>
       <p>Le client valide le site après l'aller-retour de modifications. Sans réponse de sa part dans un délai de 7 jours après l'envoi de la version finale, le site est réputé accepté.</p>
 
-      <h3>8. Propriété</h3>
-      <p>Après paiement intégral, le client devient propriétaire du site livré et reçoit ses accès et le code source. Les éléments fournis par le client restent sa propriété ; il garantit disposer des droits nécessaires sur ces éléments. Agenzio peut présenter le site dans ses réalisations, sauf refus écrit du client.</p>
+      <h3>9. Propriété</h3>
+      <p>Après paiement intégral, le client devient propriétaire du site livré. Le nom de domaine et l'hébergement sont enregistrés à son nom et il en détient les accès. Les éléments fournis par le client restent sa propriété ; il garantit disposer des droits nécessaires sur ces éléments. Agenzio peut présenter le site dans ses réalisations, sauf refus écrit du client.</p>
 
-      <h3>9. Responsabilité</h3>
+      <h3>10. Responsabilité</h3>
       <p>Agenzio est tenu à une obligation de moyens. Le positionnement sur Google dépend de facteurs extérieurs et ne peut être garanti. La responsabilité d'Agenzio est limitée au montant payé pour la prestation.</p>
 
-      <h3>10. Annulation</h3>
-      <p>Toute annulation est notifiée par écrit à contact@agenzio.fr.</p>
+      <h3>11. Annulation</h3>
+      <p>La maquette est gratuite : la refuser n'entraîne aucun frais. Après la commande, toute annulation est notifiée par écrit à contact@agenzio.fr.</p>
       <ul>
         <li>Avant le début de la production : l'acompte est intégralement remboursé.</li>
         <li>Après le début de la production : l'acompte reste acquis à Agenzio, en contrepartie du travail engagé.</li>
@@ -810,10 +779,10 @@
       </ul>
       <p>Si le client ne transmet pas ses éléments dans un délai de 30 jours après la commande, Agenzio peut considérer la commande comme annulée ; l'acompte reste alors acquis.</p>
 
-      <h3>11. Validité de l'offre</h3>
-      <p>Offre valable jusqu'au 31 décembre 2026, dans la limite des créneaux disponibles.</p>
+      <h3>12. Validité de l'offre</h3>
+      <p>Offre valable jusqu'au <span data-offer-end>31 décembre</span> 2026, dans la limite des créneaux disponibles.</p>
 
-      <h3>12. Litiges</h3>
+      <h3>13. Litiges</h3>
       <p>Ces conditions sont soumises au droit français. En cas de litige, une solution amiable sera recherchée en priorité. À défaut, le tribunal compétent est celui du ressort du siège d'Agenzio.</p>
     </div>
     <form method="dialog"><button class="modal-close" aria-label="Fermer">Fermer ✕</button></form>
@@ -825,15 +794,19 @@
       <h3>Responsable du traitement</h3>
       <p>Yoann Di Stefano, entrepreneur individuel (Agenzio), SIREN 924 726 672, contact@agenzio.fr.</p>
       <h3>Données collectées</h3>
-      <p>Uniquement via le formulaire de rappel : nom, métier, ville, téléphone, e-mail, type de projet, présence d'un site existant et message facultatif.</p>
-      <h3>Finalité et base légale</h3>
-      <p>Vous recontacter au sujet de votre demande et, si vous le souhaitez, établir une proposition. Base légale : les mesures précontractuelles prises à votre demande. Aucune prospection non sollicitée, aucune revente.</p>
-      <h3>Destinataires</h3>
-      <p>Yoann Di Stefano (Agenzio) uniquement. Les messages transitent par le service d'envoi de formulaires Web3Forms. Le site est hébergé par GitHub, Inc. (États-Unis), qui peut enregistrer l'adresse IP des visiteurs pour des raisons de sécurité. Ces prestataires peuvent traiter des données hors de l'Union européenne, dans le cadre des garanties prévues par le RGPD.</p>
+      <p>Via le formulaire : prénom, téléphone, e-mail, métier et ville, ainsi que la source de votre visite (paramètre « src » du lien qui vous a amené ici). Si vous ouvrez le calendrier, les informations que vous y saisissez sont collectées par Calendly.</p>
+      <h3>Finalités et bases légales</h3>
+      <ul>
+        <li>Vous rappeler au sujet de votre projet et vous présenter une maquette : mesures précontractuelles prises à votre demande.</li>
+        <li>Vous envoyer des offres d'Agenzio par e-mail ou par téléphone : votre consentement, donné en cochant la case du formulaire. Vous pouvez le retirer à tout moment, en 1 clic via le lien de désinscription présent dans chaque e-mail, ou en écrivant à contact@agenzio.fr.</li>
+      </ul>
+      <p>Aucune revente, aucune cession à des tiers.</p>
+      <h3>Destinataires et prestataires</h3>
+      <p>Yoann Di Stefano (Agenzio) uniquement. Les messages du formulaire transitent par le service Web3Forms. Le calendrier de prise de rendez-vous est fourni par Calendly LLC (États-Unis). Le site est hébergé par GitHub, Inc. (États-Unis), qui peut enregistrer l'adresse IP des visiteurs pour des raisons de sécurité. Ces prestataires peuvent traiter des données hors de l'Union européenne, dans le cadre des garanties prévues par le RGPD.</p>
       <h3>Durée de conservation</h3>
       <p>3 ans à compter du dernier échange, puis suppression. En cas de commande, les données nécessaires à la facturation sont conservées 10 ans (obligation comptable).</p>
       <h3>Cookies</h3>
-      <p>Aucun cookie, aucun outil de mesure d'audience, aucun traceur publicitaire.</p>
+      <p>Aucun cookie ni traceur n'est déposé au chargement de la page. Le calendrier Calendly n'est chargé que si vous cliquez pour l'ouvrir : il dépose alors ses propres cookies, nécessaires à son fonctionnement.</p>
       <h3>Vos droits</h3>
       <p>Vous pouvez accéder à vos données, les rectifier, les supprimer, vous opposer à leur traitement ou en demander la limitation, en écrivant à <a href="mailto:contact@agenzio.fr">contact@agenzio.fr</a>. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
     </div>
@@ -843,6 +816,6 @@
   <script src="js/gsap.min.js" defer></script>
   <script src="js/ScrollTrigger.min.js" defer></script>
   <script src="js/lenis.min.js" defer></script>
-  <script src="js/main.js?v=6" defer></script>
+  <script src="js/main.js?v=7" defer></script>
 </body>
 </html>
